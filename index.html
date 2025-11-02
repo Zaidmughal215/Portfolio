@@ -157,17 +157,23 @@
 
 
     /* ------------------------------------------------------------------ */
-    /* SKILLS, BEFORE/AFTER, CONTACT SHARED STYLES */
+    /* SKILLS, POSTER, CONTACT SHARED STYLES */
     /* ------------------------------------------------------------------ */
-    .skills-section, .before-after-section, .contact-section {
+    .skills-section, .poster-section, .contact-section {
         padding: 80px 0;
     }
     .skills-section { background-color: #ffffff; }
-    .before-after-section { background-color: #e0e0e0; }
+    
+    /* POSTER SECTION takes full width and is centered, but does not use the fixed section-container padding for the image track */
+    .poster-section { 
+        background-color: #e0e0e0; 
+        padding: 80px 0 0; 
+        display: block; 
+    }
     .contact-section { background-color: #ffffff; }
 
     /* Adjust header alignment for blocks */
-    .skills-content h2, .before-after-content h2, .contact-content h2 {
+    .skills-content h2, .contact-content h2 {
         text-align: center;
     }
 
@@ -198,171 +204,220 @@
     }
     .skill-item h3 { font-size: 1.5em; color: #222; margin-top: 0; margin-bottom: 10px; }
     .skill-item p { font-size: 1em; color: #555; line-height: 1.5; }
-
+    
     /* ------------------------------------------------------------------ */
-    /* BEFORE & AFTER SLIDER SECTION STYLING (PERFECTED UI & SIZE) */
+    /* 4. NEW: WEBSITE BUILDING MAIN HEADING STYLE */
     /* ------------------------------------------------------------------ */
-    .before-after-content {
-        width: 100%;
-        text-align: center;
+    .website-building-header {
+        background-color: #e0e0e0;
+        padding-bottom: 0; /* Remove bottom padding to bring it closer to the project section */
+        display: block;
     }
-    .before-after-content h2 {
-        font-family: 'Georgia', serif;
-        font-weight: 900;
-        font-size: 3.5em;
-        color: #222;
-        margin-bottom: 60px;
-    }
-    .slider-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 40px;
-        justify-items: center;
+    .website-building-header h2 {
+        text-align: center; /* Center the new main heading */
+        font-size: 3.5em; /* Slightly smaller than the global h2, for a section title */
+        margin-bottom: 20px;
+        letter-spacing: -1px;
     }
 
-    /* Before-After Slider Component - INCREASED SIZE HERE */
-    .before-after-slider {
-        position: relative;
-        width: 100%;
-        max-width: 650px; /* Significantly increased max width */
-        height: 450px; /* Significantly increased height for proper image view */
+
+    /* ------------------------------------------------------------------ */
+    /* 5. AHSAN FABRICS PROJECT SHOWCASE STYLES */
+    /* ------------------------------------------------------------------ */
+    .project-showcase-section {
+        background-color: #ffffff;
+        flex-direction: row; 
+        min-height: 70vh; 
+        align-items: center; 
+        padding-top: 40px; /* Reduced top padding since the main heading is outside */
+    }
+
+    .project-content-left {
+        flex: 1;
+        padding-right: 40px;
+        box-sizing: border-box;
+        max-width: 50%;
+    }
+    .project-content-left h2 {
+        font-size: 2.5em; /* Specific size for the project title */
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .project-text {
+        font-size: 1.2em;
+        line-height: 1.6;
+        color: #555;
+        min-height: 250px; 
+        white-space: pre-wrap; 
         overflow: hidden;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        background-color: #fff;
+    }
+
+    .project-image-right {
+        flex: 1;
+        max-width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-bottom: 20px;
-        transition: transform 0.2s ease;
-    }
-    .before-after-slider:hover {
-        transform: translateY(-3px);
     }
 
-    .before-after-slider h3 {
-        font-size: 1.8em; /* Slightly larger title for the bigger block */
-        color: #222;
-        margin: 25px 0 15px; /* Adjusted margin for new height */
-        text-align: center;
-        font-weight: bold;
-    }
-
-    .image-container {
-        position: relative;
+    .image-wrapper {
         width: 100%;
-        height: 100%;
-        overflow: hidden;
-        user-select: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #e0e0e0;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .image-container img {
+    .project-image {
+        width: 100%;
+        height: auto;
         display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-        pointer-events: none;
+        border-radius: 4px;
+        object-fit: contain;
     }
 
-    /* The 'before' image is the one that is clipped/variable width */
-    .before-image {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 2;
-    }
-    
-    /* The Divider Line */
-    .slider-handle {
-        position: absolute;
-        top: 0;
-        width: 4px;
-        height: 100%;
-        background-color: #fff;
-        cursor: ew-resize;
-        z-index: 3;
-        transform: translateX(-50%);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    .view-website-link {
+        margin-top: 25px;
+        display: block;
+        transition: transform 0.3s ease;
     }
 
-    /* The Draggable Button (High Contrast UI) */
-    .slider-button {
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
+    .view-website-link img {
         width: 50px;
         height: 50px;
-        background-color: #222; /* Dark, high-contrast background */
-        border: 3px solid #fff; /* White border for emphasis */
-        border-radius: 50%;
+        opacity: 0.8;
+    }
+
+    .view-website-link:hover {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    /* ------------------------------------------------------------------ */
+    /* 6. POSTER DESIGN SECTION STYLES (Single-Page Scroll) */
+    /* ------------------------------------------------------------------ */
+    .poster-header {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 60px; /* Padding for the title above the scroll area */
+        text-align: center;
+    }
+    .poster-header h2 {
+        color: #333;
+        font-size: 3.5em;
+        margin: 0;
+    }
+
+    /* Container for horizontal scrolling */
+    .poster-scroll-wrapper {
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        scroll-snap-type: x mandatory; /* Snap to each project for clean viewing */
+        padding-bottom: 50px; /* Space for the scrollbar/shadows */
+        -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS */
+    }
+    
+    /* Individual Project Container (The "Page") */
+    .poster-project {
+        display: inline-block;
+        width: 100vw; /* Takes up 100% of the viewport width */
+        max-width: 1200px; /* Prevents stretching too wide on massive screens */
+        scroll-snap-align: center;
+        text-align: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    
+    /* Layout for two images side-by-side inside the page */
+    .poster-images {
+        display: flex;
+        justify-content: center;
+        gap: 40px; 
+        align-items: flex-start;
+        max-width: 800px; 
+        margin: 0 auto;
+    }
+
+    .poster-image-pair {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%; 
+        max-width: 380px;
+    }
+    
+    .poster-image-pair > img {
+        width: 100%;
+        height: auto; 
+        aspect-ratio: 1 / 1; 
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 5px; 
+        transition: transform 0.3s ease;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .poster-image-pair p {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #222;
+        margin: 10px 0 5px 0; 
+    }
+
+    /* Eye Icon Styling */
+    .view-link {
         display: flex;
         justify-content: center;
         align-items: center;
-        cursor: grab;
-        z-index: 4;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-        transition: background-color 0.2s;
-    }
-    .slider-button:active {
-        cursor: grabbing;
-        background-color: #000;
+        margin-top: 10px; 
+        width: 100%; 
+        transition: opacity 0.3s ease;
     }
 
-    /* Custom Double Arrow Icon (Perfected) */
-    .arrow {
-        position: relative;
-        width: 15px;
-        height: 15px;
-    }
-    .arrow::before, .arrow::after {
-        content: '';
-        position: absolute;
-        width: 10px;
-        height: 2px;
-        background-color: #fff;
-        top: 50%;
-        transform-origin: center;
-    }
-    /* Left arrow part */
-    .arrow::before {
-        left: -8px;
-        transform: translateY(-50%) rotate(45deg);
-    }
-    /* Right arrow part */
-    .arrow::after {
-        right: -8px;
-        transform: translateY(-50%) rotate(-45deg);
+    .view-link img {
+        width: 35px; 
+        height: 35px;
+        opacity: 0.9; 
+        filter: none; 
+        transition: opacity 0.3s ease, transform 0.2s ease;
     }
 
-    /* Labels for Before/After */
-    .label-before, .label-after {
-        position: absolute;
-        bottom: 15px;
-        padding: 8px 15px;
-        background: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        font-size: 0.9em;
-        font-weight: bold;
-        border-radius: 5px;
-        z-index: 5;
+    .view-link:hover img {
+        opacity: 1; 
+        transform: scale(1.1);
     }
-    .label-before { left: 15px; }
-    .label-after { right: 15px; }
 
 
-    /* CONTACT specific styles */
+    /* ------------------------------------------------------------------ */
+    /* 7. CONTACT specific styles */
+    /* ------------------------------------------------------------------ */
     .contact-form { max-width: 600px; margin: 0 auto; padding: 30px; background: #e0e0e0; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
     .form-group { margin-bottom: 25px; text-align: left; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #333; }
     .form-group input, .form-group textarea {
         width: 100%; padding: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1em; transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+        border-color: #555;
+        box-shadow: 0 0 5px rgba(51, 51, 51, 0.2);
     }
     .send-btn {
         display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #fff; background-color: #333; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        width: 100%; 
+    }
+    .send-btn:hover {
+        background-color: #555;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     }
 
     /* ------------------------------------------------------------------ */
@@ -420,11 +475,53 @@
         .skills-grid { grid-template-columns: 1fr; gap: 20px; }
         .skill-item { padding: 20px; }
         
-        /* BEFORE & AFTER MOBILE ADJUSTMENTS */
-        .before-after-content h2 { font-size: 2.5em; margin-bottom: 40px; }
-        .slider-grid { grid-template-columns: 1fr; gap: 30px; }
-        .before-after-slider { max-width: 95%; height: 300px; } /* Adjust height for mobile */
-        .slider-button { width: 40px; height: 40px; }
+        /* NEW: WEBSITE BUILDING HEADING MOBILE ADJUSTMENTS */
+        .website-building-header h2 {
+            font-size: 2.5em; 
+        }
+
+        /* AHSAN FABRICS MOBILE ADJUSTMENTS */
+        .project-showcase-section {
+            flex-direction: column; 
+        }
+
+        .project-content-left, .project-image-right {
+            max-width: 100%;
+            padding-right: 0;
+        }
+
+        .project-content-left {
+            margin-bottom: 30px;
+        }
+        
+        .project-content-left h2 {
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .project-text {
+            text-align: left;
+            min-height: 150px; 
+        }
+
+        .image-wrapper {
+            padding: 10px;
+        }
+        /* POSTER SECTION MOBILE ADJUSTMENTS */
+        .poster-header { padding: 0 10px 40px; }
+        .poster-header h2 { font-size: 2.5em; }
+        
+        .poster-images { 
+            gap: 20px;
+            max-width: 500px;
+        }
+        .poster-image-pair { 
+            width: 50%;
+            padding: 0; 
+        }
+        .poster-image-pair > img {
+            padding: 10px;
+        }
 
         /* CONTACT FORM ADJUSTMENTS */
         .contact-form { padding: 20px; }
@@ -520,67 +617,169 @@
         </div>
     </section>
 
-    <section class="section-container before-after-section" id="before-after-section">
-        <div class="before-after-content">
-            <h2>My Design Transformations</h2>
-            <div class="slider-grid">
+    <div class="section-container website-building-header">
+        <h2>Website Building</h2>
+    </div>
+    
+    <section class="section-container project-showcase-section" id="ahsan-fabrics-project">
 
-                
-<div class="before-after-slider">
-                    <h3>Watch</h3>
-                    <div class="image-container">
-                        <img src="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" class="after-image" alt="After Watch Image - Retouched" loading="lazy">
-                        
-                        <img src="https://i.postimg.cc/zfk4PCDn/Carliongton-premium-black-analog-mens-s-watch-6020.webp" class="before-image" alt="Before Watch Image - Original" loading="lazy">
-                        
-                        <div class="slider-handle">
-                            <div class="slider-button">
-                                <div class="arrow"></div>
-                            </div>
-                        </div>
-                        <span class="label-before">Before</span>
-                        <span class="label-after">After</span>
-                    </div>
-                </div>
+        <div class="project-content-left">
+            <h2>Ahsan Fabrics Project</h2>
+            <p class="project-text" id="ahsan-fabrics-typing-text"></p>
+        </div>
 
-                
-<div class="before-after-slider">
-                    <h3>Cream Box</h3>
-                    <div class="image-container">
-                        <img src="https://i.postimg.cc/XvF9VLBm/upscalemedia-transformed.png" class="after-image" alt="After Cream Box Image - Refined" loading="lazy">
-                        
-                        <img src="https://i.postimg.cc/hGM30Kpg/original-d9609cebc935a74d040d57d2a61bae97.webp" class="before-image" alt="Before Cream Box Image - Original" loading="lazy">
-                        
-                        <div class="slider-handle">
-                            <div class="slider-button">
-                                <div class="arrow"></div>
-                            </div>
-                        </div>
-                        <span class="label-before">Before</span>
-                        <span class="label-after">After</span>
-                    </div>
-                </div>
-
-                
-<div class="before-after-slider">
-                    <h3>Earbuds</h3>
-                    <div class="image-container">
-                        <img src="https://i.postimg.cc/RZ4k1p4t/watermark-removal-manual.jpg" class="after-image" alt="After Earbuds Image - Cleaned" loading="lazy">
-                        
-                        <img src="https://i.postimg.cc/Kjhp5fCD/Customize-Cake-Instagram-Post.png" class="before-image" alt="Before Cake Post Image - Original" loading="lazy">
-                        
-                        <div class="slider-handle">
-                            <div class="slider-button">
-                                <div class="arrow"></div>
-                            </div>
-                        </div>
-                        <span class="label-before">Before</span>
-                        <span class="label-after">After</span>
-                    </div>
-                </div>
-
+        <div class="project-image-right">
+            <div class="image-wrapper">
+                <img 
+                    src="https://i.postimg.cc/ZqMGFBm0/Screenshot-2025-11-02-042230.png" 
+                    alt="Ahsan Fabrics Homepage Screenshot (Landscape)" 
+                    class="project-image"
+                >
+                <a href="#" target="_blank" class="view-website-link" aria-label="View Ahsan Fabrics Website">
+                    <img src="https://i.postimg.cc/pXsqFNRL/preview.png" alt="View Icon">
+                </a>
             </div>
         </div>
+    </section>
+
+    <section class="poster-section" id="poster-section">
+        <div class="poster-header">
+            <h2>My Poster Designing</h2>
+            <p style="font-style: italic; color: #555;">(Scroll horizontally to view all 8 projects)</p>
+        </div>
+
+        <div class="poster-scroll-wrapper">
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/zfk4PCDn/Carliongton-premium-black-analog-mens-s-watch-6020.webp" alt="Original Watch Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" alt="My Design Watch Post" loading="lazy">
+                        <p>My Design</p>
+                        <a href="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                             <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/hGM30Kpg/original-d9609cebc935a74d040d57d2a61bae97.webp" alt="Original Cream Box Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/XvF9VLBm/upscalemedia-transformed.png" alt="My Design Cream Box Post" loading="lazy">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/XvF9VLBm/upscalemedia-transformed.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/Kjhp5fCD/Customize-Cake-Instagram-Post.png" alt="Original Cake Post Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/RZ4k1p4t/watermark-removal-manual.jpg" alt="My Design Earbuds Post" loading="lazy">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/RZ4k1p4t/watermark-removal-manual.jpg" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://ik.imagekit.io/2xkwa8s1i/img/npl_modified_images/Sofa_LS/WSFAAMBN3FMMG_LS_1.jpg?tr=w-3840" alt="Original Sofa Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/tg3K5j0f/Black-White-Simple-Coming-Soon-Instagram-Post-Square.png" alt="My Design Sofa Post" loading="lazy">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/tg3K5j0f/Black-White-Simple-Coming-Soon-Instagram-Post-Square.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://www.digimaxpakistan.com/cdn/shop/products/images_62_919e76b7-73f3-414b-b4ee-791d8227265b.jpg?v=1681942432" alt="Original Tripod Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/ydPt9XM2/Customize-Cake-Instagram-Post-2.png" alt="My Design Tripod Post" loading="lazy">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/ydPt9XM2/Customize-Cake-Instagram-Post-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimgimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://vmart.pk/cdn/shop/files/AnkerZoloPowerBank_20KBuilt-InUSB-CandLightningCable_Black.webp?v=1752754342" alt="Original Powerbank Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/1zvQQB8z/Customize-Cake-Instagram-Post-1.png" alt="My Design Powerbank Post" loading="lazy">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/1zvQQB8z/Customize-Cake-Instagram-Post-1.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://hbfurnitures.com/wp-content/uploads/2024/10/Sun-Cane-Model-DP-093.jpg" alt="Original Dining Table Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/7YFp76Gk/Customize-Cake-Instagram-Post-3.png" alt="My Design Dining Table Post" loading="lazy">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/7YFp76Gk/Customize-Cake-Instagram-Post-3.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://static-01.daraz.pk/p/79361435810297f6aebac8cabe66545f.jpg" alt="Original Product Image" loading="lazy">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" alt="My Design Product Post" loading="lazy">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
     </section>
 
     <section class="section-container contact-section" id="contact-section">
@@ -598,14 +797,14 @@
                         <textarea id="message" name="message" required placeholder="Tell me about your project or inquiry..."></textarea>
                     </div>
 
-                    <button type="submit" class="send-btn">Send</button>
+                    <button type="submit" class="send-btn">Send Message on WhatsApp</button>
                 </form>
             </div>
         </div>
     </section>
     
     <script>
-        // Typing Animation Script
+        // === 1. About Me Typing Animation Script (Starts on Load) ===
         const text = "Muhammad Zaid is a talented and hardworking 16-year-old student from Faisalabad who studies at Fauji Foundation. He has shown remarkable academic performance by securing 89% in his last exam, reflecting his dedication and intelligence. Zaid has a deep passion for technology, coding, and digital design, often spending his time creating creative projects such as websites, games, and software. His curiosity drives him to constantly learn new skills and explore innovative ideas. With his determination and love for technology, Zaid aspires to become a successful tech expert and make a positive impact in the digital world.";
         const speed = 30; 
         let i = 0;
@@ -620,12 +819,7 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
-            typeWriter();
-            initializeBeforeAfterSliders(); 
-        });
-
-        // WhatsApp Redirect Function
+        // === 2. WhatsApp Redirect Function ===
         function sendWhatsApp(event) {
             event.preventDefault();
             
@@ -634,7 +828,7 @@
             const whatsappNumber = "923394807064"; 
 
             // Perfect message format
-            const formattedMessage = `Hello Zaid,\n\nI am ${name} and I would like to discuss the following:\n\n---\n${message}\n---`;
+            const formattedMessage = `Hello Zaid,\\n\\nI am ${name} and I would like to discuss the following:\\n\\n---\\n${message}\\n---`;
 
             const encodedMessage = encodeURIComponent(formattedMessage);
 
@@ -644,102 +838,46 @@
             window.open(whatsappLink, '_blank');
         }
 
-        // ------------------------------------------------------------------
-        // Before/After Slider JavaScript Functionality
-        // ------------------------------------------------------------------
-        function initializeBeforeAfterSliders() {
-            const sliders = document.querySelectorAll('.before-after-slider');
-
-            sliders.forEach(slider => {
-                const imageContainer = slider.querySelector('.image-container');
-                const beforeImage = slider.querySelector('.before-image');
-                const sliderHandle = slider.querySelector('.slider-handle');
-
-                let isDragging = false;
-                
-                // Function to update the slider position
-                function updateSlider(e) {
-                    const rect = imageContainer.getBoundingClientRect();
-                    // Get X coordinate from mouse or touch event
-                    let clientX = e.clientX || (e.touches && e.touches[0].clientX);
-                    if (!clientX) return; 
-
-                    let x = clientX - rect.left;
-
-                    // Clamp x to be within the image container (0 to rect.width)
-                    x = Math.max(0, Math.min(x, rect.width));
-
-                    const percent = (x / rect.width) * 100;
-
-                    beforeImage.style.width = `${percent}%`;
-                    sliderHandle.style.left = `${percent}%`;
-                }
-
-                // --- Event Handlers ---
-
-                // Mouse Down on Handle
-                sliderHandle.addEventListener('mousedown', (e) => {
-                    isDragging = true;
-                    e.preventDefault(); 
-                });
-
-                // Touch Start on Handle
-                sliderHandle.addEventListener('touchstart', (e) => {
-                    isDragging = true;
-                }, { passive: true });
-
-
-                // Mouse Move (only if dragging)
-                document.addEventListener('mousemove', (e) => {
-                    if (!isDragging) return;
-                    e.preventDefault(); 
-                    updateSlider(e);
-                });
-
-                // Touch Move (only if dragging)
-                document.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    e.preventDefault();
-                    updateSlider(e);
-                }, { passive: false }); 
-
-                // Mouse Up / Touch End
-                document.addEventListener('mouseup', () => {
-                    isDragging = false;
-                });
-                document.addEventListener('touchend', () => {
-                    isDragging = false;
-                });
-
-                // Initial setup: Set position to 50%
-                function setInitialPosition() {
-                    beforeImage.style.width = '50%';
-                    sliderHandle.style.left = '50%';
-                }
-
-                // Wait for image load before setting position
-                const afterImage = slider.querySelector('.after-image');
-                let imagesLoaded = 0;
-                
-                [beforeImage, afterImage].forEach(img => {
-                    if (img.complete) {
-                        imagesLoaded++;
-                    } else {
-                        img.onload = () => {
-                            imagesLoaded++;
-                            if (imagesLoaded === 2) setInitialPosition();
-                        };
-                        img.onerror = () => { 
-                            imagesLoaded++;
-                            if (imagesLoaded === 2) setInitialPosition();
-                        };
-                    }
-                });
-
-                // Fallback for cached images or immediate execution
-                if (imagesLoaded === 2) setInitialPosition();
-            });
+        // === 3. Ahsan Fabrics Scroll-Triggered Typing ===
+        const ahsanFabricsText = "Ahsan Fabrics is a premium e-commerce website designed to showcase a refined collection of fabrics with an elegant, modern shopping experience. It features smooth navigation, a detailed product catalog, and a quick WhatsApp-based checkout for effortless ordering. Built entirely with HTML, CSS, and JavaScript, the site combines functionality with a luxurious visual layout that reflects the brand’s sophistication. From real-time cart management to quick product previews, every interaction feels seamless and customer-focused. The layout is fully responsive, ensuring a perfect view across devices. Overall, this project captures the essence of premium textile presentation through a clean, smart, and engaging digital interface.";
+        const ahsanFabricsSpeed = 30;
+        let ahsanFabricsIndex = 0;
+        let hasStartedTyping = false;
+        const ahsanFabricsElement = document.getElementById('ahsan-fabrics-typing-text');
+        const ahsanFabricsSection = document.getElementById('ahsan-fabrics-project');
+        
+        function ahsanFabricsTypeWriter() {
+            if (ahsanFabricsIndex < ahsanFabricsText.length) {
+                ahsanFabricsElement.innerHTML += ahsanFabricsText.charAt(ahsanFabricsIndex);
+                ahsanFabricsIndex++;
+                setTimeout(ahsanFabricsTypeWriter, ahsanFabricsSpeed);
+            }
         }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Start the original About Me typing immediately
+            typeWriter(); 
+
+            // Set up the IntersectionObserver for the Ahsan Fabrics section
+            if (ahsanFabricsSection && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        // Check if the section is visible and the typing hasn't started
+                        if (entry.isIntersecting && !hasStartedTyping) {
+                            hasStartedTyping = true;
+                            ahsanFabricsTypeWriter();
+                            // Stop observing once the typing has started
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Triggers when 10% of the element is visible
+                });
+
+                observer.observe(ahsanFabricsSection);
+            }
+        });
+
     </script>
 
 </body>
