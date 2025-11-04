@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaid Mughal - Portfolio</title>
+
+<style>
+    /* PRIMARY THEME COLOR: #8c27cf (Deep Purple) */
+    
+    /* ------------------------------------------------------------------ */
+    /* GLOBAL STYLES & LAYOUT */
+    /* ------------------------------------------------------------------ */
+    body {
+        margin: 0;
+        padding-top: 80px; 
+        font-family: Arial, sans-serif;
+        /* THEME: Dark background */
+        background-color: #1a1a1a; 
+        color: #f0f0f0; /* Light text */
+        scroll-behavior: smooth; 
+    }
+
+    /* Scroll Progress Bar */
+    #scroll-progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 5px;
+        background-color: #8c27cf; /* Use highlight color */
+        z-index: 10000;
+        transition: width 0.1s linear;
+    }
+
+    /* General container to center content */
+    .section-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        box-sizing: border-box;
+    }
+
+    /* H2 HEADINGS: Light text on dark background */
+    h2 {
+        font-size: 4em;
+        font-weight: bold;
+        color: #f0f0f0; 
+        margin-bottom: 40px;
+        letter-spacing: -2px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        text-align: left; 
+    }
+    
+    /* ------------------------------------------------------------------ */
+    /* 1. SCROLL REVEAL ANIMATION (Initial Hidden State) */
+    /* ------------------------------------------------------------------ */
+    .reveal-content {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    .reveal-content.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* NAVIGATION BAR STYLING (More Glassy White Edges) */
+    /* ------------------------------------------------------------------ */
+    .navbar {
+        position: fixed;
+        top: 20px; 
+        left: 50%; 
+        transform: translateX(-50%); 
+        max-width: 650px; 
+        width: 90%; 
+        height: 50px; 
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        padding: 0 10px; 
+        box-sizing: border-box;
+        z-index: 1000;
+        
+        /* MODIFIED: More Glassy Effect */
+        background-color: rgba(25, 25, 25, 0.5); /* Less opaque/lighter base */
+        backdrop-filter: blur(20px); /* Increased blur */
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 25px; 
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), /* Stronger outer shadow */
+                    0 0 0 1px rgba(255, 255, 255, 0.3) inset; /* Brighter inner reflection edge */
+    }
+
+    /* Navbar Link Styling (Text only) */
+    .navbar-link-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%; 
+        padding: 0 15px; 
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.8); 
+        font-weight: 600;
+        font-size: 0.9em;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden; 
+        border-radius: 25px; 
+    }
+    
+    .navbar-link-item:hover {
+        color: #8c27cf; /* Purple highlight hover color */
+    }
+
+    .navbar-link-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Purple gradient glow on hover */
+        background: radial-gradient(circle at center, rgba(140, 39, 207, 0.3) 0%, rgba(140, 39, 207, 0) 70%); 
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+    }
+    .navbar-link-item:hover::before {
+        opacity: 1; 
+    }
+
+    /* Profile picture link */
+    .profile-link {
+        width: 40px; 
+        height: 40px;
+        border-radius: 50%; 
+        overflow: hidden;
+        margin-left: 10px; 
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) inset; 
+        transition: transform 0.3s ease;
+        flex-shrink: 0; 
+    }
+    .profile-link img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: none; 
+        opacity: 1;
+    }
+    .profile-link:hover {
+        transform: scale(1.05); 
+        box-shadow: 0 0 0 2px #8c27cf inset; 
+    }
+
+
+    /* ------------------------------------------------------------------ */
+    /* CURSOR BUBBLE EFFECT STYLES */
+    /* ------------------------------------------------------------------ */
+    .cursor-particle {
+        position: fixed; 
+        width: 8px; 
+        height: 8px;
+        /* Matches the highlight color theme */
+        background: rgba(140, 39, 207, 0.6); 
+        border-radius: 50%;
+        pointer-events: none; 
+        z-index: 9999; 
+        transform: translate(-50%, -50%); 
+        animation: bubble-animation 1s ease-out forwards;
+    }
+
+    @keyframes bubble-animation {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -300%) scale(0.1); 
+            opacity: 0;
+        }
+    }
+    
+    /* ------------------------------------------------------------------ */
+    /* HERO SECTION STYLING */
+    /* ------------------------------------------------------------------ */
+    .hero-section {
+        min-height: calc(100vh - 80px); 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        background-color: #1a1a1a;
+        position: relative;
+        overflow: hidden; 
+    }
+    
+    /* Glassy effect for the main portfolio card */
+    .portfolio-card {
+        display: flex;
+        width: 90%; 
+        max-width: 1200px;
+        /* Glassy Card Base */
+        background-color: rgba(30, 30, 30, 0.5); /* Semi-transparent dark base */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 10px;
+        overflow: hidden;
+        /* Shadow with internal light reflection */
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset; /* Internal reflection */
+        min-height: 500px; 
+    }
+    
+    .left-panel {
+        flex: 1;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        /* Darker, opaque background for text readability */
+        background-color: #111111; 
+        text-align: left; 
+    }
+    
+    .right-panel {
+        flex: 1;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); 
+        margin-left: -10%; 
+        overflow: hidden;
+    }
+    
+    /* PARALLAX TARGET: Hero Image */
+    .right-panel img {
+        max-width: 110%;
+        height: auto;
+        display: block;
+        object-fit: cover; 
+        transform: translate(10px, 0) scale(1.05); 
+        transition: transform 0.1s ease-out; 
+    }
+
+    /* Text and Icons */
+    .left-panel h3 { margin-bottom: 5px; color: #f0f0f0; font-weight: normal; font-size: 1.1em; }
+    
+    /* H1 (Zaid Mughal) and cursor color changed to #8c27cf */
+    .left-panel h1 { 
+        font-size: 3.5em; 
+        margin-top: 0; 
+        margin-bottom: 10px; 
+        color: #8c27cf; /* Highlight Color */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+        font-weight: bold; 
+        
+        /* Typewriter Cursor */
+        border-right: 4px solid #8c27cf; /* Highlight Color */
+        white-space: nowrap; 
+        overflow: hidden; 
+        animation: blink-caret .75s step-end infinite; 
+    }
+
+    /* Keyframes for the blinking cursor */
+    @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #8c27cf } 
+    }
+    
+    .left-panel p { font-size: 1.2em; color: #b0b0b0; margin-bottom: 30px; font-weight: 500; }
+    .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+    .social-icons a { display: block; width: 35px; height: 35px; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .social-icons a:hover { transform: translateY(-3px) scale(1.05); opacity: 0.8; }
+    .social-icons img { 
+        width: 100%; 
+        height: 100%; 
+    }
+
+    /* SCROLL DOWN BUTTON STYLING */
+    .scroll-down-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        z-index: 10;
+        background: rgba(40, 40, 40, 0.7); /* Dark semi-transparent background */
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        animation: bounce 2s infinite; 
+        transition: all 0.3s;
+    }
+    .scroll-down-btn:hover { opacity: 0.9; background: #222; animation: none; }
+    .scroll-down-btn img { 
+        width: 70%; 
+        height: 70%; 
+        /* Ensure the arrow icon looks good on dark background, potentially adding filter if needed */
+        filter: invert(1); 
+    }
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-8px); }
+        60% { transform: translateY(-4px); }
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* 3. SKILL CARD GLASSY EFFECT (No Purple Glow) */
+    /* ------------------------------------------------------------------ */
+    .skill-link {
+        text-decoration: none; 
+        color: inherit; 
+        display: block; 
+    }
+    .skill-item {
+        background-color: #2a2a2a; /* Darker card background */
+        padding: 30px;
+        border-radius: 8px;
+        /* Initial subtle shadow */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer; 
+        position: relative; 
+        overflow: hidden; 
+    }
+    .skill-item:hover { 
+        transform: translateY(-5px); 
+        /* NEW: Glassy White Edge Effect (Stronger outer shadow, white internal reflection) */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 
+                    0 0 0 1px rgba(255, 255, 255, 0.4) inset; 
+    }
+    /* Removed all .skill-item::before pseudo-elements to eliminate the inner purple glow */
+
+
+    /* Rest of the styling remains the same, adjusted for dark theme */
+    .about-section { 
+        background-color: #1a1a1a; 
+        padding: 80px 0;
+        scroll-margin-top: 80px; 
+    }
+    .about-content { width: 80%; max-width: 1000px; }
+    .about-content h2 { text-align: left; color: #f0f0f0; }
+    .about-text { font-size: 1.4em; line-height: 1.7; color: #ccc; font-weight: 400; min-height: 200px; overflow: hidden; white-space: pre-wrap; }
+    .about-contact-icons { display: flex; gap: 10px; margin-top: 40px; justify-content: flex-end; width: 100%; }
+
+    .skills-section, .poster-section, .contact-section { padding: 80px 0; scroll-margin-top: 80px; }
+    .skills-section { background-color: #111111; } /* Darker background for skills */
+    .poster-section { background-color: #1a1a1a; padding: 80px 0 0; display: block; }
+    .contact-section { background-color: #111111; }
+
+    .skills-content h2, .contact-content h2 { text-align: center; color: #f0f0f0; }
+    .skills-content { text-align: center; }
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        text-align: left;
+    }
+    .skill-item h3 { font-size: 1.5em; color: #8c27cf; margin-top: 0; margin-bottom: 10px; }
+    .skill-item p { font-size: 1em; color: #b0b0b0; line-height: 1.5; }
+    
+    .websites-section {
+        background-color: #1a1a1a;
+        min-height: 70vh; 
+        padding-top: 80px; 
+        padding-bottom: 80px;
+        scroll-margin-top: 80px;
+    }
+    .websites-content-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; 
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    .websites-section h2 { text-align: center; font-size: 3.5em; margin-bottom: 50px; width: 100%; color: #f0f0f0; }
+    .project-showcase { display: flex; align-items: center; width: 100%; padding-top: 40px; }
+    .project-content-left { flex: 1; padding-right: 40px; box-sizing: border-box; max-width: 50%; }
+    .project-content-left h3 { color: #8c27cf; font-size: 2.5em; text-align: left; margin-bottom: 20px; }
+    .project-text { font-size: 1.2em; line-height: 1.6; color: #ccc; min-height: 250px; white-space: pre-wrap; overflow: hidden; }
+    .project-image-right { flex: 1; max-width: 50%; display: flex; flex-direction: column; align-items: center; }
+    .image-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; background-color: #2a2a2a; padding: 15px; border-radius: 8px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
+    .project-image { width: 100%; height: auto; display: block; border-radius: 4px; object-fit: contain; }
+    .view-website-link { margin-top: 25px; display: block; transition: transform 0.3s ease; }
+    .view-website-link img { width: 50px; height: 50px; opacity: 0.8; filter: invert(0.8) hue-rotate(270deg); } /* Invert + Hue-Rotate for visibility/color */
+    .view-website-link:hover { transform: scale(1.1); opacity: 1; }
+
+    .poster-header { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; text-align: center; }
+    .poster-header h2 { color: #f0f0f0; font-size: 3.5em; margin: 0; }
+    .poster-scroll-wrapper { width: 100%; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; scroll-snap-type: x mandatory; padding-bottom: 50px; -webkit-overflow-scrolling: touch; }
+    .poster-project { display: inline-block; width: 100vw; max-width: 1200px; scroll-snap-align: center; text-align: center; padding: 0 20px; box-sizing: border-box; }
+    .poster-images { display: flex; justify-content: center; gap: 40px; align-items: flex-start; max-width: 800px; margin: 0 auto; }
+    .poster-image-pair { display: flex; flex-direction: column; align-items: center; width: 50%; max-width: 380px; }
+    
+    /* Hover effect for posters */
+    .poster-image-pair > img {
+        width: 100%;
+        height: auto; 
+        aspect-ratio: 1 / 1; 
+        object-fit: cover;
+        border-radius: 4px;
+        margin-bottom: 5px; 
+        transition: transform 0.3s ease, filter 0.3s ease; 
+        background-color: #2a2a2a; /* Dark background for poster wrapper */
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .poster-image-pair > img:hover {
+        transform: scale(1.02);
+        filter: brightness(1.1); 
+    }
+
+    .poster-image-pair p { font-size: 1.1em; font-weight: bold; color: #ccc; margin: 10px 0 5px 0; }
+    .view-link { display: flex; justify-content: center; align-items: center; margin-top: 10px; width: 100%; transition: opacity 0.3s ease; }
+    .view-link img { width: 35px; height: 35px; opacity: 0.9; filter: invert(0.8) hue-rotate(270deg); transition: opacity 0.3s ease, transform 0.2s ease; }
+    .view-link:hover img { opacity: 1; transform: scale(1.1); }
+
+    .contact-form { max-width: 600px; margin: 0 auto; padding: 30px; background: #2a2a2a; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+    .form-group { margin-bottom: 25px; text-align: left; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #f0f0f0; }
+    .form-group input, .form-group textarea {
+        width: 100%; padding: 15px; border: 1px solid #444; border-radius: 5px; box-sizing: border-box; font-size: 1em; transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        outline: none;
+        background-color: #333; /* Dark input background */
+        color: #f0f0f0; /* Light input text */
+    }
+    .form-group input:focus, .form-group textarea:focus {
+        border-color: #8c27cf; /* Highlight focus */
+        box-shadow: 0 0 5px rgba(140, 39, 207, 0.5);
+    }
+    .send-btn {
+        display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #fff; background-color: #8c27cf; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        width: 100%; 
+    }
+    .send-btn:hover {
+        background-color: #a341e3; 
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ------------------------------------------------------------------ */
+    /* RESPONSIVENESS */
+    /* ------------------------------------------------------------------ */
+    @media (max-width: 768px) {
+        
+        /* NAVBAR MOBILE ADJUSTMENT */
+        .navbar { top: 10px; height: 45px; max-width: 95%; padding: 0 5px; border-radius: 22.5px; justify-content: space-around; }
+        body { padding-top: 65px; }
+        .navbar-link-item { padding: 0 8px; font-size: 0.8em; }
+        .profile-link { width: 30px; height: 30px; }
+
+        .hero-section { min-height: calc(100vh - 65px); }
+        .section-container { padding: 20px 10px; }
+        h2 { font-size: 2.5em; margin-bottom: 30px; }
+        .left-panel { text-align: center; align-items: center; }
+        .left-panel h1 { font-size: 2em; }
+        .about-content { width: 95%; }
+        .about-content h2 { text-align: center; }
+        .about-text { font-size: 1.1em; line-height: 1.6; min-height: 150px; }
+        .about-contact-icons { justify-content: center; }
+
+        /* HERO SECTION STACKING */
+        .portfolio-card { flex-direction: column; width: 95%; min-height: auto; }
+        .right-panel { clip-path: none; margin-left: 0; width: 100%; order: -1; min-height: 250px; padding: 0; }
+        .right-panel img { transform: none; max-width: 100%; height: 100%; object-fit: cover; }
+        .scroll-down-btn { right: 20px; transform: none; bottom: 20px; }
+
+        /* SKILLS GRID COLLAPSE */
+        .skills-grid { grid-template-columns: 1fr; gap: 20px; }
+        .skill-item { padding: 20px; }
+        
+        /* WEBSITES SECTION MOBILE ADJUSTMENTS */
+        .websites-section h2 { font-size: 2.5em; }
+        .websites-content-container { padding: 0 10px; }
+        .project-showcase { flex-direction: column; padding-top: 0; }
+        .project-content-left, .project-image-right { max-width: 100%; padding-right: 0; }
+        .project-content-left { margin-bottom: 30px; }
+        .project-content-left h3 { text-align: center; font-size: 2em; }
+        .project-text { text-align: left; min-height: 150px; }
+        .image-wrapper { padding: 10px; }
+        
+        /* POSTER SECTION MOBILE ADJUSTMENTS */
+        .poster-header { padding: 0 10px 40px; }
+        .poster-header h2 { font-size: 2.5em; }
+        .poster-images { gap: 20px; max-width: 500px; }
+        .poster-image-pair { width: 50%; padding: 0; }
+        .poster-image-pair > img { padding: 10px; }
+
+        /* CONTACT FORM ADJUSTMENTS */
+        .contact-form { padding: 20px; }
+        .send-btn { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+    <!-- Scroll Progress Bar Element -->
+    <div id="scroll-progress-bar"></div>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- NAVIGATION BAR -->
+    <!-- ------------------------------------------------------------------ -->
+    <nav class="navbar">
+        <a href="#hero-section" class="navbar-link-item nav-link" data-target="hero-section">
+            Home
+        </a>
+        <a href="#about-me-section" class="navbar-link-item nav-link" data-target="about-me-section">
+            About
+        </a>
+        <a href="#skills-section" class="navbar-link-item nav-link" data-target="skills-section">
+            Skills
+        </a>
+        <a href="#websites-section" class="navbar-link-item nav-link" data-target="websites-section">
+            Websites
+        </a>
+        <a href="#poster-section" class="navbar-link-item nav-link" data-target="poster-section">
+            Posters
+        </a>
+        <!-- Profile picture link (icon kept for visual separation) -->
+        <a href="#contact-section" class="profile-link nav-link" data-target="contact-section" aria-label="Contact Zaid (Profile)">
+            <img src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Profile Picture" decoding="async">
+        </a>
+    </nav>
+    
+    
+    <!-- ------------------------------------------------------------------ -->
+    <!-- 1. HERO SECTION -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="section-container hero-section" id="hero-section">
+        <div class="portfolio-card">
+            <div class="left-panel">
+                <h3>Hi! I am</h3>
+                <h1 id="hero-name"></h1>
+                <p>A Graphic And AI Expert</p>
+                <div class="social-icons">
+                    <!-- Call Icon Link -->
+                    <a href="tel:+923394807064" aria-label="Call Zaid"><img src="https://i.postimg.cc/QdfZ4G40/receiver.png" alt="Phone Icon"></a>
+                    <!-- Instagram Icon Link -->
+                    <a href="https://www.instagram.com/zaidahmed_14/" target="_blank" aria-label="Zaid Mughal Instagram"><img src="https://i.postimg.cc/x856fYbp/instagram-2.png" alt="Instagram Icon"></a>
+                    <!-- Email Icon Link -->
+                    <a href="mailto:zaidbilal215@gmail.com" aria-label="Email Zaid"><img src="https://i.postimg.cc/wBDcxHCM/mail.png" alt="Email Icon"></a>
+                </div>
+            </div>
+            <div class="right-panel">
+                <!-- Image for Parallax -->
+                <img id="hero-image" src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Zaid Mughal Profile Picture" decoding="async">
+            </div>
+        </div>
+        
+        <a href="#about-me-section" class="scroll-down-btn nav-link" data-target="about-me-section" aria-label="Scroll Down to About Section">
+            <!-- Ensure scroll down button looks good on dark theme -->
+            <img src="https://i.postimg.cc/L5rhVXRv/down.png" alt="Down Arrow Icon">
+        </a>
+    </section>
+
+    
+    <!-- ------------------------------------------------------------------ -->
+    <!-- 2. ABOUT ME SECTION -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="about-section" id="about-me-section">
+        <div class="section-container reveal-content">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p class="about-text" id="typing-text"></p>
+                <div class="about-contact-icons social-icons">
+                    <!-- Call Icon Link -->
+                    <a href="tel:+923394807064" aria-label="Call Zaid"><img src="https://i.postimg.cc/QdfZ4G40/receiver.png" alt="Phone Icon"></a>
+                    <!-- Email Icon Link -->
+                    <a href="mailto:zaidbilal215@gmail.com" aria-label="Email Zaid"><img src="https://i.postimg.cc/wBDcxHCM/mail.png" alt="Email Icon"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- ------------------------------------------------------------------ -->
+    <!-- 3. SKILLS SECTION -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="section-container skills-section" id="skills-section">
+        <div class="skills-content reveal-content">
+            <h2>Skills</h2>
+            <div class="skills-grid" id="skills-grid">
+                
+                <a href="#" class="skill-link" onclick="return false;" aria-label="View Graphic Design Details">
+                    <div class="skill-item">
+                        <h3>Graphic Design</h3>
+                        <p>Proficient in Adobe Photoshop, Adobe Illustrator, and other design software, creating high-quality visual content.</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="skill-link" onclick="return false;" aria-label="View AI Expertise Details">
+                    <div class="skill-item">
+                        <h3>AI Expertise</h3>
+                        <p>Deep knowledge of generative AI models for image creation and content development, focusing on efficiency and creativity.</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="skill-link" onclick="return false;" aria-label="View Web Development Details">
+                    <div class="skill-item">
+                        <h3>Web Development</h3>
+                        <p>Solid foundation in HTML, CSS, and JavaScript, specializing in creating responsive, clean, and modern website structures.</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="skill-link" onclick="return false;" aria-label="View Branding Details">
+                    <div class="skill-item">
+                        <h3>Branding</h3>
+                        <p>Developing strong visual identities, designing logos, and creating cohesive brand guidelines that resonate with the target audience.</p>
+                    </div>
+                </a>
+
+                <a href="#" class="skill-link" onclick="return false;" aria-label="View Digital Marketing Details">
+                    <div class="skill-item">
+                        <h3>Digital Marketing</h3>
+                        <p>Understanding of social media strategy, content optimization, and digital trends to ensure maximum project visibility.</p>
+                    </div>
+                </a>
+                
+                <a href="#" class="skill-link" onclick="return false;" aria-label="View Problem Solving Details">
+                    <div class="skill-item">
+                        <h3>Problem Solving</h3>
+                        <p>A keen analytical mind dedicated to overcoming technical challenges and improving existing digital systems.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- ------------------------------------------------------------------ -->
+    <!-- 4. WEBSITES SECTION (Consolidated) -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="websites-section" id="websites-section">
+        <div class="section-container" style="flex-direction: column;">
+            
+            <div class="reveal-content" style="width: 100%;">
+                <h2>Website Building</h2>
+                
+                <div class="project-showcase">
+                    <div class="project-content-left">
+                        
+                        <h3>Ahsan Fabrics Project</h3>
+                        <p class="project-text" id="ahsan-fabrics-typing-text"></p>
+                    </div>
+
+                    <div class="project-image-right">
+                        <div class="image-wrapper">
+                            <img 
+                                src="https://i.postimg.cc/ZqMGFBm0/Screenshot-2025-11-02-042230.png" 
+                                alt="Ahsan Fabrics Homepage Screenshot (Landscape)" 
+                                class="project-image"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                            
+                            <a href="https://zaidmughal215.github.io/Ahsanfabricsofficial/#home" target="_blank" class="view-website-link" aria-label="View Ahsan Fabrics Website">
+                                <img src="https://i.postimg.cc/pXsqFNRL/preview.png" alt="View Icon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- ------------------------------------------------------------------ -->
+    <!-- 5. POSTER DESIGN SECTION -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="poster-section" id="poster-section">
+        <div class="poster-header reveal-content">
+            
+            <h2>My Poster Designing</h2>
+            <p style="font-style: italic; color: #b0b0b0;">(Scroll horizontally to view all 8 projects)</p>
+        </div>
+
+        <div class="poster-scroll-wrapper reveal-content">
+
+            <!-- Poster projects remain here... -->
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/zfk4PCDn/Carliongton-premium-black-analog-mens-s-watch-6020.webp" alt="Original Watch Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" alt="My Design Watch Post" loading="lazy" decoding="async">
+                        <p>My Design</p>
+                        <a href="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                             <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/hGM30Kpg/original-d9609cebc935a74d040d57d2a61bae97.webp" alt="Original Cream Box Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/XvF9VLBm/upscalemedia-transformed.png" alt="My Design Cream Box Post" loading="lazy" decoding="async">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/XvF9VLBm/upscalemedia-transformed.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/Kjhp5fCD/Customize-Cake-Instagram-Post.png" alt="Original Cake Post Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/RZ4k1p4t/watermark-removal-manual.jpg" alt="My Design Earbuds Post" loading="lazy" decoding="async">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/RZ4k1p4t/watermark-removal-manual.jpg" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://ik.imagekit.io/2xkwa8s1i/img/npl_modified_images/Sofa_LS/WSFAAMBN3FMMG_LS_1.jpg?tr=w-3840" alt="Original Sofa Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/tg3K5j0f/Black-White-Simple-Coming-Soon-Instagram-Post-Square.png" alt="My Design Sofa Post" loading="lazy" decoding="async">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/tg3K5j0f/Black-White-Simple-Coming-Soon-Instagram-Post-Square.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://www.digimaxpakistan.com/cdn/shop/products/images_62_919e76b7-73f3-414b-b4ee-791d8227265b.jpg?v=1681942432" alt="Original Tripod Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/ydPt9XM2/Customize-Cake-Instagram-Post-2.png" alt="My Design Tripod Post" loading="lazy" decoding="async">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/ydPt9XM2/Customize-Cake-Instagram-Post-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://vmart.pk/cdn/shop/files/AnkerZoloPowerBank_20KBuilt-InUSB-CandLightningCable_Black.webp?v=1752754342" alt="Original Powerbank Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/1zvQQB8z/Customize-Cake-Instagram-Post-1.png" alt="My Design Powerbank Post" loading="lazy" decoding="async">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/1zvQQB8z/Customize-Cake-Instagram-Post-1.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://hbfurnitures.com/wp-content/uploads/2024/10/Sun-Cane-Model-DP-093.jpg" alt="Original Dining Table Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/7YFp76Gk/Customize-Cake-Instagram-Post-3.png" alt="My Design Dining Table Post" loading="lazy" decoding="async">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/7YFp76Gk/Customize-Cake-Instagram-Post-3.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="poster-project">
+                <div class="poster-images">
+                    <div class="poster-image-pair">
+                        <img src="https://static-01.daraz.pk/p/79361435810297f6aebac8cabe66545f.jpg" alt="Original Product Image" loading="lazy" decoding="async">
+                        <p>Original</p>
+                    </div>
+                    <div class="poster-image-pair">
+                        <img src="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" alt="My Design Product Post" loading="lazy" decoding:async">
+                        <p>My Design</p>
+                         <a href="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </section>
+
+    
+    <!-- ------------------------------------------------------------------ -->
+    <!-- 6. CONTACT SECTION -->
+    <!-- ------------------------------------------------------------------ -->
+    <section class="section-container contact-section" id="contact-section">
+        <div class="contact-content reveal-content">
+            
+            <h2>Contact Me</h2>
+            <div class="contact-form">
+                <form id="whatsappForm" onsubmit="sendWhatsApp(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="e.g., John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell me about your project or inquiry..."></textarea>
+                    </div>
+
+                    <button type="submit" class="send-btn">Send Message on WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- ------------------------------------------------------------------ -->
+    <!-- JAVASCRIPT LOGIC -->
+    <!-- ------------------------------------------------------------------ -->
+    <script>
+        // === 1. Typing/Erasing Loop (Continuous Animation) ===
+        const heroNameElement = document.getElementById('hero-name');
+        const nameText = "Zaid Mughal";
+        const nameSpeed = 150; 
+        const eraseSpeed = 100; 
+        let nameIndex = 0;
+        let isTyping = true;
+
+        function nameTypeEraseLoop() {
+            if (isTyping) {
+                // --- PHASE 1: TYPING FORWARD ---
+                if (nameIndex < nameText.length) {
+                    heroNameElement.textContent = nameText.substring(0, nameIndex + 1);
+                    nameIndex++;
+                    setTimeout(nameTypeEraseLoop, nameSpeed);
+                } else {
+                    isTyping = false;
+                    setTimeout(nameTypeEraseLoop, 1000); 
+                }
+            } else {
+                // --- PHASE 2: ERASING BACKWARD ---
+                if (nameIndex > 0) {
+                    heroNameElement.textContent = nameText.substring(0, nameIndex - 1);
+                    nameIndex--;
+                    setTimeout(nameTypeEraseLoop, eraseSpeed);
+                } else {
+                    isTyping = true;
+                    setTimeout(nameTypeEraseLoop, 500); 
+                }
+            }
+        }
+
+
+        // === 2. About Me Typing Animation Script ===
+        const aboutText = "Muhammad <b>Zaid</b> is a talented and hardworking 16-year-old student from Faisalabad who studies at Fauji Foundation. He has shown remarkable academic performance by securing 89% in his last exam, reflecting his dedication and intelligence. <b>Zaid</b> has a deep passion for technology, coding, and digital design, often spending his time creating creative projects such as websites, games, and software. His curiosity drives him to constantly learn new skills and explore innovative ideas. With his determination and love for technology, <b>Zaid</b> aspires to become a successful tech expert and make a positive impact in the digital world.";
+        const aboutSpeed = 30; 
+        let aboutIndex = 0;
+        const typingTextElement = document.getElementById('typing-text');
+
+        function typeWriter() {
+            if (aboutIndex < aboutText.length) {
+                if (aboutText.substring(aboutIndex, aboutIndex + 3) === '<b>') {
+                    typingTextElement.innerHTML += '<b>';
+                    aboutIndex += 3;
+                } else if (aboutText.substring(aboutIndex, aboutIndex + 4) === '</b>') {
+                    typingTextElement.innerHTML += '</b>';
+                    aboutIndex += 4;
+                } else {
+                    let char = aboutText.charAt(aboutIndex);
+                    typingTextElement.innerHTML += char;
+                    aboutIndex++;
+                }
+                setTimeout(typeWriter, aboutSpeed);
+            }
+        }
+
+        // === 3. Ahsan Fabrics Scroll-Triggered Typing ===
+        const ahsanFabricsText = "Ahsan Fabrics is a premium e-commerce website designed to showcase a refined collection of fabrics with an elegant, modern shopping experience. It features smooth navigation, a detailed product catalog, and a quick WhatsApp-based checkout for effortless ordering. Built entirely with HTML, CSS, and JavaScript, the site combines functionality with a luxurious visual layout that reflects the brand’s sophistication. From real-time cart management to quick product previews, every interaction feels seamless and customer-focused. The layout is fully responsive, ensuring a perfect view across devices. Overall, this project captures the essence of premium textile presentation through a clean, smart, and engaging digital interface.";
+        const ahsanFabricsSpeed = 30;
+        let ahsanFabricsIndex = 0;
+        let hasStartedTyping = false;
+        const ahsanFabricsElement = document.getElementById('ahsan-fabrics-typing-text');
+        const ahsanFabricsSection = document.getElementById('websites-section');
+        
+        function ahsanFabricsTypeWriter() {
+            if (ahsanFabricsIndex < ahsanFabricsText.length) {
+                ahsanFabricsElement.innerHTML += ahsanFabricsText.charAt(ahsanFabricsIndex);
+                ahsanFabricsIndex++;
+                setTimeout(ahsanFabricsTypeWriter, ahsanFabricsSpeed);
+            }
+        }
+
+
+        // === 4. WhatsApp Redirect Function ===
+        function sendWhatsApp(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            const whatsappNumber = "923394807064"; 
+
+            const formattedMessage = `Hello Zaid,\\n\\nI am ${name} and I would like to discuss the following:\\n\\n---\\n${message}\\n---`;
+
+            const encodedMessage = encodeURIComponent(formattedMessage);
+
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappLink, '_blank');
+        }
+
+
+        // === 5. Cursor Bubble Animation Script (Kept as requested) ===
+        let lastParticleTime = 0;
+        const particleInterval = 50; 
+
+        document.addEventListener('mousemove', function(e) {
+            const now = Date.now();
+            if (now - lastParticleTime < particleInterval) {
+                return; 
+            }
+            lastParticleTime = now;
+
+            const particle = document.createElement('div');
+            particle.className = 'cursor-particle';
+            
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        });
+        
+        // === 6. Scroll Progress Bar & Parallax Effect Logic ===
+        const progressBar = document.getElementById('scroll-progress-bar');
+        const heroImage = document.getElementById('hero-image');
+        const heroSection = document.getElementById('hero-section');
+        
+        window.onscroll = function() {
+            // Scroll Progress Bar
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (window.scrollY / totalHeight) * 100;
+            progressBar.style.width = scrollPercent + "%";
+
+            // Parallax Header Image Shift (Only active in the Hero section)
+            if (heroImage && heroSection) {
+                const scrollPos = window.scrollY;
+                const heroRect = heroSection.getBoundingClientRect();
+
+                // Only apply parallax while the hero section is visible
+                if (heroRect.bottom > 0) {
+                    // Adjust the divisor (e.g., 5 or 6) to control the speed difference. Lower = slower image movement.
+                    const parallaxShift = scrollPos * 0.4; 
+                    heroImage.style.transform = `translateY(${parallaxShift}px) scale(1.05)`;
+                }
+            }
+        };
+
+        // === 7. Scroll Reveal (Fade-in-on-scroll) ===
+        const revealElements = document.querySelectorAll('.reveal-content');
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Stop observing once it's visible
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            // Options: when to trigger the intersection event
+            threshold: 0.2, // Trigger when 20% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // Slightly below the viewport bottom
+        });
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+
+        // === 8. Smooth Navigation (Liquid Transition Alternative) ===
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Stop default jump
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Use smooth scrolling behavior
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+
+        // === DOM Content Loaded Startups ===
+        document.addEventListener('DOMContentLoaded', (event) => {
+            nameTypeEraseLoop(); 
+            typeWriter(); 
+
+            // IntersectionObserver for Ahsan Fabrics Typing
+            if (ahsanFabricsSection && 'IntersectionObserver' in window) {
+                const typingObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !hasStartedTyping) {
+                            hasStartedTyping = true;
+                            ahsanFabricsTypeWriter();
+                            typingObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1 
+                });
+                typingObserver.observe(ahsanFabricsSection);
+            }
+        });
+
+    </script>
+
+</body>
+</html>
