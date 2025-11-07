@@ -118,7 +118,22 @@
         color: #8c27cf; /* Purple highlight hover color */
     }
 
-    /* Removed .navbar-link-item::before and :hover::before to eliminate the purple glow effect on hover */
+    .navbar-link-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Purple gradient glow on hover */
+        background: radial-gradient(circle at center, rgba(140, 39, 207, 0.3) 0%, rgba(140, 39, 207, 0) 70%); 
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+    }
+    .navbar-link-item:hover::before {
+        opacity: 1; 
+    }
 
     /* Profile picture link */
     .profile-link {
@@ -145,9 +160,31 @@
 
 
     /* ------------------------------------------------------------------ */
-    /* CURSOR BUBBLE EFFECT STYLES (REMOVED) */
+    /* CURSOR BUBBLE EFFECT STYLES */
     /* ------------------------------------------------------------------ */
-    /* .cursor-particle and @keyframes bubble-animation removed to eliminate the glowing cursor effect */
+    .cursor-particle {
+        position: fixed; 
+        width: 8px; 
+        height: 8px;
+        /* Matches the highlight color theme */
+        background: rgba(140, 39, 207, 0.6); 
+        border-radius: 50%;
+        pointer-events: none; 
+        z-index: 9999; 
+        transform: translate(-50%, -50%); 
+        animation: bubble-animation 1s ease-out forwards;
+    }
+
+    @keyframes bubble-animation {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-50%, -300%) scale(0.1); 
+            opacity: 0;
+        }
+    }
     
     /* ------------------------------------------------------------------ */
     /* HERO SECTION STYLING */
@@ -317,11 +354,12 @@
     .about-text { font-size: 1.4em; line-height: 1.7; color: #ccc; font-weight: 400; min-height: 200px; overflow: hidden; white-space: pre-wrap; }
     .about-contact-icons { display: flex; gap: 10px; margin-top: 40px; justify-content: flex-end; width: 100%; }
 
-    .skills-section, .poster-section { padding: 80px 0; scroll-margin-top: 80px; }
+    .skills-section, .poster-section, .contact-section { padding: 80px 0; scroll-margin-top: 80px; }
     .skills-section { background-color: #111111; } /* Darker background for skills */
     .poster-section { background-color: #1a1a1a; padding: 80px 0 0; display: block; }
+    .contact-section { background-color: #111111; }
 
-    .skills-content h2 { text-align: center; color: #f0f0f0; }
+    .skills-content h2, .contact-content h2 { text-align: center; color: #f0f0f0; }
     .skills-content { text-align: center; }
     .skills-grid {
         display: grid;
@@ -392,228 +430,28 @@
     .view-link img { width: 35px; height: 35px; opacity: 0.9; filter: invert(0.8) hue-rotate(270deg); transition: opacity 0.3s ease, transform 0.2s ease; }
     .view-link:hover img { opacity: 1; transform: scale(1.1); }
 
-    /* ------------------------------------------------------------------ */
-    /* UPDATED CONTACT SECTION STYLING (MATCHING REFERENCE IMAGE) */
-    /* ------------------------------------------------------------------ */
-    .contact-section {
-        /* Purple Gradient Background (Same as previous step) */
-        background: radial-gradient(circle at top left, rgba(140, 39, 207, 0.3) 0%, rgba(26, 26, 26, 1) 40%);
-        padding: 100px 0;
-        scroll-margin-top: 80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh; 
-        box-sizing: border-box;
-    }
-
-    .contact-container {
-        display: flex;
-        gap: 60px;
-        align-items: flex-start;
-        max-width: 1200px;
-        width: 90%;
-        color: #f0f0f0;
-    }
-
-    .contact-info {
-        flex: 1;
-        max-width: 400px;
-        text-align: left;
-    }
-
-    .contact-badge {
-        background-color: #2d2d2d;
-        color: #f0f0f0;
-        padding: 8px 15px;
-        border-radius: 5px;
-        font-size: 0.9em;
-        margin-bottom: 20px;
-        display: inline-block;
-    }
-
-    .contact-info h2 {
-        font-size: 3.5em;
-        margin-top: 15px;
-        margin-bottom: 20px;
-        line-height: 1.1;
-        text-align: left; 
-    }
-
-    .contact-info p {
-        font-size: 1.1em;
-        color: #b0b0b0;
-        line-height: 1.6;
-    }
-
-    .contact-info a {
-        color: #8c27cf; /* Purple for email link */
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s ease;
-    }
-
-    .contact-info a:hover {
-        color: #a341e3;
-    }
-
-    .contact-form-wrapper {
-        flex: 2;
-        max-width: 700px;
-        background-color: #1a1a1a; 
-        border-radius: 10px;
-        padding: 50px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .form-group {
-        margin-bottom: 30px;
-        position: relative;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: 500;
-        color: #e0e0e0;
-        font-size: 0.95em;
-    }
-
-    .form-control-wrapper {
-        position: relative;
-        display: flex;
-        align-items: center;
-    }
-
-    .form-control-wrapper img {
-        position: absolute;
-        left: 15px;
-        width: 20px;
-        height: 20px;
-        filter: invert(0.6); /* Adjust icon color for dark background */
-        opacity: 0.7;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        /* Adjusted padding for a cleaner look */
-        padding: 18px 20px; 
-        border: 1px solid #333;
-        /* Perfect rounded corners */
-        border-radius: 10px; 
-        box-sizing: border-box;
-        font-size: 1em;
-        background-color: #222; 
-        color: #f0f0f0;
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    .contact-form { max-width: 600px; margin: 0 auto; padding: 30px; background: #2a2a2a; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
+    .form-group { margin-bottom: 25px; text-align: left; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #f0f0f0; }
+    .form-group input, .form-group textarea {
+        width: 100%; padding: 15px; border: 1px solid #444; border-radius: 5px; box-sizing: border-box; font-size: 1em; transition: border-color 0.3s ease, box-shadow 0.3s ease;
         outline: none;
+        background-color: #333; /* Dark input background */
+        color: #f0f0f0; /* Light input text */
     }
-    
-    /* Specific adjustment for inputs with icons */
-    .form-group input {
-        padding-left: 55px; 
+    .form-group input:focus, .form-group textarea:focus {
+        border-color: #8c27cf; /* Highlight focus */
+        box-shadow: 0 0 5px rgba(140, 39, 207, 0.5);
     }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-        color: #777;
+    .send-btn {
+        display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #fff; background-color: #8c27cf; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        width: 100%; 
     }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color: #8c27cf;
-        box-shadow: 0 0 0 1px #8c27cf; /* Thin purple focus ring */
-    }
-
-    .form-group textarea {
-        min-height: 120px;
-        resize: vertical;
-        padding-left: 20px; /* Keep standard padding as it has no icon */
-    }
-
-    .char-count {
-        font-size: 0.85em;
-        color: #888;
-        text-align: right;
-        margin-top: 5px;
-    }
-
-    .checkbox-group {
-        display: flex;
-        align-items: center;
-        margin-bottom: 30px;
-        font-size: 0.9em;
-        color: #ccc;
-    }
-
-    .checkbox-group input[type="checkbox"] {
-        appearance: none;
-        width: 18px;
-        height: 18px;
-        border: 2px solid #8c27cf;
-        border-radius: 4px;
-        margin-right: 10px;
-        cursor: pointer;
-        position: relative;
-        flex-shrink: 0;
-    }
-
-    .checkbox-group input[type="checkbox"]:checked {
-        background-color: #8c27cf;
-        border-color: #8c27cf;
-    }
-
-    .checkbox-group input[type="checkbox"]:checked::after {
-        content: '✓';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: #fff;
-        font-size: 14px;
-        font-weight: bold;
-    }
-    
-    .checkbox-group a {
-        color: #8c27cf;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .checkbox-group a:hover {
-        color: #a341e3;
-    }
-
-    .submit-btn {
-        width: 100%;
-        padding: 18px 20px;
-        background-color: #8c27cf;
-        color: #fff;
-        border: none;
-        border-radius: 10px; /* Match input border-radius */
-        font-size: 1.15em;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .submit-btn:hover {
-        background-color: #a341e3;
+    .send-btn:hover {
+        background-color: #a341e3; 
         transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
-
-    .submit-btn img {
-        width: 20px;
-        height: 20px;
-        filter: invert(1); 
-    }
-
 
     /* ------------------------------------------------------------------ */
     /* RESPONSIVENESS */
@@ -663,46 +501,9 @@
         .poster-image-pair { width: 50%; padding: 0; }
         .poster-image-pair > img { padding: 10px; }
 
-        /* CONTACT SECTION RESPONSIVENESS */
-        .contact-section {
-            padding: 50px 0;
-            min-height: auto;
-        }
-        .contact-container {
-            flex-direction: column;
-            gap: 40px;
-            width: 95%;
-        }
-        .contact-info {
-            max-width: 100%;
-            text-align: center;
-        }
-        .contact-info h2 {
-            font-size: 2.5em;
-            text-align: center;
-        }
-        .contact-info p {
-            font-size: 1em;
-        }
-        .contact-form-wrapper {
-            padding: 30px 20px;
-        }
-        .form-group input {
-            padding: 15px 15px 15px 45px; /* Adjust padding for smaller screens */
-        }
-        .form-control-wrapper img {
-            left: 10px;
-            width: 18px;
-            height: 18px;
-        }
-        .form-group textarea {
-             padding: 15px 15px;
-        }
-        .submit-btn {
-            font-size: 1em;
-            padding: 15px 20px;
-            border-radius: 8px;
-        }
+        /* CONTACT FORM ADJUSTMENTS */
+        .contact-form { padding: 20px; }
+        .send-btn { width: 100%; }
     }
 </style>
 </head>
@@ -871,7 +672,7 @@
                         <p>Original</p>
                     </div>
                     <div class="poster-image-pair">
-                        <img src="httpsD://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" alt="My Design Watch Post" loading="lazy" decoding="async">
+                        <img src="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" alt="My Design Watch Post" loading="lazy" decoding="async">
                         <p>My Design</p>
                         <a href="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" target="_blank" class="view-link" aria-label="View My Design in a new tab">
                              <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
@@ -985,7 +786,7 @@
                     <div class="poster-image-pair">
                         <img src="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" alt="My Design Product Post" loading="lazy" decoding:async">
                         <p>My Design</p>
-                         <a href="httpss://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
+                         <a href="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
                             <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
                         </a>
                     </div>
@@ -997,45 +798,23 @@
     </section>
 
     
-    <section class="contact-section" id="contact-section">
-        <div class="contact-container reveal-content">
-            <div class="contact-info">
-                <div class="contact-badge">Contact Us</div>
-                <h2>Let's Get In Touch.</h2>
-                <p>Or just reach out manually to <a href="mailto:zaidbilal215@gmail.com">zaidbilal215@gmail.com</a></p>
-            </div>
-            <div class="contact-form-wrapper">
+    <section class="section-container contact-section" id="contact-section">
+        <div class="contact-content reveal-content">
+            
+            <h2>Contact Me</h2>
+            <div class="contact-form">
                 <form id="whatsappForm" onsubmit="sendWhatsApp(event)">
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <div class="form-control-wrapper">
-                            <img src="https://i.postimg.cc/1zLY8Zcb/user.png" alt="User Icon">
-                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name...">
-                        </div>
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="e.g., John Doe">
                     </div>
                     
                     <div class="form-group">
-                        <label for="emailAddress">Email Address</label>
-                        <div class="form-control-wrapper">
-                            <img src="https://i.postimg.cc/TYpm4WXn/email-1.png" alt="Email Icon">
-                            <input type="email" id="emailAddress" name="emailAddress" required placeholder="Enter your email address...">
-                        </div>
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell me about your project or inquiry..."></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required placeholder="Enter your main text here..." maxlength="300"></textarea>
-                        <div class="char-count"><span id="messageCharCount">0</span>/300</div>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
-                        <label for="agreeTerms">I hereby agree to our <a href="#" onclick="alert('Privacy Policy goes here!')">Privacy Policy</a> terms.</label>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        Submit Form <img src="https://i.postimg.cc/nrk8m4Qn/arrow-right.png" alt="Arrow Icon">
-                    </button>
+                    <button type="submit" class="send-btn">Send Message on WhatsApp</button>
                 </form>
             </div>
         </div>
@@ -1116,27 +895,15 @@
         }
 
 
-        // === 4. WhatsApp Redirect Function (Updated - Phone fields removed) ===
+        // === 4. WhatsApp Redirect Function ===
         function sendWhatsApp(event) {
             event.preventDefault();
             
-            const fullName = document.getElementById('fullName').value;
-            const emailAddress = document.getElementById('emailAddress').value;
+            const name = document.getElementById('name').value;
             const message = document.getElementById('message').value;
-            const agreeTerms = document.getElementById('agreeTerms').checked;
-
-            if (!agreeTerms) {
-                alert("Please agree to the Privacy Policy terms to submit the form.");
-                return;
-            }
-
             const whatsappNumber = "923394807064"; 
 
-            const formattedMessage = `Hello Zaid,\\n\\nI have a message for you from your portfolio:\\n` +
-                                     `*Full Name:* ${fullName}\\n` +
-                                     `*Email:* ${emailAddress}\\n` +
-                                     `*Message:*\\n${message}\\n\\n` + 
-                                     `_I agreed to the Privacy Policy terms._`;
+            const formattedMessage = `Hello Zaid,\n\nI am ${name} and I would like to discuss the following:\n\n---\n${message}\n---`;
 
             const encodedMessage = encodeURIComponent(formattedMessage);
 
@@ -1146,8 +913,29 @@
         }
 
 
-        // === 5. Cursor Bubble Animation Script (REMOVED) ===
-        /* The cursor particle animation script has been removed to eliminate the glowing effect. */
+        // === 5. Cursor Bubble Animation Script (Kept as requested) ===
+        let lastParticleTime = 0;
+        const particleInterval = 50; 
+
+        document.addEventListener('mousemove', function(e) {
+            const now = Date.now();
+            if (now - lastParticleTime < particleInterval) {
+                return; 
+            }
+            lastParticleTime = now;
+
+            const particle = document.createElement('div');
+            particle.className = 'cursor-particle';
+            
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        });
         
         // === 6. Scroll Progress Bar & Parallax Effect Logic ===
         const progressBar = document.getElementById('scroll-progress-bar');
@@ -1216,15 +1004,6 @@
             });
         });
 
-        // === 9. Message Character Count for Contact Form ===
-        const messageTextarea = document.getElementById('message');
-        const messageCharCount = document.getElementById('messageCharCount');
-
-        messageTextarea.addEventListener('input', () => {
-            const currentLength = messageTextarea.value.length;
-            messageCharCount.textContent = currentLength;
-        });
-
 
         // === DOM Content Loaded Startups ===
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -1245,11 +1024,6 @@
                     threshold: 0.1 
                 });
                 typingObserver.observe(ahsanFabricsSection);
-            }
-
-            // Initialize message char count on load
-            if (messageTextarea) {
-                messageCharCount.textContent = messageTextarea.value.length;
             }
         });
 
