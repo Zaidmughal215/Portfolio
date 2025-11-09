@@ -6,7 +6,7 @@
     <title>Zaid Mughal - Portfolio</title>
 
 <style>
-    /* PRIMARY THEME COLOR: #8c27cf (Deep Purple) */
+    /* PRIMARY THEME COLOR: #aaff00 (Green) */
     
     /* ------------------------------------------------------------------ */
     /* GLOBAL STYLES & LAYOUT */
@@ -28,7 +28,7 @@
         left: 0;
         width: 0%;
         height: 5px;
-        background-color: #8c27cf; /* Use highlight color */
+        background-color: #aaff00; /* Use highlight color */
         z-index: 10000;
         transition: width 0.1s linear;
     }
@@ -115,7 +115,7 @@
     }
     
     .navbar-link-item:hover {
-        color: #8c27cf; /* Purple highlight hover color */
+        color: #aaff00; /* Green highlight hover color */
     }
 
     .navbar-link-item::before {
@@ -125,8 +125,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* Purple gradient glow on hover */
-        background: radial-gradient(circle at center, rgba(140, 39, 207, 0.3) 0%, rgba(140, 39, 207, 0) 70%); 
+        /* Green gradient glow on hover */
+        background: radial-gradient(circle at center, rgba(170, 255, 0, 0.3) 0%, rgba(170, 255, 0, 0) 70%); 
         opacity: 0;
         transition: opacity 0.3s ease;
         z-index: -1;
@@ -155,7 +155,7 @@
     }
     .profile-link:hover {
         transform: scale(1.05); 
-        box-shadow: 0 0 0 2px #8c27cf inset; 
+        box-shadow: 0 0 0 2px #aaff00 inset; 
     }
 
 
@@ -167,7 +167,7 @@
         width: 8px; 
         height: 8px;
         /* Matches the highlight color theme */
-        background: rgba(140, 39, 207, 0.6); 
+        background: rgba(170, 255, 0, 0.6); 
         border-radius: 50%;
         pointer-events: none; 
         z-index: 9999; 
@@ -254,17 +254,17 @@
     /* Text and Icons */
     .left-panel h3 { margin-bottom: 5px; color: #f0f0f0; font-weight: normal; font-size: 1.1em; }
     
-    /* H1 (Zaid Mughal) and cursor color changed to #8c27cf */
+    /* H1 (Zaid Mughal) and cursor color changed to #aaff00 */
     .left-panel h1 { 
         font-size: 3.5em; 
         margin-top: 0; 
         margin-bottom: 10px; 
-        color: #8c27cf; /* Highlight Color */
+        color: #aaff00; /* Highlight Color */
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
         font-weight: bold; 
         
         /* Typewriter Cursor */
-        border-right: 4px solid #8c27cf; /* Highlight Color */
+        border-right: 4px solid #aaff00; /* Highlight Color */
         white-space: nowrap; 
         overflow: hidden; 
         animation: blink-caret .75s step-end infinite; 
@@ -273,17 +273,24 @@
     /* Keyframes for the blinking cursor */
     @keyframes blink-caret {
         from, to { border-color: transparent }
-        50% { border-color: #8c27cf } 
+        50% { border-color: #aaff00 } 
     }
     
     .left-panel p { font-size: 1.2em; color: #b0b0b0; margin-bottom: 30px; font-weight: 500; }
     .social-icons { display: flex; gap: 15px; margin-top: 20px; }
-    .social-icons a { display: block; width: 35px; height: 35px; transition: transform 0.3s ease, opacity 0.3s ease; }
-    .social-icons a:hover { transform: translateY(-3px) scale(1.05); opacity: 0.8; }
+    
+    /* Icon color filter for Hero and About sections */
     .social-icons img { 
         width: 100%; 
         height: 100%; 
+        /* CSS filter to turn icons green (#aaff00) */
+        filter: invert(0.8) sepia(1) saturate(1000%) hue-rotate(90deg) brightness(1.2); 
+        transition: filter 0.3s ease;
     }
+    
+    .social-icons a { display: block; width: 35px; height: 35px; transition: transform 0.3s ease, opacity 0.3s ease; }
+    .social-icons a:hover { transform: translateY(-3px) scale(1.05); opacity: 0.8; }
+
 
     /* SCROLL DOWN BUTTON STYLING */
     .scroll-down-btn {
@@ -353,6 +360,7 @@
     .about-content h2 { text-align: left; color: #f0f0f0; }
     .about-text { font-size: 1.4em; line-height: 1.7; color: #ccc; font-weight: 400; min-height: 200px; overflow: hidden; white-space: pre-wrap; }
     .about-contact-icons { display: flex; gap: 10px; margin-top: 40px; justify-content: flex-end; width: 100%; }
+    /* The .social-icons img style above applies here too */
 
     .skills-section, .poster-section, .contact-section { padding: 80px 0; scroll-margin-top: 80px; }
     .skills-section { background-color: #111111; } /* Darker background for skills */
@@ -367,7 +375,7 @@
         gap: 30px;
         text-align: left;
     }
-    .skill-item h3 { font-size: 1.5em; color: #8c27cf; margin-top: 0; margin-bottom: 10px; }
+    .skill-item h3 { font-size: 1.5em; color: #aaff00; margin-top: 0; margin-bottom: 10px; }
     .skill-item p { font-size: 1em; color: #b0b0b0; line-height: 1.5; }
     
     .websites-section {
@@ -390,13 +398,13 @@
     .websites-section h2 { text-align: center; font-size: 3.5em; margin-bottom: 50px; width: 100%; color: #f0f0f0; }
     .project-showcase { display: flex; align-items: center; width: 100%; padding-top: 40px; }
     .project-content-left { flex: 1; padding-right: 40px; box-sizing: border-box; max-width: 50%; }
-    .project-content-left h3 { color: #8c27cf; font-size: 2.5em; text-align: left; margin-bottom: 20px; }
+    .project-content-left h3 { color: #aaff00; font-size: 2.5em; text-align: left; margin-bottom: 20px; }
     .project-text { font-size: 1.2em; line-height: 1.6; color: #ccc; min-height: 250px; white-space: pre-wrap; overflow: hidden; }
     .project-image-right { flex: 1; max-width: 50%; display: flex; flex-direction: column; align-items: center; }
     .image-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; background-color: #2a2a2a; padding: 15px; border-radius: 8px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
     .project-image { width: 100%; height: auto; display: block; border-radius: 4px; object-fit: contain; }
     .view-website-link { margin-top: 25px; display: block; transition: transform 0.3s ease; }
-    .view-website-link img { width: 50px; height: 50px; opacity: 0.8; filter: invert(0.8) hue-rotate(270deg); } /* Invert + Hue-Rotate for visibility/color */
+    .view-website-link img { width: 50px; height: 50px; opacity: 0.8; filter: invert(0.8) hue-rotate(90deg); } /* Adjusted filter for consistency */
     .view-website-link:hover { transform: scale(1.1); opacity: 1; }
 
     .poster-header { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; text-align: center; }
@@ -427,7 +435,7 @@
 
     .poster-image-pair p { font-size: 1.1em; font-weight: bold; color: #ccc; margin: 10px 0 5px 0; }
     .view-link { display: flex; justify-content: center; align-items: center; margin-top: 10px; width: 100%; transition: opacity 0.3s ease; }
-    .view-link img { width: 35px; height: 35px; opacity: 0.9; filter: invert(0.8) hue-rotate(270deg); transition: opacity 0.3s ease, transform 0.2s ease; }
+    .view-link img { width: 35px; height: 35px; opacity: 0.9; filter: invert(0.8) hue-rotate(90deg); transition: opacity 0.3s ease, transform 0.2s ease; }
     .view-link:hover img { opacity: 1; transform: scale(1.1); }
 
     .contact-form { max-width: 600px; margin: 0 auto; padding: 30px; background: #2a2a2a; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
@@ -440,15 +448,15 @@
         color: #f0f0f0; /* Light input text */
     }
     .form-group input:focus, .form-group textarea:focus {
-        border-color: #8c27cf; /* Highlight focus */
-        box-shadow: 0 0 5px rgba(140, 39, 207, 0.5);
+        border-color: #aaff00; /* Highlight focus */
+        box-shadow: 0 0 5px rgba(170, 255, 0, 0.5);
     }
     .send-btn {
-        display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #fff; background-color: #8c27cf; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #000; /* CHANGED: text color black */ background-color: #aaff00; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         width: 100%; 
     }
     .send-btn:hover {
-        background-color: #a341e3; 
+        background-color: #77bb00; 
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
@@ -814,7 +822,7 @@
                         <textarea id="message" name="message" required placeholder="Tell me about your project or inquiry..."></textarea>
                     </div>
 
-                    <button type="submit" class="send-btn">Send Message on WhatsApp</button>
+                    <button type="submit" class="send-btn">Send</button>
                 </form>
             </div>
         </div>
