@@ -452,7 +452,7 @@
         box-shadow: 0 0 5px rgba(170, 255, 0, 0.5);
     }
     .send-btn {
-        display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #000; /* CHANGED: text color black */ background-color: #aaff00; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #000; /* text color black */ background-color: #aaff00; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         width: 100%; 
     }
     .send-btn:hover {
@@ -654,6 +654,30 @@
                             >
                             
                             <a href="https://zaidmughal215.github.io/Ahsanfabricsofficial/#home" target="_blank" class="view-website-link" aria-label="View Ahsan Fabrics Website">
+                                <img src="https://i.postimg.cc/pXsqFNRL/preview.png" alt="View Icon">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-showcase" style="margin-top: 50px;">
+                    <div class="project-content-left">
+                        
+                        <h3>Allget Website</h3>
+                        <p class="project-text" id="allget-typing-text"></p>
+                    </div>
+
+                    <div class="project-image-right">
+                        <div class="image-wrapper">
+                            <img 
+                                src="https://i.postimg.cc/kX5DQ3HL/Screenshot-2025-11-09-002353.png" 
+                                alt="Allget Website Homepage Screenshot" 
+                                class="project-image"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                            
+                            <a href="https://www.pakkashmirproperties.online/#home" target="_blank" class="view-website-link" aria-label="View Allget Website">
                                 <img src="https://i.postimg.cc/pXsqFNRL/preview.png" alt="View Icon">
                             </a>
                         </div>
@@ -890,10 +914,10 @@
         const ahsanFabricsText = "Ahsan Fabrics is a premium e-commerce website designed to showcase a refined collection of fabrics with an elegant, modern shopping experience. It features smooth navigation, a detailed product catalog, and a quick WhatsApp-based checkout for effortless ordering. Built entirely with HTML, CSS, and JavaScript, the site combines functionality with a luxurious visual layout that reflects the brand’s sophistication. From real-time cart management to quick product previews, every interaction feels seamless and customer-focused. The layout is fully responsive, ensuring a perfect view across devices. Overall, this project captures the essence of premium textile presentation through a clean, smart, and engaging digital interface.";
         const ahsanFabricsSpeed = 30;
         let ahsanFabricsIndex = 0;
-        let hasStartedTyping = false;
         const ahsanFabricsElement = document.getElementById('ahsan-fabrics-typing-text');
-        const ahsanFabricsSection = document.getElementById('websites-section');
+        const websitesSection = document.getElementById('websites-section');
         
+        // MODIFIED: Simplified function to only type its own content
         function ahsanFabricsTypeWriter() {
             if (ahsanFabricsIndex < ahsanFabricsText.length) {
                 ahsanFabricsElement.innerHTML += ahsanFabricsText.charAt(ahsanFabricsIndex);
@@ -901,9 +925,25 @@
                 setTimeout(ahsanFabricsTypeWriter, ahsanFabricsSpeed);
             }
         }
+        
+        // === 4. Allget Website Scroll-Triggered Typing ===
+        const allgetWebsiteText = "AllGet is a tech-inspired platform designed for users who enjoy exploring advanced and customized versions of mobile apps and games. The website features modded and enhanced APKs, helping users discover additional features, unlocked gameplay options, and unique personalization experiences for educational and testing purposes. The theme of AllGat is modern and visually striking, with a clean green color scheme that reflects innovation, performance, and digital energy. Whether you’re interested in modified apps or optimized game builds, AllGat provides a smooth, organized, and engaging interface to help you find what you’re looking for easily and securely.";
+        const allgetWebsiteSpeed = 30;
+        let allgetWebsiteIndex = 0;
+        const allgetWebsiteElement = document.getElementById('allget-typing-text');
+        
+        // MODIFIED: Simplified function to only type its own content
+        function allgetWebsiteTypeWriter() {
+            if (allgetWebsiteIndex < allgetWebsiteText.length) {
+                allgetWebsiteElement.innerHTML += allgetWebsiteText.charAt(allgetWebsiteIndex);
+                allgetWebsiteIndex++;
+                setTimeout(allgetWebsiteTypeWriter, allgetWebsiteSpeed);
+            }
+        }
 
+        let websitesTypingStarted = false; // New flag for controlling the simultaneous start
 
-        // === 4. WhatsApp Redirect Function ===
+        // === 5. WhatsApp Redirect Function ===
         function sendWhatsApp(event) {
             event.preventDefault();
             
@@ -921,7 +961,7 @@
         }
 
 
-        // === 5. Cursor Bubble Animation Script (Kept as requested) ===
+        // === 6. Cursor Bubble Animation Script (Kept as requested) ===
         let lastParticleTime = 0;
         const particleInterval = 50; 
 
@@ -945,7 +985,7 @@
             }, 1000);
         });
         
-        // === 6. Scroll Progress Bar & Parallax Effect Logic ===
+        // === 7. Scroll Progress Bar & Parallax Effect Logic ===
         const progressBar = document.getElementById('scroll-progress-bar');
         const heroImage = document.getElementById('hero-image');
         const heroSection = document.getElementById('hero-section');
@@ -970,7 +1010,7 @@
             }
         };
 
-        // === 7. Scroll Reveal (Fade-in-on-scroll) ===
+        // === 8. Scroll Reveal (Fade-in-on-scroll) ===
         const revealElements = document.querySelectorAll('.reveal-content');
 
         const observer = new IntersectionObserver((entries, observer) => {
@@ -992,7 +1032,7 @@
         });
 
 
-        // === 8. Smooth Navigation (Liquid Transition Alternative) ===
+        // === 9. Smooth Navigation (Liquid Transition Alternative) ===
         const navLinks = document.querySelectorAll('.nav-link');
 
         navLinks.forEach(link => {
@@ -1018,20 +1058,22 @@
             nameTypeEraseLoop(); 
             typeWriter(); 
 
-            // IntersectionObserver for Ahsan Fabrics Typing
-            if (ahsanFabricsSection && 'IntersectionObserver' in window) {
+            // IntersectionObserver for Websites Typing - Starts both simultaneously
+            if (websitesSection && 'IntersectionObserver' in window) {
                 const typingObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
-                        if (entry.isIntersecting && !hasStartedTyping) {
-                            hasStartedTyping = true;
-                            ahsanFabricsTypeWriter();
+                        if (entry.isIntersecting && !websitesTypingStarted) {
+                            websitesTypingStarted = true;
+                            // Start both typing functions at the same time
+                            ahsanFabricsTypeWriter(); 
+                            allgetWebsiteTypeWriter(); 
                             typingObserver.unobserve(entry.target);
                         }
                     });
                 }, {
                     threshold: 0.1 
                 });
-                typingObserver.observe(ahsanFabricsSection);
+                typingObserver.observe(websitesSection);
             }
         });
 
