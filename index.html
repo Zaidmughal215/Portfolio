@@ -45,7 +45,7 @@
         box-sizing: border-box;
     }
 
-    /* H2 HEADINGS: Light text on dark background */
+    /* H2 HEADINGS */
     h2 {
         font-size: 4em;
         font-weight: bold;
@@ -57,21 +57,20 @@
     }
     
     /* ------------------------------------------------------------------ */
-    /* 1. SCROLL REVEAL ANIMATION (Initial Hidden State) */
+    /* ANIMATIONS */
     /* ------------------------------------------------------------------ */
     .reveal-content {
         opacity: 0;
         transform: translateY(40px);
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    
     .reveal-content.is-visible {
         opacity: 1;
         transform: translateY(0);
     }
 
     /* ------------------------------------------------------------------ */
-    /* NAVIGATION BAR STYLING (More Glassy White Edges) */
+    /* NAVBAR */
     /* ------------------------------------------------------------------ */
     .navbar {
         position: fixed;
@@ -87,17 +86,14 @@
         padding: 0 10px; 
         box-sizing: border-box;
         z-index: 1000;
-        
-        /* MODIFIED: More Glassy Effect */
-        background-color: rgba(25, 25, 25, 0.5); /* Less opaque/lighter base */
-        backdrop-filter: blur(20px); /* Increased blur */
+        background-color: rgba(25, 25, 25, 0.5); 
+        backdrop-filter: blur(20px); 
         -webkit-backdrop-filter: blur(20px);
         border-radius: 25px; 
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), /* Stronger outer shadow */
-                    0 0 0 1px rgba(255, 255, 255, 0.3) inset; /* Brighter inner reflection edge */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 
+                    0 0 0 1px rgba(255, 255, 255, 0.3) inset; 
     }
 
-    /* Navbar Link Styling (Text only) */
     .navbar-link-item {
         display: flex;
         align-items: center;
@@ -114,9 +110,7 @@
         border-radius: 25px; 
     }
     
-    .navbar-link-item:hover {
-        color: #aaff00; /* Green highlight hover color */
-    }
+    .navbar-link-item:hover { color: #aaff00; }
 
     .navbar-link-item::before {
         content: '';
@@ -125,259 +119,115 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* Green gradient glow on hover */
         background: radial-gradient(circle at center, rgba(170, 255, 0, 0.3) 0%, rgba(170, 255, 0, 0) 70%); 
         opacity: 0;
         transition: opacity 0.3s ease;
         z-index: -1;
     }
-    .navbar-link-item:hover::before {
-        opacity: 1; 
-    }
+    .navbar-link-item:hover::before { opacity: 1; }
 
-    /* Profile picture link */
     .profile-link {
-        width: 40px; 
-        height: 40px;
-        border-radius: 50%; 
-        overflow: hidden;
-        margin-left: 10px; 
+        width: 40px; height: 40px; border-radius: 50%; overflow: hidden; margin-left: 10px; 
         box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) inset; 
-        transition: transform 0.3s ease;
-        flex-shrink: 0; 
+        transition: transform 0.3s ease; flex-shrink: 0; 
     }
-    .profile-link img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: none; 
-        opacity: 1;
-    }
-    .profile-link:hover {
-        transform: scale(1.05); 
-        box-shadow: 0 0 0 2px #aaff00 inset; 
-    }
-
+    .profile-link img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-link:hover { transform: scale(1.05); box-shadow: 0 0 0 2px #aaff00 inset; }
 
     /* ------------------------------------------------------------------ */
-    /* CURSOR BUBBLE EFFECT STYLES */
+    /* CURSOR */
     /* ------------------------------------------------------------------ */
     .cursor-particle {
-        position: fixed; 
-        width: 8px; 
-        height: 8px;
-        /* Matches the highlight color theme */
-        background: rgba(170, 255, 0, 0.6); 
-        border-radius: 50%;
-        pointer-events: none; 
-        z-index: 9999; 
-        transform: translate(-50%, -50%); 
-        animation: bubble-animation 1s ease-out forwards;
+        position: fixed; width: 8px; height: 8px; background: rgba(170, 255, 0, 0.6); 
+        border-radius: 50%; pointer-events: none; z-index: 9999; 
+        transform: translate(-50%, -50%); animation: bubble-animation 1s ease-out forwards;
     }
-
     @keyframes bubble-animation {
-        0% {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: translate(-50%, -300%) scale(0.1); 
-            opacity: 0;
-        }
+        0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        100% { transform: translate(-50%, -300%) scale(0.1); opacity: 0; }
     }
     
     /* ------------------------------------------------------------------ */
-    /* HERO SECTION STYLING */
+    /* HERO SECTION */
     /* ------------------------------------------------------------------ */
     .hero-section {
-        min-height: calc(100vh - 80px); 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        background-color: #1a1a1a;
-        position: relative;
-        overflow: hidden; 
+        min-height: calc(100vh - 80px); display: flex; justify-content: center; align-items: center;
+        padding: 0; background-color: #1a1a1a; position: relative; overflow: hidden; 
     }
-    
-    /* Glassy effect for the main portfolio card */
     .portfolio-card {
-        display: flex;
-        width: 90%; 
-        max-width: 1200px;
-        /* Glassy Card Base */
-        background-color: rgba(30, 30, 30, 0.5); /* Semi-transparent dark base */
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 10px;
-        overflow: hidden;
-        /* Shadow with internal light reflection */
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 
-                    0 0 0 1px rgba(255, 255, 255, 0.1) inset; /* Internal reflection */
+        display: flex; width: 90%; max-width: 1200px;
+        background-color: rgba(30, 30, 30, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        border-radius: 10px; overflow: hidden;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset; 
         min-height: 500px; 
     }
-    
     .left-panel {
-        flex: 1;
-        padding: 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        /* Darker, opaque background for text readability */
-        background-color: #111111; 
-        text-align: left; 
+        flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+        background-color: #111111; text-align: left; 
     }
-    
     .right-panel {
-        flex: 1;
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); 
-        margin-left: -10%; 
-        overflow: hidden;
+        flex: 1; background-color: black; display: flex; justify-content: center; align-items: center; position: relative;
+        clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); margin-left: -10%; overflow: hidden;
     }
-    
-    /* PARALLAX TARGET: Hero Image */
     .right-panel img {
-        max-width: 110%;
-        height: auto;
-        display: block;
-        object-fit: cover; 
-        transform: translate(10px, 0) scale(1.05); 
-        transition: transform 0.1s ease-out; 
+        max-width: 110%; height: auto; display: block; object-fit: cover; 
+        transform: translate(10px, 0) scale(1.05); transition: transform 0.1s ease-out; 
     }
-
-    /* Text and Icons */
     .left-panel h3 { margin-bottom: 5px; color: #f0f0f0; font-weight: normal; font-size: 1.1em; }
-    
-    /* H1 (Zaid Mughal) and cursor color changed to #aaff00 */
     .left-panel h1 { 
-        font-size: 3.5em; 
-        margin-top: 0; 
-        margin-bottom: 10px; 
-        color: #aaff00; /* Highlight Color */
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
-        font-weight: bold; 
-        
-        /* Typewriter Cursor */
-        border-right: 4px solid #aaff00; /* Highlight Color */
-        white-space: nowrap; 
-        overflow: hidden; 
+        font-size: 3.5em; margin-top: 0; margin-bottom: 10px; color: #aaff00; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+        font-weight: bold; border-right: 4px solid #aaff00; white-space: nowrap; overflow: hidden; 
         animation: blink-caret .75s step-end infinite; 
     }
-
-    /* Keyframes for the blinking cursor */
-    @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: #aaff00 } 
-    }
-    
+    @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #aaff00 } }
     .left-panel p { font-size: 1.2em; color: #b0b0b0; margin-bottom: 30px; font-weight: 500; }
-    .social-icons { display: flex; gap: 15px; margin-top: 20px; }
     
-    /* Icon color filter for Hero and About sections */
+    .social-icons { display: flex; gap: 15px; margin-top: 20px; }
     .social-icons img { 
-        width: 100%; 
-        height: 100%; 
-        /* CSS filter to turn icons green (#aaff00) */
-        filter: invert(0.8) sepia(1) saturate(1000%) hue-rotate(90deg) brightness(1.2); 
+        width: 100%; height: 100%; filter: invert(0.8) sepia(1) saturate(1000%) hue-rotate(90deg) brightness(1.2); 
         transition: filter 0.3s ease;
     }
-    
     .social-icons a { display: block; width: 35px; height: 35px; transition: transform 0.3s ease, opacity 0.3s ease; }
     .social-icons a:hover { transform: translateY(-3px) scale(1.05); opacity: 0.8; }
 
-
-    /* SCROLL DOWN BUTTON STYLING */
     .scroll-down-btn {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 40px;
-        z-index: 10;
-        background: rgba(40, 40, 40, 0.7); /* Dark semi-transparent background */
-        border-radius: 50%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        animation: bounce 2s infinite; 
-        transition: all 0.3s;
+        position: absolute; bottom: 20px; right: 20px; display: flex; justify-content: center; align-items: center;
+        width: 40px; height: 40px; z-index: 10; background: rgba(40, 40, 40, 0.7); border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); animation: bounce 2s infinite; transition: all 0.3s;
     }
     .scroll-down-btn:hover { opacity: 0.9; background: #222; animation: none; }
-    .scroll-down-btn img { 
-        width: 70%; 
-        height: 70%; 
-        /* Ensure the arrow icon looks good on dark background, potentially adding filter if needed */
-        filter: invert(1); 
-    }
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-8px); }
-        60% { transform: translateY(-4px); }
-    }
+    .scroll-down-btn img { width: 70%; height: 70%; filter: invert(1); }
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } 60% { transform: translateY(-4px); } }
 
     /* ------------------------------------------------------------------ */
-    /* 3. SKILL CARD GLASSY EFFECT (No Purple Glow) */
+    /* SKILLS */
     /* ------------------------------------------------------------------ */
-    .skill-link {
-        text-decoration: none; 
-        color: inherit; 
-        display: block; 
-    }
+    .skill-link { text-decoration: none; color: inherit; display: block; }
     .skill-item {
-        background-color: #2a2a2a; /* Darker card background */
-        padding: 30px;
-        border-radius: 8px;
-        /* Initial subtle shadow */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer; 
-        position: relative; 
-        overflow: hidden; 
+        background-color: #2a2a2a; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; position: relative; overflow: hidden; 
     }
     .skill-item:hover { 
         transform: translateY(-5px); 
-        /* NEW: Glassy White Edge Effect (Stronger outer shadow, white internal reflection) */
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 
-                    0 0 0 1px rgba(255, 255, 255, 0.4) inset; 
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.4) inset; 
     }
-    /* Removed all .skill-item::before pseudo-elements to eliminate the inner purple glow */
-
-
-    /* Rest of the styling remains the same, adjusted for dark theme */
-    .about-section { 
-        background-color: #1a1a1a; 
-        padding: 80px 0;
-        scroll-margin-top: 80px; 
-    }
+    
+    .about-section { background-color: #1a1a1a; padding: 80px 0; scroll-margin-top: 80px; }
     .about-content { width: 80%; max-width: 1000px; }
     .about-content h2 { text-align: left; color: #f0f0f0; }
     .about-text { font-size: 1.4em; line-height: 1.7; color: #ccc; font-weight: 400; min-height: 200px; overflow: hidden; white-space: pre-wrap; }
     .about-contact-icons { display: flex; gap: 10px; margin-top: 40px; justify-content: flex-end; width: 100%; }
-    /* The .social-icons img style above applies here too */
-
-    .skills-section, .poster-section, .contact-section { padding: 80px 0; scroll-margin-top: 80px; }
-    .skills-section { background-color: #111111; } /* Darker background for skills */
-    .poster-section { background-color: #1a1a1a; padding: 80px 0 0; display: block; }
-    .contact-section { background-color: #111111; }
-
-    .skills-content h2, .contact-content h2 { text-align: center; color: #f0f0f0; }
+    
+    .skills-section { padding: 80px 0; scroll-margin-top: 80px; background-color: #111111; }
+    .skills-content h2 { text-align: center; color: #f0f0f0; }
     .skills-content { text-align: center; }
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        text-align: left;
-    }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: left; }
     .skill-item h3 { font-size: 1.5em; color: #aaff00; margin-top: 0; margin-bottom: 10px; }
     .skill-item p { font-size: 1em; color: #b0b0b0; line-height: 1.5; }
     
+    /* ------------------------------------------------------------------ */
+    /* WEBSITES FLIP CARD (UPDATED) */
+    /* ------------------------------------------------------------------ */
     .websites-section {
         background-color: #1a1a1a;
         min-height: 70vh; 
@@ -385,28 +235,96 @@
         padding-bottom: 80px;
         scroll-margin-top: 80px;
     }
-    .websites-content-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start; 
+    .websites-section h2 { text-align: center; font-size: 3.5em; margin-bottom: 50px; width: 100%; color: #f0f0f0; }
+    
+    .projects-grid {
+        display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; width: 100%; margin-top: 20px;
+    }
+
+    .flip-card {
+        background-color: transparent;
+        width: 100%; 
+        max-width: 550px;
+        height: 340px; /* Increased slightly for browser bar */
+        perspective: 1000px;
+    }
+
+    .flip-card-inner {
+        position: relative; width: 100%; height: 100%; text-align: center;
+        transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+        transform-style: preserve-3d;
+        border-radius: 12px;
+        /* No Glow, just shadow */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        /* Base Border */
+        border: 2px solid transparent; 
+        transition: border-color 0.3s ease, transform 0.8s;
+        background-color: #222;
+    }
+
+    /* Green Stroke on Hover (No Glow) */
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+        border-color: #aaff00; 
+    }
+
+    .flip-card-front, .flip-card-back {
+        position: absolute; width: 100%; height: 100%;
+        -webkit-backface-visibility: hidden; backface-visibility: hidden;
+        border-radius: 10px; /* Slightly less than parent to fit border */
+        overflow: hidden;
+    }
+
+    /* --- MACBOOK TOP BAR --- */
+    .browser-bar {
         width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+        height: 30px;
+        background-color: #333;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        border-bottom: 1px solid #444;
         box-sizing: border-box;
     }
-    .websites-section h2 { text-align: center; font-size: 3.5em; margin-bottom: 50px; width: 100%; color: #f0f0f0; }
-    .project-showcase { display: flex; align-items: center; width: 100%; padding-top: 40px; }
-    .project-content-left { flex: 1; padding-right: 40px; box-sizing: border-box; max-width: 50%; }
-    .project-content-left h3 { color: #aaff00; font-size: 2.5em; text-align: left; margin-bottom: 20px; }
-    .project-text { font-size: 1.2em; line-height: 1.6; color: #ccc; min-height: 250px; white-space: pre-wrap; overflow: hidden; }
-    .project-image-right { flex: 1; max-width: 50%; display: flex; flex-direction: column; align-items: center; }
-    .image-wrapper { width: 100%; display: flex; flex-direction: column; align-items: center; background-color: #2a2a2a; padding: 15px; border-radius: 8px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); }
-    .project-image { width: 100%; height: auto; display: block; border-radius: 4px; object-fit: contain; }
-    .view-website-link { margin-top: 25px; display: block; transition: transform 0.3s ease; }
-    .view-website-link img { width: 50px; height: 50px; opacity: 0.8; filter: invert(0.8) hue-rotate(90deg); } /* Adjusted filter for consistency */
-    .view-website-link:hover { transform: scale(1.1); opacity: 1; }
+    .browser-dot {
+        width: 10px; height: 10px; border-radius: 50%; margin-right: 6px;
+    }
+    .dot-red { background-color: #ff5f56; }
+    .dot-yellow { background-color: #ffbd2e; }
+    .dot-green { background-color: #27c93f; }
 
+    /* FRONT: Image */
+    .flip-card-front {
+        background-color: #2a2a2a;
+        display: flex; flex-direction: column;
+    }
+    .flip-card-front img {
+        width: 100%;
+        flex: 1; /* Fills remaining height after browser bar */
+        object-fit: cover; /* Ensures image covers area */
+        object-position: top; /* Shows top of website */
+    }
+    
+    /* BACK: Content */
+    .flip-card-back {
+        background-color: #222; color: #f0f0f0; transform: rotateY(180deg);
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        padding: 30px; box-sizing: border-box;
+    }
+
+    .flip-card-back h3 { color: #aaff00; margin: 0 0 15px 0; font-size: 2em; }
+    .flip-card-back p { font-size: 1em; line-height: 1.5; color: #ccc; margin-bottom: 25px; max-width: 90%; }
+
+    .explore-btn {
+        padding: 12px 30px; font-size: 1em; font-weight: bold; color: #000; background-color: #aaff00;
+        text-decoration: none; border-radius: 25px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .explore-btn:hover { transform: scale(1.05); background-color: #fff; }
+
+    /* ------------------------------------------------------------------ */
+    /* POSTERS */
+    /* ------------------------------------------------------------------ */
+    .poster-section { padding: 80px 0 0; display: block; background-color: #1a1a1a; scroll-margin-top: 80px; }
     .poster-header { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; text-align: center; }
     .poster-header h2 { color: #f0f0f0; font-size: 3.5em; margin: 0; }
     .poster-scroll-wrapper { width: 100%; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; scroll-snap-type: x mandatory; padding-bottom: 50px; -webkit-overflow-scrolling: touch; }
@@ -414,59 +332,69 @@
     .poster-images { display: flex; justify-content: center; gap: 40px; align-items: flex-start; max-width: 800px; margin: 0 auto; }
     .poster-image-pair { display: flex; flex-direction: column; align-items: center; width: 50%; max-width: 380px; }
     
-    /* Hover effect for posters */
     .poster-image-pair > img {
-        width: 100%;
-        height: auto; 
-        aspect-ratio: 1 / 1; 
-        object-fit: cover;
-        border-radius: 4px;
-        margin-bottom: 5px; 
-        transition: transform 0.3s ease, filter 0.3s ease; 
-        background-color: #2a2a2a; /* Dark background for poster wrapper */
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; margin-bottom: 5px; 
+        transition: transform 0.3s ease, filter 0.3s ease; background-color: #2a2a2a; padding: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
-    .poster-image-pair > img:hover {
-        transform: scale(1.02);
-        filter: brightness(1.1); 
-    }
-
+    .poster-image-pair > img:hover { transform: scale(1.02); filter: brightness(1.1); }
     .poster-image-pair p { font-size: 1.1em; font-weight: bold; color: #ccc; margin: 10px 0 5px 0; }
     .view-link { display: flex; justify-content: center; align-items: center; margin-top: 10px; width: 100%; transition: opacity 0.3s ease; }
     .view-link img { width: 35px; height: 35px; opacity: 0.9; filter: invert(0.8) hue-rotate(90deg); transition: opacity 0.3s ease, transform 0.2s ease; }
     .view-link:hover img { opacity: 1; transform: scale(1.1); }
 
-    .contact-form { max-width: 600px; margin: 0 auto; padding: 30px; background: #2a2a2a; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); }
-    .form-group { margin-bottom: 25px; text-align: left; }
-    .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #f0f0f0; }
+    /* ------------------------------------------------------------------ */
+    /* CONTACT FORM (UPDATED PROFESSIONAL THEME) */
+    /* ------------------------------------------------------------------ */
+    .contact-section { padding: 80px 0; scroll-margin-top: 80px; background-color: #111111; }
+    
+    .contact-form { 
+        max-width: 600px; 
+        margin: 0 auto; 
+        padding: 40px; 
+        /* Glassy Effect */
+        background: rgba(35, 35, 35, 0.6); 
+        backdrop-filter: blur(12px); 
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px; 
+        /* Subtle shadow, no glow */
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); 
+    }
+    .form-group { margin-bottom: 30px; text-align: left; }
+    .form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: #e0e0e0; font-size: 0.95em; letter-spacing: 0.5px; }
+    
     .form-group input, .form-group textarea {
-        width: 100%; padding: 15px; border: 1px solid #444; border-radius: 5px; box-sizing: border-box; font-size: 1em; transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        width: 100%; padding: 15px; border-radius: 6px; box-sizing: border-box; font-size: 1em; 
         outline: none;
-        background-color: #333; /* Dark input background */
-        color: #f0f0f0; /* Light input text */
+        color: #f0f0f0; 
+        /* Input Depth Theme */
+        background-color: #1a1a1a;
+        border: 1px solid #333;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); /* Inner shadow for depth */
+        transition: border-color 0.3s ease, background-color 0.3s ease;
     }
+    
     .form-group input:focus, .form-group textarea:focus {
-        border-color: #aaff00; /* Highlight focus */
-        box-shadow: 0 0 5px rgba(170, 255, 0, 0.5);
+        border-color: #aaff00; /* Green highlight on focus */
+        background-color: #202020;
     }
+
     .send-btn {
-        display: inline-block; padding: 15px 40px; font-size: 1.2em; font-weight: bold; color: #000; /* text color black */ background-color: #aaff00; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-        width: 100%; 
+        display: inline-block; padding: 15px 0; font-size: 1.1em; font-weight: bold; 
+        color: #111; background-color: #aaff00; border: none; border-radius: 6px; 
+        cursor: pointer; transition: all 0.3s ease; width: 100%; 
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
     .send-btn:hover {
-        background-color: #77bb00; 
+        background-color: #99e600; 
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
     }
 
     /* ------------------------------------------------------------------ */
     /* RESPONSIVENESS */
     /* ------------------------------------------------------------------ */
     @media (max-width: 768px) {
-        
-        /* NAVBAR MOBILE ADJUSTMENT */
         .navbar { top: 10px; height: 45px; max-width: 95%; padding: 0 5px; border-radius: 22.5px; justify-content: space-around; }
         body { padding-top: 65px; }
         .navbar-link-item { padding: 0 8px; font-size: 0.8em; }
@@ -482,35 +410,25 @@
         .about-text { font-size: 1.1em; line-height: 1.6; min-height: 150px; }
         .about-contact-icons { justify-content: center; }
 
-        /* HERO SECTION STACKING */
         .portfolio-card { flex-direction: column; width: 95%; min-height: auto; }
         .right-panel { clip-path: none; margin-left: 0; width: 100%; order: -1; min-height: 250px; padding: 0; }
         .right-panel img { transform: none; max-width: 100%; height: 100%; object-fit: cover; }
         .scroll-down-btn { right: 20px; transform: none; bottom: 20px; }
 
-        /* SKILLS GRID COLLAPSE */
         .skills-grid { grid-template-columns: 1fr; gap: 20px; }
         .skill-item { padding: 20px; }
         
-        /* WEBSITES SECTION MOBILE ADJUSTMENTS */
         .websites-section h2 { font-size: 2.5em; }
         .websites-content-container { padding: 0 10px; }
-        .project-showcase { flex-direction: column; padding-top: 0; }
-        .project-content-left, .project-image-right { max-width: 100%; padding-right: 0; }
-        .project-content-left { margin-bottom: 30px; }
-        .project-content-left h3 { text-align: center; font-size: 2em; }
-        .project-text { text-align: left; min-height: 150px; }
-        .image-wrapper { padding: 10px; }
+        .flip-card { max-width: 100%; height: 280px; }
         
-        /* POSTER SECTION MOBILE ADJUSTMENTS */
         .poster-header { padding: 0 10px 40px; }
         .poster-header h2 { font-size: 2.5em; }
         .poster-images { gap: 20px; max-width: 500px; }
         .poster-image-pair { width: 50%; padding: 0; }
         .poster-image-pair > img { padding: 10px; }
 
-        /* CONTACT FORM ADJUSTMENTS */
-        .contact-form { padding: 20px; }
+        .contact-form { padding: 25px; }
         .send-btn { width: 100%; }
     }
 </style>
@@ -520,21 +438,11 @@
     <div id="scroll-progress-bar"></div>
 
     <nav class="navbar">
-        <a href="#hero-section" class="navbar-link-item nav-link" data-target="hero-section">
-            Home
-        </a>
-        <a href="#about-me-section" class="navbar-link-item nav-link" data-target="about-me-section">
-            About
-        </a>
-        <a href="#skills-section" class="navbar-link-item nav-link" data-target="skills-section">
-            Skills
-        </a>
-        <a href="#websites-section" class="navbar-link-item nav-link" data-target="websites-section">
-            Websites
-        </a>
-        <a href="#poster-section" class="navbar-link-item nav-link" data-target="poster-section">
-            Posters
-        </a>
+        <a href="#hero-section" class="navbar-link-item nav-link" data-target="hero-section">Home</a>
+        <a href="#about-me-section" class="navbar-link-item nav-link" data-target="about-me-section">About</a>
+        <a href="#skills-section" class="navbar-link-item nav-link" data-target="skills-section">Skills</a>
+        <a href="#websites-section" class="navbar-link-item nav-link" data-target="websites-section">Websites</a>
+        <a href="#poster-section" class="navbar-link-item nav-link" data-target="poster-section">Posters</a>
         <a href="#contact-section" class="profile-link nav-link" data-target="contact-section" aria-label="Contact Zaid (Profile)">
             <img src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Profile Picture" decoding="async">
         </a>
@@ -636,54 +544,64 @@
             <div class="reveal-content" style="width: 100%;">
                 <h2>Website Building</h2>
                 
-                <div class="project-showcase">
-                    <div class="project-content-left">
-                        
-                        <h3>Ahsan Fabrics Project</h3>
-                        <p class="project-text" id="ahsan-fabrics-typing-text"></p>
-                    </div>
-
-                    <div class="project-image-right">
-                        <div class="image-wrapper">
-                            <img 
-                                src="https://i.postimg.cc/ZqMGFBm0/Screenshot-2025-11-02-042230.png" 
-                                alt="Ahsan Fabrics Homepage Screenshot (Landscape)" 
-                                class="project-image"
-                                loading="lazy"
-                                decoding="async"
-                            >
+                <div class="projects-grid">
+                    
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
                             
-                            <a href="https://zaidmughal215.github.io/Ahsanfabricsofficial/#home" target="_blank" class="view-website-link" aria-label="View Ahsan Fabrics Website">
-                                <img src="https://i.postimg.cc/pXsqFNRL/preview.png" alt="View Icon">
-                            </a>
+                            <div class="flip-card-front">
+                                <div class="browser-bar">
+                                    <div class="browser-dot dot-red"></div>
+                                    <div class="browser-dot dot-yellow"></div>
+                                    <div class="browser-dot dot-green"></div>
+                                </div>
+                                <img 
+                                    src="https://i.postimg.cc/ZqMGFBm0/Screenshot-2025-11-02-042230.png" 
+                                    alt="Ahsan Fabrics Homepage"
+                                    loading="lazy"
+                                >
+                            </div>
+
+                            <div class="flip-card-back">
+                                <h3>Ahsan Fabrics</h3>
+                                <p>A premium e-commerce website designed for elegance and easy shopping. Features include smooth navigation and WhatsApp checkout.</p>
+                                <a href="https://zaidmughal215.github.io/Ahsanfabricsofficial/#home" target="_blank" class="explore-btn">
+                                    Explore More
+                                </a>
+                            </div>
+
                         </div>
                     </div>
-                </div>
 
-                <div class="project-showcase" style="margin-top: 50px;">
-                    <div class="project-content-left">
-                        
-                        <h3>Allget Website</h3>
-                        <p class="project-text" id="allget-typing-text"></p>
-                    </div>
-
-                    <div class="project-image-right">
-                        <div class="image-wrapper">
-                            <img 
-                                src="https://i.postimg.cc/kX5DQ3HL/Screenshot-2025-11-09-002353.png" 
-                                alt="Allget Website Homepage Screenshot" 
-                                class="project-image"
-                                loading="lazy"
-                                decoding="async"
-                            >
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
                             
-                            <a href="https://www.pakkashmirproperties.online/#home" target="_blank" class="view-website-link" aria-label="View Allget Website">
-                                <img src="https://i.postimg.cc/pXsqFNRL/preview.png" alt="View Icon">
-                            </a>
+                            <div class="flip-card-front">
+                                <div class="browser-bar">
+                                    <div class="browser-dot dot-red"></div>
+                                    <div class="browser-dot dot-yellow"></div>
+                                    <div class="browser-dot dot-green"></div>
+                                </div>
+                                <img 
+                                    src="https://i.postimg.cc/kX5DQ3HL/Screenshot-2025-11-09-002353.png" 
+                                    alt="Allget Website Homepage"
+                                    loading="lazy"
+                                >
+                            </div>
+
+                            <div class="flip-card-back">
+                                <h3>Allget Website</h3>
+                                <p>A tech-inspired platform for modded apps and games. The modern green theme reflects innovation and digital energy.</p>
+                                <a href="https://www.pakkashmirproperties.online/#home" target="_blank" class="explore-btn">
+                                    Explore More
+                                </a>
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
-            </div>
+                </div>
         </div>
     </section>
 
@@ -910,39 +828,6 @@
             }
         }
 
-        // === 3. Ahsan Fabrics Scroll-Triggered Typing ===
-        const ahsanFabricsText = "Ahsan Fabrics is a premium e-commerce website designed to showcase a refined collection of fabrics with an elegant, modern shopping experience. It features smooth navigation, a detailed product catalog, and a quick WhatsApp-based checkout for effortless ordering. Built entirely with HTML, CSS, and JavaScript, the site combines functionality with a luxurious visual layout that reflects the brand’s sophistication. From real-time cart management to quick product previews, every interaction feels seamless and customer-focused. The layout is fully responsive, ensuring a perfect view across devices. Overall, this project captures the essence of premium textile presentation through a clean, smart, and engaging digital interface.";
-        const ahsanFabricsSpeed = 30;
-        let ahsanFabricsIndex = 0;
-        const ahsanFabricsElement = document.getElementById('ahsan-fabrics-typing-text');
-        const websitesSection = document.getElementById('websites-section');
-        
-        // MODIFIED: Simplified function to only type its own content
-        function ahsanFabricsTypeWriter() {
-            if (ahsanFabricsIndex < ahsanFabricsText.length) {
-                ahsanFabricsElement.innerHTML += ahsanFabricsText.charAt(ahsanFabricsIndex);
-                ahsanFabricsIndex++;
-                setTimeout(ahsanFabricsTypeWriter, ahsanFabricsSpeed);
-            }
-        }
-        
-        // === 4. Allget Website Scroll-Triggered Typing ===
-        const allgetWebsiteText = "AllGet is a tech-inspired platform designed for users who enjoy exploring advanced and customized versions of mobile apps and games. The website features modded and enhanced APKs, helping users discover additional features, unlocked gameplay options, and unique personalization experiences for educational and testing purposes. The theme of AllGat is modern and visually striking, with a clean green color scheme that reflects innovation, performance, and digital energy. Whether you’re interested in modified apps or optimized game builds, AllGat provides a smooth, organized, and engaging interface to help you find what you’re looking for easily and securely.";
-        const allgetWebsiteSpeed = 30;
-        let allgetWebsiteIndex = 0;
-        const allgetWebsiteElement = document.getElementById('allget-typing-text');
-        
-        // MODIFIED: Simplified function to only type its own content
-        function allgetWebsiteTypeWriter() {
-            if (allgetWebsiteIndex < allgetWebsiteText.length) {
-                allgetWebsiteElement.innerHTML += allgetWebsiteText.charAt(allgetWebsiteIndex);
-                allgetWebsiteIndex++;
-                setTimeout(allgetWebsiteTypeWriter, allgetWebsiteSpeed);
-            }
-        }
-
-        let websitesTypingStarted = false; // New flag for controlling the simultaneous start
-
         // === 5. WhatsApp Redirect Function ===
         function sendWhatsApp(event) {
             event.preventDefault();
@@ -1057,24 +942,6 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             nameTypeEraseLoop(); 
             typeWriter(); 
-
-            // IntersectionObserver for Websites Typing - Starts both simultaneously
-            if (websitesSection && 'IntersectionObserver' in window) {
-                const typingObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !websitesTypingStarted) {
-                            websitesTypingStarted = true;
-                            // Start both typing functions at the same time
-                            ahsanFabricsTypeWriter(); 
-                            allgetWebsiteTypeWriter(); 
-                            typingObserver.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    threshold: 0.1 
-                });
-                typingObserver.observe(websitesSection);
-            }
         });
 
     </script>
