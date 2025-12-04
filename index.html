@@ -7,6 +7,7 @@
 
 <style>
     /* PRIMARY THEME COLOR: #aaff00 (Green) */
+    /* NEW ACCENT FOR PORTFOLIO: #008080 (Deep Teal) */
     
     /* ------------------------------------------------------------------ */
     /* GLOBAL STYLES & LAYOUT */
@@ -19,6 +20,7 @@
         background-color: #1a1a1a; 
         color: #f0f0f0; /* Light text */
         scroll-behavior: smooth; 
+        overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     /* Scroll Progress Bar */
@@ -148,41 +150,99 @@
     }
     
     /* ------------------------------------------------------------------ */
-    /* HERO SECTION */
+    /* HERO SECTION (NEW THEME: NEON ORBIT) */
     /* ------------------------------------------------------------------ */
     .hero-section {
-        min-height: calc(100vh - 80px); display: flex; justify-content: center; align-items: center;
-        padding: 0; background-color: #1a1a1a; position: relative; overflow: hidden; 
+        min-height: calc(100vh - 80px); 
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        padding: 0 20px; 
+        background-color: #1a1a1a; 
+        position: relative; 
+        overflow: hidden; 
     }
-    .portfolio-card {
-        display: flex; width: 90%; max-width: 1200px;
-        background-color: rgba(30, 30, 30, 0.5); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-        border-radius: 10px; overflow: hidden;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset; 
-        min-height: 500px; 
+
+    /* Container to hold Text (Left) and Image (Right) */
+    .hero-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1100px;
+        z-index: 2; /* Ensure it sits above background particles if added later */
     }
-    .left-panel {
-        flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-        background-color: #111111; text-align: left; 
+
+    /* Text Side */
+    .hero-text-panel {
+        flex: 1;
+        padding-right: 40px;
+        text-align: left;
     }
-    .right-panel {
-        flex: 1; background-color: black; display: flex; justify-content: center; align-items: center; position: relative;
-        clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); margin-left: -10%; overflow: hidden;
-    }
-    .right-panel img {
-        max-width: 110%; height: auto; display: block; object-fit: cover; 
-        transform: translate(10px, 0) scale(1.05); transition: transform 0.1s ease-out; 
-    }
-    .left-panel h3 { margin-bottom: 5px; color: #f0f0f0; font-weight: normal; font-size: 1.1em; }
-    .left-panel h1 { 
-        font-size: 3.5em; margin-top: 0; margin-bottom: 10px; color: #aaff00; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
-        font-weight: bold; border-right: 4px solid #aaff00; white-space: nowrap; overflow: hidden; 
+
+    .hero-text-panel h3 { margin-bottom: 5px; color: #f0f0f0; font-weight: normal; font-size: 1.3em; letter-spacing: 1px; }
+    .hero-text-panel h1 { 
+        font-size: 4em; margin-top: 0; margin-bottom: 15px; color: #aaff00; 
+        text-shadow: 0px 0px 15px rgba(170, 255, 0, 0.3); /* Subtle glow on text */
+        font-weight: 800; 
+        border-right: 4px solid #aaff00; 
+        display: inline-block;
+        white-space: nowrap; 
+        overflow: hidden; 
         animation: blink-caret .75s step-end infinite; 
     }
     @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #aaff00 } }
-    .left-panel p { font-size: 1.2em; color: #b0b0b0; margin-bottom: 30px; font-weight: 500; }
     
-    .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+    .hero-text-panel p { 
+        font-size: 1.3em; color: #b0b0b0; margin-bottom: 30px; font-weight: 400; max-width: 500px; line-height: 1.5; 
+    }
+
+    /* Image Side (The Round Frame) */
+    .hero-image-panel {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .hero-profile-frame {
+        width: 380px;
+        height: 380px;
+        border-radius: 50%;
+        position: relative;
+        z-index: 5;
+        /* The Neon Border */
+        border: 4px solid #aaff00;
+        /* The Glow Effect */
+        box-shadow: 0 0 40px rgba(170, 255, 0, 0.2), inset 0 0 20px rgba(170, 255, 0, 0.1);
+        overflow: hidden;
+        /* Floating Animation */
+        animation: floating 4s ease-in-out infinite;
+        background-color: #1a1a1a; /* Matches body bg to hide any white squares */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Hover Interaction */
+    .hero-profile-frame:hover {
+        transform: scale(1.03); /* Slight zoom on hover */
+        box-shadow: 0 0 60px rgba(170, 255, 0, 0.5); /* Stronger glow */
+    }
+
+    .hero-profile-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Ensures image fills the circle perfectly */
+    }
+
+    @keyframes floating {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    .social-icons { display: flex; gap: 15px; margin-top: 30px; }
     .social-icons img { 
         width: 100%; height: 100%; filter: invert(0.8) sepia(1) saturate(1000%) hue-rotate(90deg) brightness(1.2); 
         transition: filter 0.3s ease;
@@ -191,13 +251,14 @@
     .social-icons a:hover { transform: translateY(-3px) scale(1.05); opacity: 0.8; }
 
     .scroll-down-btn {
-        position: absolute; bottom: 20px; right: 20px; display: flex; justify-content: center; align-items: center;
+        position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+        display: flex; justify-content: center; align-items: center;
         width: 40px; height: 40px; z-index: 10; background: rgba(40, 40, 40, 0.7); border-radius: 50%;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); animation: bounce 2s infinite; transition: all 0.3s;
     }
     .scroll-down-btn:hover { opacity: 0.9; background: #222; animation: none; }
     .scroll-down-btn img { width: 70%; height: 70%; filter: invert(1); }
-    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } 60% { transform: translateY(-4px); } }
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); } 40% { transform: translateY(-8px) translateX(-50%); } 60% { transform: translateY(-4px) translateX(-50%); } }
 
     /* ------------------------------------------------------------------ */
     /* SKILLS */
@@ -322,25 +383,269 @@
     .explore-btn:hover { transform: scale(1.05); background-color: #fff; }
 
     /* ------------------------------------------------------------------ */
-    /* POSTERS */
+    /* POSTERS / PORTFOLIO SHOWCASE (NEW STYLES) */
     /* ------------------------------------------------------------------ */
-    .poster-section { padding: 80px 0 0; display: block; background-color: #1a1a1a; scroll-margin-top: 80px; }
-    .poster-header { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; text-align: center; }
-    .poster-header h2 { color: #f0f0f0; font-size: 3.5em; margin: 0; }
-    .poster-scroll-wrapper { width: 100%; overflow-x: scroll; overflow-y: hidden; white-space: nowrap; scroll-snap-type: x mandatory; padding-bottom: 50px; -webkit-overflow-scrolling: touch; }
-    .poster-project { display: inline-block; width: 100vw; max-width: 1200px; scroll-snap-align: center; text-align: center; padding: 0 20px; box-sizing: border-box; }
-    .poster-images { display: flex; justify-content: center; gap: 40px; align-items: flex-start; max-width: 800px; margin: 0 auto; }
-    .poster-image-pair { display: flex; flex-direction: column; align-items: center; width: 50%; max-width: 380px; }
-    
-    .poster-image-pair > img {
-        width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px; margin-bottom: 5px; 
-        transition: transform 0.3s ease, filter 0.3s ease; background-color: #2a2a2a; padding: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    .portfolio-section { 
+        padding: 80px 0; 
+        display: block; 
+        background-color: #1a1a1a; 
+        scroll-margin-top: 80px; 
+        text-align: center;
     }
-    .poster-image-pair > img:hover { transform: scale(1.02); filter: brightness(1.1); }
-    .poster-image-pair p { font-size: 1.1em; font-weight: bold; color: #ccc; margin: 10px 0 5px 0; }
-    .view-link { display: flex; justify-content: center; align-items: center; margin-top: 10px; width: 100%; transition: opacity 0.3s ease; }
-    .view-link img { width: 35px; height: 35px; opacity: 0.9; filter: invert(0.8) hue-rotate(90deg); transition: opacity 0.3s ease, transform 0.2s ease; }
-    .view-link:hover img { opacity: 1; transform: scale(1.1); }
+    .portfolio-header { 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 0 20px 60px; 
+    }
+    .portfolio-header h2 { 
+        color: #f0f0f0; 
+        font-size: 3.5em; 
+        margin: 0; 
+        text-align: center;
+    }
+
+    .portfolio-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 60px; /* Generous vertical spacing between cards */
+        width: 100%;
+        max-width: 1100px; /* Max width for content area */
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .comparison-card {
+        background-color: #222; /* Slightly lighter background for the card */
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        display: flex;
+        position: relative;
+        flex-direction: column; /* Default stack on mobile */
+        padding: 30px;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+    }
+    
+    .card-title {
+        text-align: center;
+        font-size: 1.2em;
+        color: #e0e0e0;
+        margin-bottom: 30px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .card-content {
+        display: flex;
+        width: 100%;
+        gap: 30px;
+        position: relative;
+        flex-direction: column; /* Default stack on mobile */
+    }
+
+    .image-container {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease;
+    }
+
+    .image-container a {
+        display: block;
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        /* Set background to ensure 'letterboxing' is dark if image is not square */
+        background-color: #1a1a1a; 
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+        transition: transform 0.4s ease-out;
+    }
+    
+    /* Hover Effect for Image (Desktop only) */
+    @media (min-width: 1024px) {
+        .image-container a:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    .image-caption {
+        font-size: 0.9em;
+        color: #999;
+        margin-top: 10px;
+        font-style: italic;
+    }
+    
+    .placeholder-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #1a1a1a;
+        height: 100%;
+        width: 100%;
+        min-height: 250px;
+        border: 2px dashed #444;
+        border-radius: 8px;
+        color: #777;
+        font-size: 1.2em;
+        font-weight: 500;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* --- NEW CHAT DISPLAY STYLES for PORTFOLIO CARD 3 (Original Concept) --- */
+    .chat-display {
+        width: 100%;
+        max-width: 450px; /* Limit chat width */
+        overflow-y: auto;
+        padding: 15px;
+        background-color: #111; /* Dark chat background */
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Outer shadow like an image */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: left; /* Essential for text alignment */
+    }
+
+    /* Hide scrollbar for chat display */
+    .chat-display::-webkit-scrollbar { width: 0; }
+    .chat-display { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .chat-bubble {
+        max-width: 80%;
+        padding: 10px 15px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        line-height: 1.4;
+        position: relative;
+        word-wrap: break-word;
+        transition: background 0.2s ease;
+    }
+
+    .client-bubble {
+        /* Client (Left, Grey) */
+        align-self: flex-start;
+        background-color: #333;
+        color: #f0f0f0;
+        border-bottom-left-radius: 5px;
+    }
+
+    .my-bubble {
+        /* Me (Right, Green/Accent) */
+        align-self: flex-end;
+        background-color: #aaff00; /* Green highlight color */
+        color: #111;
+        font-weight: 500;
+        border-bottom-right-radius: 5px;
+    }
+    
+    .chat-display .image-caption {
+        margin-top: 0;
+    }
+    /* ------------------------------------------------------------------ */
+
+
+    /* Divider Styles (Desktop) */
+    .divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        background-color: rgba(255, 255, 255, 0.1);
+        z-index: 10;
+        display: none; /* Hidden by default, shown on desktop */
+    }
+    
+    .divider-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #008080; /* Deep Teal Accent */
+        color: #fff;
+        font-size: 0.8em;
+        font-weight: bold;
+        padding: 6px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .micro-instruction {
+        font-size: 1em;
+        color: #aaff00; /* Use existing theme accent for instruction */
+        margin-top: 10px;
+        margin-bottom: 50px;
+        text-align: center;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    /* Lightbox Styles */
+    .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 99999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(5px);
+    }
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+    }
+    .lightbox img {
+        display: block;
+        max-width: 100%;
+        max-height: 85vh;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    }
+    .lightbox-caption {
+        text-align: center;
+        color: #fff;
+        margin-top: 15px;
+        font-size: 1.1em;
+    }
+    .lightbox-close, .lightbox-nav {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5em;
+        padding: 10px 15px;
+        border-radius: 50%;
+        line-height: 1;
+        z-index: 10;
+        transition: background 0.3s;
+    }
+    .lightbox-close { top: 20px; right: 20px; }
+    .lightbox-close:hover { background: rgba(255, 0, 0, 0.5); }
+    .lightbox-nav { top: 50%; transform: translateY(-50%); opacity: 0.7; }
+    .lightbox-nav:hover { opacity: 1; background: rgba(255, 255, 255, 0.2); }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
 
     /* ------------------------------------------------------------------ */
     /* CONTACT FORM (UPDATED PROFESSIONAL THEME) */
@@ -394,26 +699,83 @@
     /* ------------------------------------------------------------------ */
     /* RESPONSIVENESS */
     /* ------------------------------------------------------------------ */
-    @media (max-width: 768px) {
+    @media (min-width: 1024px) {
+        .card-content {
+            flex-direction: row; /* Two columns on desktop */
+            /* Crucial for vertical centering of both comparison blocks */
+            align-items: center; 
+        }
+        .divider {
+            display: block;
+        }
+        
+        /* 1. Force equal height for the main visual content blocks (chat and image link) */
+        .comparison-card .image-container a, 
+        .comparison-card .chat-display { 
+             height: 400px; /* Fixed height for visual consistency and alignment */
+             max-width: 100%; /* Ensure it fills width */
+             box-sizing: border-box;
+        }
+        
+        /* 2. Ensure image scales to show the FULL image inside the fixed height container */
+        .comparison-card .image-container a img {
+            height: 100%;
+            object-fit: contain; /* CHANGED to 'contain' to show full image without cropping */
+            /* Vertically align image within the container if it doesn't fill the full height */
+            margin: auto; 
+        }
+        
+        .image-container:first-child .chat-display { 
+             height: 400px; 
+             max-height: 400px; 
+        }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1023px) {
+        /* Tablet: Keep the vertical stack, but allow it to be wide */
+        .card-content {
+            flex-direction: column; 
+            gap: 20px;
+        }
+        .divider {
+            position: relative;
+            height: 1px;
+            width: 80%;
+            margin: 30px auto 0;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .divider-label {
+            top: auto;
+            bottom: auto;
+            transform: translate(-50%, 0);
+            margin-top: -15px;
+        }
+        .chat-display {
+             height: 380px; /* Keep height for non-desktop stack to avoid it growing too large */
+        }
+    }
+    
+    @media (max-width: 767px) {
         .navbar { top: 10px; height: 45px; max-width: 95%; padding: 0 5px; border-radius: 22.5px; justify-content: space-around; }
         body { padding-top: 65px; }
         .navbar-link-item { padding: 0 8px; font-size: 0.8em; }
         .profile-link { width: 30px; height: 30px; }
 
-        .hero-section { min-height: calc(100vh - 65px); }
-        .section-container { padding: 20px 10px; }
-        h2 { font-size: 2.5em; margin-bottom: 30px; }
-        .left-panel { text-align: center; align-items: center; }
-        .left-panel h1 { font-size: 2em; }
+        /* Mobile Hero */
+        .hero-section { min-height: auto; padding: 80px 20px 40px; }
+        .hero-container { flex-direction: column-reverse; /* Image Top, Text Bottom */ text-align: center; }
+        
+        .hero-image-panel { margin-bottom: 30px; }
+        .hero-profile-frame { width: 250px; height: 250px; }
+        
+        .hero-text-panel { padding-right: 0; text-align: center; }
+        .hero-text-panel h1 { font-size: 2.5em; }
+        .social-icons { justify-content: center; }
+
         .about-content { width: 95%; }
         .about-content h2 { text-align: center; }
         .about-text { font-size: 1.1em; line-height: 1.6; min-height: 150px; }
         .about-contact-icons { justify-content: center; }
-
-        .portfolio-card { flex-direction: column; width: 95%; min-height: auto; }
-        .right-panel { clip-path: none; margin-left: 0; width: 100%; order: -1; min-height: 250px; padding: 0; }
-        .right-panel img { transform: none; max-width: 100%; height: 100%; object-fit: cover; }
-        .scroll-down-btn { right: 20px; transform: none; bottom: 20px; }
 
         .skills-grid { grid-template-columns: 1fr; gap: 20px; }
         .skill-item { padding: 20px; }
@@ -422,14 +784,27 @@
         .websites-content-container { padding: 0 10px; }
         .flip-card { max-width: 100%; height: 280px; }
         
-        .poster-header { padding: 0 10px 40px; }
-        .poster-header h2 { font-size: 2.5em; }
-        .poster-images { gap: 20px; max-width: 500px; }
-        .poster-image-pair { width: 50%; padding: 0; }
-        .poster-image-pair > img { padding: 10px; }
+        /* Mobile Portfolio */
+        .portfolio-header { padding: 0 10px 40px; }
+        .portfolio-header h2 { font-size: 2.5em; }
+        .comparison-card { padding: 20px; }
+        .card-content { gap: 40px; } /* Increased vertical gap on mobile stack */
+        .divider-label {
+             top: auto;
+            bottom: auto;
+            transform: translate(-50%, 0);
+            margin-top: -15px;
+        }
+        .chat-display {
+             height: 300px; /* Adjust height for small screens */
+        }
 
         .contact-form { padding: 25px; }
         .send-btn { width: 100%; }
+        
+        /* Adjust scroll button for mobile */
+        .scroll-down-btn { bottom: 20px; left: auto; right: 20px; transform: none; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } 60% { transform: translateY(-4px); } }
     }
 </style>
 </head>
@@ -442,28 +817,33 @@
         <a href="#about-me-section" class="navbar-link-item nav-link" data-target="about-me-section">About</a>
         <a href="#skills-section" class="navbar-link-item nav-link" data-target="skills-section">Skills</a>
         <a href="#websites-section" class="navbar-link-item nav-link" data-target="websites-section">Websites</a>
-        <a href="#poster-section" class="navbar-link-item nav-link" data-target="poster-section">Posters</a>
+        <a href="#portfolio-section" class="navbar-link-item nav-link" data-target="portfolio-section">Portfolio</a>
         <a href="#contact-section" class="profile-link nav-link" data-target="contact-section" aria-label="Contact Zaid (Profile)">
             <img src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Profile Picture" decoding="async">
         </a>
     </nav>
     
     
-    <section class="section-container hero-section" id="hero-section">
-        <div class="portfolio-card">
-            <div class="left-panel">
+    <section class="hero-section" id="hero-section">
+        <div class="hero-container">
+            
+            <div class="hero-text-panel">
                 <h3>Hi! I am</h3>
-                <h1 id="hero-name"></h1>
-                <p>A Graphic And AI Expert</p>
+                <h1 id="hero-name"></h1> <p>A Graphic And AI Expert. I transform ideas into stunning digital reality with precision and creativity.</p>
+                
                 <div class="social-icons">
                     <a href="tel:+923394807064" aria-label="Call Zaid"><img src="https://i.postimg.cc/QdfZ4G40/receiver.png" alt="Phone Icon"></a>
                     <a href="https://www.instagram.com/zaidahmed_14/" target="_blank" aria-label="Zaid Mughal Instagram"><img src="https://i.postimg.cc/x856fYbp/instagram-2.png" alt="Instagram Icon"></a>
                     <a href="mailto:zaidbilal215@gmail.com" aria-label="Email Zaid"><img src="https://i.postimg.cc/wBDcxHCM/mail.png" alt="Email Icon"></a>
                 </div>
             </div>
-            <div class="right-panel">
-                <img id="hero-image" src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Zaid Mughal Profile Picture" decoding="async">
+
+            <div class="hero-image-panel">
+                <div class="hero-profile-frame">
+                    <img id="hero-image" src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Zaid Mughal Profile Picture" decoding="async">
+                </div>
             </div>
+
         </div>
         
         <a href="#about-me-section" class="scroll-down-btn nav-link" data-target="about-me-section" aria-label="Scroll Down to About Section">
@@ -606,147 +986,148 @@
     </section>
 
     
-    <section class="poster-section" id="poster-section">
-        <div class="poster-header reveal-content">
+    <section class="portfolio-section" id="portfolio-section">
+        <div class="portfolio-header reveal-content">
             
-            <h2>My Poster Designing</h2>
-            <p style="font-style: italic; color: #b0b0b0;">(Scroll horizontally to view all 8 projects)</p>
+            <h2>Portfolio — Before & After</h2>
+            <p class="micro-instruction">Click on any image to zoom in (lightbox view). Use arrow keys to navigate.</p>
         </div>
 
-        <div class="poster-scroll-wrapper reveal-content">
+        <div class="portfolio-grid reveal-content">
 
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/zfk4PCDn/Carliongton-premium-black-analog-mens-s-watch-6020.webp" alt="Original Watch Image" loading="lazy" decoding="async">
-                        <p>Original</p>
-                    </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" alt="My Design Watch Post" loading="lazy" decoding="async">
-                        <p>My Design</p>
-                        <a href="https://i.postimg.cc/MZ13s0sT/wmremove-transformed.jpg" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                             <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+            <div class="comparison-card" data-title="Watch Post Design">
+                <p class="card-title">Watch Post Design</p>
+                <div class="card-content">
+                    
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/X7vYF6BF/wp-130-d7390feb-812a-4766-ac7f-784969f15ff1-1024x1024.webp" 
+                           class="lightbox-trigger" 
+                           data-caption="Poster 1 — Original version">
+                            <img src="https://i.postimg.cc/X7vYF6BF/wp-130-d7390feb-812a-4766-ac7f-784969f15ff1-1024x1024.webp" 
+                                 alt="Poster 1 — Original version" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                                 width="768" height="768" 
+                                 srcset="https://i.postimg.cc/X7vYF6BF/wp-130-d7390feb-812a-4766-ac7f-784969f15ff1-1024x1024.webp 1024w" 
+                            >
                         </a>
+                        <p class="image-caption">Original</p>
                     </div>
+
+                    <div class="divider" role="separator" aria-label="before and after comparison">
+                        <span class="divider-label">Before → After</span>
+                    </div>
+
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/GmyrJLLp/1764784192134-019ae554-e931-7c64-bffe-c0a5901c06b6.png" 
+                           class="lightbox-trigger" 
+                           data-caption="Poster 1 — Updated design">
+                            <img src="https://i.postimg.cc/GmyrJLLp/1764784192134-019ae554-e931-7c64-bffe-c0a5901c06b6.png" 
+                                 alt="Poster 1 — Updated design" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                                 width="768" height="768" 
+                                 srcset="https://i.postimg.cc/GmyrJLLp/1764784192134-019ae554-e931-7c64-bffe-c0a5901c06b6.png 1024w" 
+                            >
+                        </a>
+                        <p class="image-caption">Updated Design</p>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/hGM30Kpg/original-d9609cebc935a74d040d57d2a61bae97.webp" alt="Original Cream Box Image" loading="lazy" decoding="async">
-                        <p>Original</p>
-                    </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/XvF9VLBm/upscalemedia-transformed.png" alt="My Design Cream Box Post" loading="lazy" decoding="async">
-                        <p>My Design</p>
-                         <a href="https://i.postimg.cc/XvF9VLBm/upscalemedia-transformed.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+            <div class="comparison-card" data-title="Cream Box Advertisement">
+                <p class="card-title">Cream Box Advertisement</p>
+                <div class="card-content">
+                    
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/NGzWN3Pp/1764834955172-image.png" 
+                           class="lightbox-trigger" 
+                           data-caption="Poster 2 — Original version">
+                            <img src="https://i.postimg.cc/NGzWN3Pp/1764834955172-image.png" 
+                                 alt="Poster 2 — Original version" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                                 width="768" height="768" 
+                                 srcset="https://i.postimg.cc/NGzWN3Pp/1764834955172-image.png 1024w" 
+                            >
                         </a>
+                        <p class="image-caption">Original</p>
                     </div>
+
+                    <div class="divider" role="separator" aria-label="before and after comparison">
+                        <span class="divider-label">Before → After</span>
+                    </div>
+
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/br7VzjKK/1764835315256-019ae861-194a-7fa4-a663-8f26241fbddd.png" 
+                           class="lightbox-trigger" 
+                           data-caption="Poster 2 — Updated design">
+                            <img src="https://i.postimg.cc/br7VzjKK/1764835315256-019ae861-194a-7fa4-a663-8f26241fbddd.png" 
+                                 alt="Poster 2 — Updated design" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                                 width="768" height="768" 
+                                 srcset="https://i.postimg.cc/br7VzjKK/1764835315256-019ae861-194a-7fa4-a663-8f26241fbddd.png 1024w" 
+                            >
+                        </a>
+                        <p class="image-caption">Updated Design</p>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/Kjhp5fCD/Customize-Cake-Instagram-Post.png" alt="Original Cake Post Image" loading="lazy" decoding="async">
-                        <p>Original</p>
+            <div class="comparison-card" data-title="Client Chat Fast-Food Poster">
+                <p class="card-title">Client Chat Fast-Food Poster</p>
+                <div class="card-content">
+                    
+                    <div class="image-container">
+                        <div class="chat-display">
+                            <div class="chat-bubble client-bubble">Hi.</div>
+                            <div class="chat-bubble my-bubble">Yes, how can I help you?</div>
+                            <div class="chat-bubble client-bubble">I want a poster for a fast-food deal.</div>
+                            <div class="chat-bubble my-bubble">What theme would you like?</div>
+                            <div class="chat-bubble client-bubble">Yellow and purple. The deal should include one pizza and a 1.5-liter Coke.</div>
+                            <div class="chat-bubble my-bubble">Okay, sure.</div>
+                        </div>
+                        <p class="image-caption">Original: Communication Concept Brief</p>
                     </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/RZ4k1p4t/watermark-removal-manual.jpg" alt="My Design Earbuds Post" loading="lazy" decoding="async">
-                        <p>My Design</p>
-                         <a href="https://i.postimg.cc/RZ4k1p4t/watermark-removal-manual.jpg" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://ik.imagekit.io/2xkwa8s1i/img/npl_modified_images/Sofa_LS/WSFAAMBN3FMMG_LS_1.jpg?tr=w-3840" alt="Original Sofa Image" loading="lazy" decoding="async">
-                        <p>Original</p>
+                    <div class="divider" role="separator" aria-label="before and after comparison">
+                        <span class="divider-label">Before → After</span>
                     </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/tg3K5j0f/Black-White-Simple-Coming-Soon-Instagram-Post-Square.png" alt="My Design Sofa Post" loading="lazy" decoding="async">
-                        <p>My Design</p>
-                         <a href="https://i.postimg.cc/tg3K5j0f/Black-White-Simple-Coming-Soon-Instagram-Post-Square.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://www.digimaxpakistan.com/cdn/shop/products/images_62_919e76b7-73f3-414b-b4ee-791d8227265b.jpg?v=1681942432" alt="Original Tripod Image" loading="lazy" decoding="async">
-                        <p>Original</p>
-                    </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/ydPt9XM2/Customize-Cake-Instagram-Post-2.png" alt="My Design Tripod Post" loading="lazy" decoding="async">
-                        <p>My Design</p>
-                         <a href="https://i.postimg.cc/ydPt9XM2/Customize-Cake-Instagram-Post-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/x8MhNCyV/433dacd2-537f-4706-af98-9c1e51ffbba9.png" 
+                           class="lightbox-trigger" 
+                           data-caption="Poster 3 — Updated design (Yellow & Purple Deal)">
+                            <img src="https://i.postimg.cc/x8MhNCyV/433dacd2-537f-4706-af98-9c1e51ffbba9.png" 
+                                 alt="Poster 3 — Updated design (Yellow & Purple Deal)" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                                 width="768" height="768" 
+                                 srcset="https://i.postimg.cc/x8MhNCyV/433dacd2-537f-4706-af98-9c1e51ffbba9.png 1024w" 
+                            >
                         </a>
+                        <p class="image-caption">Updated Design</p>
                     </div>
-                </div>
-            </div>
 
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://vmart.pk/cdn/shop/files/AnkerZoloPowerBank_20KBuilt-InUSB-CandLightningCable_Black.webp?v=1752754342" alt="Original Powerbank Image" loading="lazy" decoding="async">
-                        <p>Original</p>
-                    </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/1zvQQB8z/Customize-Cake-Instagram-Post-1.png" alt="My Design Powerbank Post" loading="lazy" decoding="async">
-                        <p>My Design</p>
-                         <a href="https://i.postimg.cc/1zvQQB8z/Customize-Cake-Instagram-Post-1.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://hbfurnitures.com/wp-content/uploads/2024/10/Sun-Cane-Model-DP-093.jpg" alt="Original Dining Table Image" loading="lazy" decoding="async">
-                        <p>Original</p>
-                    </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/7YFp76Gk/Customize-Cake-Instagram-Post-3.png" alt="My Design Dining Table Post" loading="lazy" decoding="async">
-                        <p>My Design</p>
-                         <a href="https://i.postimg.cc/7YFp76Gk/Customize-Cake-Instagram-Post-3.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="poster-project">
-                <div class="poster-images">
-                    <div class="poster-image-pair">
-                        <img src="https://static-01.daraz.pk/p/79361435810297f6aebac8cabe66545f.jpg" alt="Original Product Image" loading="lazy" decoding="async">
-                        <p>Original</p>
-                    </div>
-                    <div class="poster-image-pair">
-                        <img src="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" alt="My Design Product Post" loading="lazy" decoding:async">
-                        <p>My Design</p>
-                         <a href="https://i.postimg.cc/FR301N6D/Black-White-Simple-Coming-Soon-Instagram-Post-Square-2.png" target="_blank" class="view-link" aria-label="View My Design in a new tab">
-                            <img src="https://i.postimg.cc/hvjzTm4Z/eye.png" alt="View Icon">
-                        </a>
-                    </div>
                 </div>
             </div>
 
         </div>
-        
     </section>
 
+    <div id="lightbox" class="lightbox" style="display: none;">
+        <button class="lightbox-close" aria-label="Close Lightbox">&times;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous Image">&lt;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+        <button class="lightbox-nav lightbox-next" aria-label="Next Image">&gt;</button>
+    </div>
+    
     
     <section class="section-container contact-section" id="contact-section">
         <div class="contact-content reveal-content">
@@ -870,29 +1251,14 @@
             }, 1000);
         });
         
-        // === 7. Scroll Progress Bar & Parallax Effect Logic ===
+        // === 7. Scroll Progress Bar (Parallax Removed for new hero) ===
         const progressBar = document.getElementById('scroll-progress-bar');
-        const heroImage = document.getElementById('hero-image');
-        const heroSection = document.getElementById('hero-section');
         
         window.onscroll = function() {
             // Scroll Progress Bar
             const totalHeight = document.body.scrollHeight - window.innerHeight;
             const scrollPercent = (window.scrollY / totalHeight) * 100;
             progressBar.style.width = scrollPercent + "%";
-
-            // Parallax Header Image Shift (Only active in the Hero section)
-            if (heroImage && heroSection) {
-                const scrollPos = window.scrollY;
-                const heroRect = heroSection.getBoundingClientRect();
-
-                // Only apply parallax while the hero section is visible
-                if (heroRect.bottom > 0) {
-                    // Adjust the divisor (e.g., 5 or 6) to control the speed difference. Lower = slower image movement.
-                    const parallaxShift = scrollPos * 0.4; 
-                    heroImage.style.transform = `translateY(${parallaxShift}px) scale(1.05)`;
-                }
-            }
         };
 
         // === 8. Scroll Reveal (Fade-in-on-scroll) ===
@@ -924,7 +1290,8 @@
             link.addEventListener('click', function(e) {
                 e.preventDefault(); // Stop default jump
                 
-                const targetId = this.getAttribute('href').substring(1);
+                // Update target from poster-section to portfolio-section
+                const targetId = this.getAttribute('href').replace('#poster-section', '#portfolio-section').substring(1);
                 const targetElement = document.getElementById(targetId);
 
                 if (targetElement) {
@@ -936,12 +1303,95 @@
                 }
             });
         });
+        
+        // === 10. Minimal Lightbox Script ===
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+        let currentImages = [];
+        let currentIndex = -1;
+
+        function openLightbox(index) {
+            if (index < 0 || index >= currentImages.length) return;
+            currentIndex = index;
+            const imgLink = currentImages[currentIndex];
+            
+            lightboxImg.src = imgLink.href;
+            lightboxImg.alt = imgLink.dataset.caption;
+            lightboxCaption.textContent = imgLink.dataset.caption;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Hide navigation if only one image
+            const isSingleImage = currentImages.length <= 1;
+            prevBtn.style.display = isSingleImage ? 'none' : 'block';
+            nextBtn.style.display = isSingleImage ? 'none' : 'block';
+            
+            // Update nav button state
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === currentImages.length - 1;
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+            currentIndex = -1;
+            currentImages = [];
+        }
+
+        function navigateLightbox(direction) {
+            let newIndex = currentIndex + direction;
+            if (newIndex >= 0 && newIndex < currentImages.length) {
+                openLightbox(newIndex);
+            }
+        }
+
+        lightboxTriggers.forEach((trigger, index) => {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Set the current list of images to navigate
+                // NOTE: We only include elements with the 'lightbox-trigger' class, which is correct.
+                currentImages = Array.from(document.querySelectorAll('.lightbox-trigger'));
+                // Find the index of the clicked image
+                const clickedIndex = currentImages.findIndex(img => img === trigger);
+                openLightbox(clickedIndex);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', () => navigateLightbox(-1));
+        nextBtn.addEventListener('click', () => navigateLightbox(1));
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                if (e.key === 'ArrowRight') navigateLightbox(1);
+            }
+        });
+        
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
 
 
         // === DOM Content Loaded Startups ===
         document.addEventListener('DOMContentLoaded', (event) => {
             nameTypeEraseLoop(); 
             typeWriter(); 
+            
+            // Manually scroll the chat display to the bottom initially
+            const chatDisplay = document.querySelector('.comparison-card[data-title="Client Chat Fast-Food Poster"] .chat-display');
+            if(chatDisplay) {
+                 chatDisplay.scrollTop = chatDisplay.scrollHeight;
+            }
         });
 
     </script>
