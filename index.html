@@ -240,6 +240,28 @@
     .hero-text-panel p { 
         font-size: 1.3em; color: #b0b0b0; margin-bottom: 30px; font-weight: 400; max-width: 500px; line-height: 1.5; 
     }
+    
+    /* === NEW: CV Button Style === */
+    .cv-download-btn {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 12px 30px;
+        background-color: transparent;
+        border: 2px solid #aaff00;
+        color: #aaff00;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-size: 1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .cv-download-btn:hover {
+        background-color: #aaff00;
+        color: #1a1a1a;
+        box-shadow: 0 0 15px rgba(170, 255, 0, 0.5);
+    }
 
     /* Image Side (The Round Frame) */
     .hero-image-panel {
@@ -286,7 +308,7 @@
         100% { transform: translateY(0px); }
     }
     
-    .social-icons { display: flex; gap: 15px; margin-top: 30px; }
+    .social-icons { display: flex; gap: 15px; margin-top: 25px; align-items: center; }
     .social-icons img { 
         width: 100%; height: 100%; filter: invert(0.8) sepia(1) saturate(1000%) hue-rotate(90deg) brightness(1.2); 
         transition: filter 0.3s ease;
@@ -690,6 +712,117 @@
     .lightbox-nav:hover { opacity: 1; background: rgba(255, 255, 255, 0.2); }
     .lightbox-prev { left: 20px; }
     .lightbox-next { right: 20px; }
+    
+    /* ------------------------------------------------------------------ */
+    /* PRODUCT SHOWCASE (NEW SECTION STYLES) */
+    /* ------------------------------------------------------------------ */
+    .video-container {
+        position: relative;
+        width: 100%;
+        height: 100%; /* Important for desktop fixed height alignment */
+        border-radius: 8px; /* Matches image border-radius */
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        background-color: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Show full video content */
+        display: block;
+    }
+
+    /* Controls Wrapper to hold Play Button and Audio Button */
+    .video-controls-wrapper {
+        display: flex;
+        gap: 15px;
+        width: 100%;
+        margin-top: 15px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Video Play/Pause Button */
+    .video-control-btn {
+        flex-grow: 1;
+        padding: 12px 20px; 
+        font-size: 1em; 
+        font-weight: bold; 
+        color: #1a1a1a; 
+        background-color: #aaff00; /* Green accent */
+        border: none;
+        border-radius: 6px; 
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .video-control-btn:hover {
+        transform: scale(1.01);
+        background-color: #fff;
+    }
+    
+    /* === NEW: Audio Toggle Button (Round) === */
+    .audio-toggle-btn {
+        width: 48px;
+        height: 44px; /* Matches roughly the height of the play button text area */
+        border-radius: 50%;
+        background-color: #333;
+        border: 2px solid #aaff00;
+        color: #aaff00;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        font-size: 1.2em;
+    }
+    .audio-toggle-btn:hover {
+        background-color: #aaff00;
+        color: #1a1a1a;
+        transform: scale(1.1);
+    }
+    .audio-icon {
+        font-style: normal;
+        line-height: 1;
+    }
+
+    .video-control-btn span {
+        font-size: 18px;
+        line-height: 1;
+        display: block;
+    }
+    
+    /* === Loading Throbber for Video === */
+    .video-loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #aaff00; /* Uses Theme Color */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 20;
+        display: none; /* Hidden by default, toggled via JS */
+        pointer-events: none;
+    }
+
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
 
     /* ------------------------------------------------------------------ */
     /* CONTACT FORM (UPDATED PROFESSIONAL THEME) */
@@ -753,16 +886,18 @@
             display: block;
         }
         
-        /* 1. Force equal height for the main visual content blocks (chat and image link) */
+        /* 1. Force equal height for the main visual content blocks (chat, image link, and video) */
         .comparison-card .image-container a, 
-        .comparison-card .chat-display { 
+        .comparison-card .chat-display,
+        .comparison-card .video-container { 
              height: 400px; /* Fixed height for visual consistency and alignment */
              max-width: 100%; /* Ensure it fills width */
              box-sizing: border-box;
         }
         
         /* 2. Ensure image scales to show the FULL image inside the fixed height container */
-        .comparison-card .image-container a img {
+        .comparison-card .image-container a img,
+        .comparison-card .product-video {
             height: 100%;
             object-fit: contain; /* CHANGED to 'contain' to show full image without cropping */
             /* Vertically align image within the container if it doesn't fill the full height */
@@ -772,6 +907,11 @@
         .image-container:first-child .chat-display { 
              height: 400px; 
              max-height: 400px; 
+        }
+        /* Ensure the button does not take up extra height space on desktop */
+        .image-container {
+            flex-direction: column;
+            justify-content: flex-start;
         }
     }
     
@@ -794,7 +934,8 @@
             transform: translate(-50%, 0);
             margin-top: -15px;
         }
-        .chat-display {
+        .chat-display,
+        .video-container {
              height: 380px; /* Keep height for non-desktop stack to avoid it growing too large */
         }
     }
@@ -839,7 +980,8 @@
             transform: translate(-50%, 0);
             margin-top: -15px;
         }
-        .chat-display {
+        .chat-display,
+        .video-container {
              height: 300px; /* Adjust height for small screens */
         }
 
@@ -862,6 +1004,7 @@
         <a href="#skills-section" class="navbar-link-item nav-link" data-target="skills-section">Skills</a>
         <a href="#websites-section" class="navbar-link-item nav-link" data-target="websites-section">Websites</a>
         <a href="#portfolio-section" class="navbar-link-item nav-link" data-target="portfolio-section">Portfolio</a>
+        <a href="#product-showcase-section" class="navbar-link-item nav-link" data-target="product-showcase-section">Showcase</a>
         <a href="#contact-section" class="profile-link nav-link" data-target="contact-section" aria-label="Contact Zaid (Profile)">
             <img src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Profile Picture" decoding="async">
         </a>
@@ -875,6 +1018,12 @@
                 <h3>Hi! I am</h3>
                 <h1 id="hero-name"></h1> <p>A Graphic And AI Expert. I transform ideas into stunning digital reality with precision and creativity.</p>
                 
+                <a href="https://ik.imagekit.io/0kzbr6cex/Black%20and%20White%20Modern%20Web%20Developer%20Resume%20(2).pdf" 
+                   download="Zaid_Mughal_Resume.pdf" 
+                   class="cv-download-btn">
+                   Download CV
+                </a>
+
                 <div class="social-icons">
                     <a href="tel:+923394807064" aria-label="Call Zaid"><img src="https://i.postimg.cc/QdfZ4G40/receiver.png" alt="Phone Icon"></a>
                     <a href="https://www.instagram.com/zaidahmed_14/" target="_blank" aria-label="Zaid Mughal Instagram"><img src="https://i.postimg.cc/x856fYbp/instagram-2.png" alt="Instagram Icon"></a>
@@ -1162,6 +1311,154 @@
         </div>
     </section>
 
+    <section class="portfolio-section" id="product-showcase-section">
+        <div class="portfolio-header reveal-content">
+            <h2>Product & Logo Animations</h2>
+            <p class="micro-instruction">See the before image and the final animated result. Click the button to play/pause the video.</p>
+        </div>
+
+        <div class="portfolio-grid reveal-content">
+
+            <div class="comparison-card" data-title="Watch Product Animation">
+                <p class="card-title">Watch Product Animation</p>
+                <div class="card-content">
+                    
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp" 
+                           class="lightbox-trigger" 
+                           data-caption="Watch Animation — Original Image">
+                            <img src="https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp" 
+                                 alt="Watch Animation — Original Image" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                            >
+                        </a>
+                        <p class="image-caption">Original Product Photo</p>
+                    </div>
+
+                    <div class="divider" role="separator" aria-label="before and after comparison">
+                        <span class="divider-label">Before → After</span>
+                    </div>
+
+                    <div class="image-container">
+                        <div class="video-container">
+                            <div class="video-loader"></div>
+                            <video id="video-1" class="product-video" 
+                                   src="https://ik.imagekit.io/0kzbr6cex/kling_20251214_Video_to_Audio__632_2-vmake.mp4" 
+                                   loop muted playsinline preload="metadata" 
+                                   poster="https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp">
+                            </video>
+                        </div>
+                        
+                        <div class="video-controls-wrapper">
+                            <button class="video-control-btn play-pause-btn" data-target="video-1" data-playing="false" aria-label="Play Video">
+                                <span class="icon">▶</span> Play Video
+                            </button>
+                            <button class="audio-toggle-btn" data-target="video-1" data-muted="true" aria-label="Toggle Audio">
+                                <span class="audio-icon">🔇</span>
+                            </button>
+                        </div>
+
+                        <p class="image-caption">Final Animated Video</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="comparison-card" data-title="Logo Branding Animation">
+                <p class="card-title">Logo Branding Animation</p>
+                <div class="card-content">
+                    
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg" 
+                           class="lightbox-trigger" 
+                           data-caption="Logo Animation — Original Image">
+                            <img src="https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg" 
+                                 alt="Logo Animation — Original Image" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                            >
+                        </a>
+                        <p class="image-caption">Original Logo/Concept</p>
+                    </div>
+
+                    <div class="divider" role="separator" aria-label="before and after comparison">
+                        <span class="divider-label">Before → After</span>
+                    </div>
+
+                    <div class="image-container">
+                        <div class="video-container">
+                            <div class="video-loader"></div>
+                            <video id="video-2" class="product-video" 
+                                   src="https://ik.imagekit.io/0kzbr6cex/Add%20a%20little%20bit%20of%20body%20text.mp4" 
+                                   loop muted playsinline preload="metadata" 
+                                   poster="https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg">
+                            </video>
+                        </div>
+
+                        <div class="video-controls-wrapper">
+                            <button class="video-control-btn play-pause-btn" data-target="video-2" data-playing="false" aria-label="Play Video">
+                                <span class="icon">▶</span> Play Video
+                            </button>
+                            <button class="audio-toggle-btn" data-target="video-2" data-muted="true" aria-label="Toggle Audio">
+                                <span class="audio-icon">🔇</span>
+                            </button>
+                        </div>
+
+                        <p class="image-caption">Final Animated Video</p>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="comparison-card" data-title="Cold Drink Product Animation">
+                <p class="card-title">Cold Drink Product Animation</p>
+                <div class="card-content">
+                    
+                    <div class="image-container">
+                        <a href="https://i.postimg.cc/hPdtD9vP/1aee05c2cc67230804a7d1ecb5ea9768.jpg" 
+                           class="lightbox-trigger" 
+                           data-caption="Cold Drink Animation — Original Image">
+                            <img src="https://i.postimg.cc/hPdtD9vP/1aee05c2cc67230804a7d1ecb5ea9768.jpg" 
+                                 alt="Cold Drink Animation — Original Image" 
+                                 loading="lazy" 
+                                 decoding="async" 
+                            >
+                        </a>
+                        <p class="image-caption">Original Product Photo</p>
+                    </div>
+
+                    <div class="divider" role="separator" aria-label="before and after comparison">
+                        <span class="divider-label">Before → After</span>
+                    </div>
+
+                    <div class="image-container">
+                        <div class="video-container">
+                            <div class="video-loader"></div>
+                            <video id="video-3" class="product-video" 
+                                   src="https://ik.imagekit.io/0kzbr6cex/Untitled%20design.mp4" 
+                                   loop muted playsinline preload="metadata" 
+                                   poster="https://i.postimg.cc/hPdtD9vP/1aee05c2cc67230804a7d1ecb5ea9768.jpg">
+                            </video>
+                        </div>
+                        
+                        <div class="video-controls-wrapper">
+                            <button class="video-control-btn play-pause-btn" data-target="video-3" data-playing="false" aria-label="Play Video">
+                                <span class="icon">▶</span> Play Video
+                            </button>
+                            <button class="audio-toggle-btn" data-target="video-3" data-muted="true" aria-label="Toggle Audio">
+                                <span class="audio-icon">🔇</span>
+                            </button>
+                        </div>
+
+                        <p class="image-caption">Final Animated Video</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
     <div id="lightbox" class="lightbox" style="display: none;">
         <button class="lightbox-close" aria-label="Close Lightbox">&times;</button>
         <button class="lightbox-nav lightbox-prev" aria-label="Previous Image">&lt;</button>
@@ -1428,6 +1725,169 @@
                 closeLightbox();
             }
         });
+
+        // === 11. Custom Video Player Logic & Intersection Observer ===
+        const videoControls = document.querySelectorAll('.video-control-btn');
+        const audioControls = document.querySelectorAll('.audio-toggle-btn');
+        const videos = document.querySelectorAll('.product-video');
+
+        // Helper: Update Play Button UI
+        function updatePlayButton(button, isPlaying) {
+            const iconSpan = button.querySelector('.icon');
+            if (isPlaying) {
+                iconSpan.textContent = '❚❚';
+                button.innerHTML = `<span class="icon">❚❚</span> Pause Video`;
+                button.setAttribute('data-playing', 'true');
+                button.setAttribute('aria-label', 'Pause Video');
+            } else {
+                iconSpan.textContent = '▶';
+                button.innerHTML = `<span class="icon">▶</span> Play Video`;
+                button.setAttribute('data-playing', 'false');
+                button.setAttribute('aria-label', 'Play Video');
+            }
+        }
+
+        // Helper: Update Audio Button UI
+        function updateAudioButton(button, isMuted) {
+            const iconSpan = button.querySelector('.audio-icon');
+            if (isMuted) {
+                iconSpan.textContent = '🔇';
+                button.setAttribute('data-muted', 'true');
+                button.setAttribute('aria-label', 'Unmute Audio');
+            } else {
+                iconSpan.textContent = '🔊';
+                button.setAttribute('data-muted', 'false');
+                button.setAttribute('aria-label', 'Mute Audio');
+            }
+        }
+
+        // Initialize Audio Buttons
+        audioControls.forEach(audioBtn => {
+            const videoId = audioBtn.getAttribute('data-target');
+            const video = document.getElementById(videoId);
+
+            // Initial state based on video prop
+            updateAudioButton(audioBtn, video.muted);
+
+            // Toggle Audio on Click
+            audioBtn.addEventListener('click', () => {
+                video.muted = !video.muted;
+                updateAudioButton(audioBtn, video.muted);
+            });
+        });
+
+        // Initialize Video Logic
+        videoControls.forEach(button => {
+            const videoId = button.getAttribute('data-target');
+            const video = document.getElementById(videoId);
+            const audioBtn = document.querySelector(`.audio-toggle-btn[data-target="${videoId}"]`);
+            const loader = video.parentElement.querySelector('.video-loader');
+
+            updatePlayButton(button, false);
+
+            // === LOADING & AUTO-START LOGIC ===
+            
+            // 1. Show loader immediately if not ready
+            if (video.readyState < 3) {
+                 loader.style.display = 'block';
+            }
+
+            // 2. Show loader on buffering
+            video.addEventListener('waiting', () => {
+                loader.style.display = 'block';
+            });
+
+            // 3. Hide loader on playing
+            video.addEventListener('playing', () => {
+                loader.style.display = 'none';
+            });
+
+            // 4. Auto-Start when loaded
+            video.addEventListener('canplaythrough', () => {
+                loader.style.display = 'none';
+                
+                // Attempt Auto Play with Sound
+                video.muted = false; 
+                
+                var playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Play started successfully UNMUTED
+                        updatePlayButton(button, true);
+                        updateAudioButton(audioBtn, false); // Update icon to sound on
+                    })
+                    .catch(error => {
+                        console.log("Auto-play unmuted blocked. Fallback to muted.");
+                        // Fallback: Mute and play
+                        video.muted = true;
+                        video.play().then(() => {
+                            updatePlayButton(button, true);
+                            updateAudioButton(audioBtn, true); // Update icon to muted
+                        }).catch(e => {
+                             console.log("Auto-play muted also failed (likely battery saver mode).");
+                             updatePlayButton(button, false);
+                        });
+                    });
+                }
+            });
+
+            // === Play/Pause Click Logic ===
+            button.addEventListener('click', function() {
+                if (video.paused) {
+                    // Play logic
+                    // User interaction allows unmuted play generally
+                    // However, we respect current mute state unless it was forced by autoplay
+                    video.play().then(() => {
+                        updatePlayButton(button, true);
+                    }).catch(error => {
+                        console.error("Video play failed:", error);
+                        updatePlayButton(button, false);
+                    });
+                } else {
+                    // Pause logic
+                    video.pause();
+                    updatePlayButton(button, false);
+                }
+            });
+
+            // Listeners to ensure button state reflects actual video state (e.g., if video ends)
+            video.addEventListener('play', () => updatePlayButton(button, true));
+            video.addEventListener('pause', () => updatePlayButton(button, false));
+            video.addEventListener('ended', () => {
+                updatePlayButton(button, false);
+            });
+            // Sync audio button if video mute state changes elsewhere
+            video.addEventListener('volumechange', () => {
+                 updateAudioButton(audioBtn, video.muted);
+            });
+        });
+        
+        
+        // --- Intersection Observer for Autopause on Scroll ---
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                const button = document.querySelector(`.video-control-btn[data-target="${video.id}"]`);
+                
+                // If video is not visible (un-intersecting) and it is currently playing
+                if (!entry.isIntersecting && !video.paused) {
+                    video.pause();
+                    // Update the button state
+                    if(button) {
+                        updatePlayButton(button, false);
+                    }
+                }
+            });
+        }, {
+            // Options
+            threshold: 0.8 // Trigger when less than 80% of the video is visible
+        });
+
+        videos.forEach(video => {
+            videoObserver.observe(video);
+        });
+        // --- End Intersection Observer ---
 
 
         // === DOM Content Loaded Startups ===
