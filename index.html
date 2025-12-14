@@ -714,7 +714,7 @@
     .lightbox-next { right: 20px; }
     
     /* ------------------------------------------------------------------ */
-    /* PRODUCT SHOWCASE (NEW SECTION STYLES) */
+    /* PRODUCT SHOWCASE (UPDATED FOR OVERLAY CONTROLS) */
     /* ------------------------------------------------------------------ */
     .video-container {
         position: relative;
@@ -737,66 +737,33 @@
         display: block;
     }
 
-    /* Controls Wrapper to hold Play Button and Audio Button */
-    .video-controls-wrapper {
-        display: flex;
-        gap: 15px;
-        width: 100%;
-        margin-top: 15px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Video Play/Pause Button */
-    .video-control-btn {
-        flex-grow: 1;
-        padding: 12px 20px; 
-        font-size: 1em; 
-        font-weight: bold; 
-        color: #1a1a1a; 
-        background-color: #aaff00; /* Green accent */
+    /* === NEW: Round Video Mute/Unmute Overlay Button === */
+    .video-overlay-mute-btn {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        background-color: #aaff00; /* Green theme color */
+        border-radius: 50%;
         border: none;
-        border-radius: 6px; 
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 10px;
-    }
-    .video-control-btn:hover {
-        transform: scale(1.01);
-        background-color: #fff;
+        cursor: pointer;
+        z-index: 25;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        transition: transform 0.2s ease, background-color 0.2s ease;
     }
     
-    /* === NEW: Audio Toggle Button (Round) === */
-    .audio-toggle-btn {
-        width: 48px;
-        height: 44px; /* Matches roughly the height of the play button text area */
-        border-radius: 50%;
-        background-color: #333;
-        border: 2px solid #aaff00;
-        color: #aaff00;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.3s ease;
-        font-size: 1.2em;
-    }
-    .audio-toggle-btn:hover {
-        background-color: #aaff00;
-        color: #1a1a1a;
+    .video-overlay-mute-btn:hover {
         transform: scale(1.1);
-    }
-    .audio-icon {
-        font-style: normal;
-        line-height: 1;
+        background-color: #fff;
     }
 
-    .video-control-btn span {
-        font-size: 18px;
+    .video-overlay-mute-btn .audio-icon {
+        font-size: 1.4em;
+        color: #000; /* Black icon */
         line-height: 1;
         display: block;
     }
@@ -1314,7 +1281,7 @@
     <section class="portfolio-section" id="product-showcase-section">
         <div class="portfolio-header reveal-content">
             <h2>Product & Logo Animations</h2>
-            <p class="micro-instruction">See the before image and the final animated result. Click the button to play/pause the video.</p>
+            <p class="micro-instruction">Scroll to play video. Use the round button to mute/unmute.</p>
         </div>
 
         <div class="portfolio-grid reveal-content">
@@ -1348,17 +1315,12 @@
                                    loop muted playsinline preload="metadata" 
                                    poster="https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp">
                             </video>
-                        </div>
-                        
-                        <div class="video-controls-wrapper">
-                            <button class="video-control-btn play-pause-btn" data-target="video-1" data-playing="false" aria-label="Play Video">
-                                <span class="icon">▶</span> Play Video
-                            </button>
-                            <button class="audio-toggle-btn" data-target="video-1" data-muted="true" aria-label="Toggle Audio">
+                            
+                            <!-- Overlay Mute Button -->
+                            <button class="video-overlay-mute-btn" data-target="video-1" aria-label="Unmute Video">
                                 <span class="audio-icon">🔇</span>
                             </button>
                         </div>
-
                         <p class="image-caption">Final Animated Video</p>
                     </div>
 
@@ -1394,13 +1356,9 @@
                                    loop muted playsinline preload="metadata" 
                                    poster="https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg">
                             </video>
-                        </div>
-
-                        <div class="video-controls-wrapper">
-                            <button class="video-control-btn play-pause-btn" data-target="video-2" data-playing="false" aria-label="Play Video">
-                                <span class="icon">▶</span> Play Video
-                            </button>
-                            <button class="audio-toggle-btn" data-target="video-2" data-muted="true" aria-label="Toggle Audio">
+                            
+                            <!-- Overlay Mute Button -->
+                            <button class="video-overlay-mute-btn" data-target="video-2" aria-label="Unmute Video">
                                 <span class="audio-icon">🔇</span>
                             </button>
                         </div>
@@ -1440,13 +1398,9 @@
                                    loop muted playsinline preload="metadata" 
                                    poster="https://i.postimg.cc/hPdtD9vP/1aee05c2cc67230804a7d1ecb5ea9768.jpg">
                             </video>
-                        </div>
-                        
-                        <div class="video-controls-wrapper">
-                            <button class="video-control-btn play-pause-btn" data-target="video-3" data-playing="false" aria-label="Play Video">
-                                <span class="icon">▶</span> Play Video
-                            </button>
-                            <button class="audio-toggle-btn" data-target="video-3" data-muted="true" aria-label="Toggle Audio">
+                            
+                            <!-- Overlay Mute Button -->
+                            <button class="video-overlay-mute-btn" data-target="video-3" aria-label="Unmute Video">
                                 <span class="audio-icon">🔇</span>
                             </button>
                         </div>
@@ -1726,168 +1680,118 @@
             }
         });
 
-        // === 11. Custom Video Player Logic & Intersection Observer ===
-        const videoControls = document.querySelectorAll('.video-control-btn');
-        const audioControls = document.querySelectorAll('.audio-toggle-btn');
-        const videos = document.querySelectorAll('.product-video');
+        // === 11. REFINED Video Player Logic (One at a time, Autoplay on Scroll, Overlay Mute) ===
+        
+        const videos = document.querySelectorAll('video.product-video');
+        const muteButtons = document.querySelectorAll('.video-overlay-mute-btn');
 
-        // Helper: Update Play Button UI
-        function updatePlayButton(button, isPlaying) {
-            const iconSpan = button.querySelector('.icon');
-            if (isPlaying) {
-                iconSpan.textContent = '❚❚';
-                button.innerHTML = `<span class="icon">❚❚</span> Pause Video`;
-                button.setAttribute('data-playing', 'true');
-                button.setAttribute('aria-label', 'Pause Video');
-            } else {
-                iconSpan.textContent = '▶';
-                button.innerHTML = `<span class="icon">▶</span> Play Video`;
-                button.setAttribute('data-playing', 'false');
-                button.setAttribute('aria-label', 'Play Video');
-            }
-        }
-
-        // Helper: Update Audio Button UI
-        function updateAudioButton(button, isMuted) {
-            const iconSpan = button.querySelector('.audio-icon');
+        // Helper: Update Button Icon
+        function updateMuteButtonIcon(btn, isMuted) {
+            const icon = btn.querySelector('.audio-icon');
             if (isMuted) {
-                iconSpan.textContent = '🔇';
-                button.setAttribute('data-muted', 'true');
-                button.setAttribute('aria-label', 'Unmute Audio');
+                icon.textContent = '🔇';
+                btn.setAttribute('aria-label', 'Unmute Video');
+                btn.style.backgroundColor = '#aaff00'; // Theme green
             } else {
-                iconSpan.textContent = '🔊';
-                button.setAttribute('data-muted', 'false');
-                button.setAttribute('aria-label', 'Mute Audio');
+                icon.textContent = '🔊';
+                btn.setAttribute('aria-label', 'Mute Video');
+                btn.style.backgroundColor = '#fff'; // White to indicate active state
             }
         }
 
-        // Initialize Audio Buttons
-        audioControls.forEach(audioBtn => {
-            const videoId = audioBtn.getAttribute('data-target');
+        // 1. Setup Mute Buttons
+        muteButtons.forEach(btn => {
+            const videoId = btn.getAttribute('data-target');
             const video = document.getElementById(videoId);
+            
+            // Initial state
+            updateMuteButtonIcon(btn, video.muted);
 
-            // Initial state based on video prop
-            updateAudioButton(audioBtn, video.muted);
-
-            // Toggle Audio on Click
-            audioBtn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent triggering other click events if any
                 video.muted = !video.muted;
-                updateAudioButton(audioBtn, video.muted);
+                updateMuteButtonIcon(btn, video.muted);
             });
         });
 
-        // Initialize Video Logic
-        videoControls.forEach(button => {
-            const videoId = button.getAttribute('data-target');
-            const video = document.getElementById(videoId);
-            const audioBtn = document.querySelector(`.audio-toggle-btn[data-target="${videoId}"]`);
-            const loader = video.parentElement.querySelector('.video-loader');
-
-            updatePlayButton(button, false);
-
-            // === LOADING & AUTO-START LOGIC ===
-            
-            // 1. Show loader immediately if not ready
-            if (video.readyState < 3) {
-                 loader.style.display = 'block';
-            }
-
-            // 2. Show loader on buffering
-            video.addEventListener('waiting', () => {
-                loader.style.display = 'block';
+        // 2. Logic to pause ALL other videos
+        function pauseAllOtherVideos(currentVideo) {
+            videos.forEach(v => {
+                if (v !== currentVideo) {
+                    v.pause();
+                    v.currentTime = 0; // Optional: Reset to start
+                }
             });
+        }
 
-            // 3. Hide loader on playing
+        // 3. Intersection Observer for Auto-Play "One at a Time"
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                const videoContainer = video.closest('.video-container');
+                const loader = videoContainer.querySelector('.video-loader');
+                const muteBtn = videoContainer.querySelector('.video-overlay-mute-btn');
+
+                if (entry.isIntersecting) {
+                    // Video is in view (threshold met)
+                    
+                    // A. Pause everyone else
+                    pauseAllOtherVideos(video);
+
+                    // B. Attempt to play
+                    const playPromise = video.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            // Video started playing
+                            loader.style.display = 'none';
+                            
+                            // Try to unmute if not user-muted?
+                            // Strategy: We keep it muted by default to satisfy browser policy,
+                            // unless user has interacted.
+                            // However, request was "play with sound". 
+                            // We try to unmute. If it fails, we catch it.
+                            
+                            // video.muted = false; // Try to unmute
+                        })
+                        .catch(error => {
+                            // Autoplay was likely blocked or failed
+                            console.log('Autoplay blocked or failed. Playing muted.');
+                            video.muted = true;
+                            video.play();
+                        });
+                    }
+                    
+                    // Update icon based on actual mute state
+                    updateMuteButtonIcon(muteBtn, video.muted);
+
+                } else {
+                    // Video left the view
+                    video.pause();
+                }
+            });
+        }, {
+            threshold: 0.6 // Video must be 60% visible to take over
+        });
+
+        // 4. Attach Observer & Loader Logic
+        videos.forEach(video => {
+            const videoContainer = video.closest('.video-container');
+            const loader = videoContainer.querySelector('.video-loader');
+
+            // Show loader when waiting
+            video.addEventListener('waiting', () => {
+                if(!video.paused) loader.style.display = 'block';
+            });
+            
+            // Hide loader when playing
             video.addEventListener('playing', () => {
                 loader.style.display = 'none';
             });
 
-            // 4. Auto-Start when loaded
-            video.addEventListener('canplaythrough', () => {
-                loader.style.display = 'none';
-                
-                // Attempt Auto Play with Sound
-                video.muted = false; 
-                
-                var playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        // Play started successfully UNMUTED
-                        updatePlayButton(button, true);
-                        updateAudioButton(audioBtn, false); // Update icon to sound on
-                    })
-                    .catch(error => {
-                        console.log("Auto-play unmuted blocked. Fallback to muted.");
-                        // Fallback: Mute and play
-                        video.muted = true;
-                        video.play().then(() => {
-                            updatePlayButton(button, true);
-                            updateAudioButton(audioBtn, true); // Update icon to muted
-                        }).catch(e => {
-                             console.log("Auto-play muted also failed (likely battery saver mode).");
-                             updatePlayButton(button, false);
-                        });
-                    });
-                }
-            });
-
-            // === Play/Pause Click Logic ===
-            button.addEventListener('click', function() {
-                if (video.paused) {
-                    // Play logic
-                    // User interaction allows unmuted play generally
-                    // However, we respect current mute state unless it was forced by autoplay
-                    video.play().then(() => {
-                        updatePlayButton(button, true);
-                    }).catch(error => {
-                        console.error("Video play failed:", error);
-                        updatePlayButton(button, false);
-                    });
-                } else {
-                    // Pause logic
-                    video.pause();
-                    updatePlayButton(button, false);
-                }
-            });
-
-            // Listeners to ensure button state reflects actual video state (e.g., if video ends)
-            video.addEventListener('play', () => updatePlayButton(button, true));
-            video.addEventListener('pause', () => updatePlayButton(button, false));
-            video.addEventListener('ended', () => {
-                updatePlayButton(button, false);
-            });
-            // Sync audio button if video mute state changes elsewhere
-            video.addEventListener('volumechange', () => {
-                 updateAudioButton(audioBtn, video.muted);
-            });
-        });
-        
-        
-        // --- Intersection Observer for Autopause on Scroll ---
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const video = entry.target;
-                const button = document.querySelector(`.video-control-btn[data-target="${video.id}"]`);
-                
-                // If video is not visible (un-intersecting) and it is currently playing
-                if (!entry.isIntersecting && !video.paused) {
-                    video.pause();
-                    // Update the button state
-                    if(button) {
-                        updatePlayButton(button, false);
-                    }
-                }
-            });
-        }, {
-            // Options
-            threshold: 0.8 // Trigger when less than 80% of the video is visible
-        });
-
-        videos.forEach(video => {
+            // Start Observing
             videoObserver.observe(video);
         });
-        // --- End Intersection Observer ---
 
 
         // === DOM Content Loaded Startups ===
