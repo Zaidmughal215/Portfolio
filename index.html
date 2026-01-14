@@ -1,1812 +1,871 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaid Mughal - Portfolio</title>
-
-<style>
-    /* PRIMARY THEME COLOR: #aaff00 (Green) */
-    /* NEW ACCENT FOR PORTFOLIO: #008080 (Deep Teal) */
+    <title>Muhammad Zaid | Graphic & AI Expert</title>
+    <meta name="description" content="Premium digital identity for a Graphic & AI Expert.">
     
-    /* ------------------------------------------------------------------ */
-    /* GLOBAL STYLES & LAYOUT */
-    /* ------------------------------------------------------------------ */
-    body {
-        margin: 0;
-        padding-top: 80px; 
-        font-family: Arial, sans-serif;
-        /* THEME: Dark background */
-        background-color: #1a1a1a; 
-        color: #f0f0f0; /* Light text */
-        scroll-behavior: smooth; 
-        overflow-x: hidden; /* Prevent horizontal scroll */
-    }
-
-    /* Scroll Progress Bar */
-    #scroll-progress-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 5px;
-        background-color: #aaff00; /* Use highlight color */
-        z-index: 10000;
-        transition: width 0.1s linear;
-    }
-
-    /* General container to center content */
-    .section-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 40px 20px;
-        box-sizing: border-box;
-    }
-
-    /* H2 HEADINGS */
-    h2 {
-        font-size: 4em;
-        font-weight: bold;
-        color: #f0f0f0; 
-        margin-bottom: 40px;
-        letter-spacing: -2px;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        text-align: left; 
-    }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
     
-    /* ------------------------------------------------------------------ */
-    /* ANIMATIONS */
-    /* ------------------------------------------------------------------ */
-    .reveal-content {
-        opacity: 0;
-        transform: translateY(40px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .reveal-content.is-visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* ------------------------------------------------------------------ */
-    /* WHATSAPP FLOATING BUTTON STYLES (NEW) */
-    /* ------------------------------------------------------------------ */
-    .whatsapp-float {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 30px;
-        right: 30px;
-        background-color: #25d366; /* Standard WhatsApp Green */
-        color: #FFF;
-        border-radius: 50%;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        z-index: 10001; /* Ensure it stays on top of everything */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .whatsapp-float img {
-        width: 35px;
-        height: 35px;
-        filter: brightness(0) invert(1); /* Ensure icon is white */
-        transition: transform 0.3s ease;
-    }
-
-    /* Hover Effect: Scale and Theme Glow */
-    .whatsapp-float:hover {
-        background-color: #aaff00; /* Change to your Theme Green */
-        transform: scale(1.1) translateY(-5px); /* Lift up slightly */
-        /* The Glow Effect */
-        box-shadow: 0 0 20px rgba(170, 255, 0, 0.6), 
-                    0 0 40px rgba(170, 255, 0, 0.4); 
-    }
-
-    .whatsapp-float:hover img {
-        transform: rotate(15deg); /* Playful tilt */
-        filter: brightness(0); /* Make icon black on bright green background for contrast */
-    }
-
-    /* ------------------------------------------------------------------ */
-    /* NAVBAR */
-    /* ------------------------------------------------------------------ */
-    .navbar {
-        position: fixed;
-        top: 20px; 
-        left: 50%; 
-        transform: translateX(-50%); 
-        max-width: 650px; 
-        width: 90%; 
-        height: 50px; 
-        display: flex;
-        justify-content: space-between; 
-        align-items: center;
-        padding: 0 10px; 
-        box-sizing: border-box;
-        z-index: 1000;
-        background-color: rgba(25, 25, 25, 0.5); 
-        backdrop-filter: blur(20px); 
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 25px; 
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), 
-                    0 0 0 1px rgba(255, 255, 255, 0.3) inset; 
-    }
-
-    .navbar-link-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%; 
-        padding: 0 15px; 
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.8); 
-        font-weight: 600;
-        font-size: 0.9em;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden; 
-        border-radius: 25px; 
-    }
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    .navbar-link-item:hover { color: #aaff00; }
-
-    .navbar-link-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at center, rgba(170, 255, 0, 0.3) 0%, rgba(170, 255, 0, 0) 70%); 
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        z-index: -1;
-    }
-    .navbar-link-item:hover::before { opacity: 1; }
-
-    .profile-link {
-        width: 40px; height: 40px; border-radius: 50%; overflow: hidden; margin-left: 10px; 
-        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2) inset; 
-        transition: transform 0.3s ease; flex-shrink: 0; 
-    }
-    .profile-link img { width: 100%; height: 100%; object-fit: cover; }
-    .profile-link:hover { transform: scale(1.05); box-shadow: 0 0 0 2px #aaff00 inset; }
-
-    /* ------------------------------------------------------------------ */
-    /* CURSOR */
-    /* ------------------------------------------------------------------ */
-    .cursor-particle {
-        position: fixed; width: 8px; height: 8px; background: rgba(170, 255, 0, 0.6); 
-        border-radius: 50%; pointer-events: none; z-index: 9999; 
-        transform: translate(-50%, -50%); animation: bubble-animation 1s ease-out forwards;
-    }
-    @keyframes bubble-animation {
-        0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        100% { transform: translate(-50%, -300%) scale(0.1); opacity: 0; }
-    }
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     
-    /* ------------------------------------------------------------------ */
-    /* HERO SECTION (NEW THEME: NEON ORBIT) */
-    /* ------------------------------------------------------------------ */
-    .hero-section {
-        min-height: calc(100vh - 80px); 
-        display: flex; 
-        justify-content: center; 
-        align-items: center;
-        padding: 0 20px; 
-        background-color: #1a1a1a; 
-        position: relative; 
-        overflow: hidden; 
-    }
-
-    /* Container to hold Text (Left) and Image (Right) */
-    .hero-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        max-width: 1100px;
-        z-index: 2; /* Ensure it sits above background particles if added later */
-    }
-
-    /* Text Side */
-    .hero-text-panel {
-        flex: 1;
-        padding-right: 40px;
-        text-align: left;
-    }
-
-    .hero-text-panel h3 { margin-bottom: 5px; color: #f0f0f0; font-weight: normal; font-size: 1.3em; letter-spacing: 1px; }
-    .hero-text-panel h1 { 
-        font-size: 4em; margin-top: 0; margin-bottom: 15px; color: #aaff00; 
-        text-shadow: 0px 0px 15px rgba(170, 255, 0, 0.3); /* Subtle glow on text */
-        font-weight: 800; 
-        border-right: 4px solid #aaff00; 
-        display: inline-block;
-        white-space: nowrap; 
-        overflow: hidden; 
-        animation: blink-caret .75s step-end infinite; 
-    }
-    @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #aaff00 } }
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    .hero-text-panel p { 
-        font-size: 1.3em; color: #b0b0b0; margin-bottom: 30px; font-weight: 400; max-width: 500px; line-height: 1.5; 
-    }
-    
-    /* === NEW: CV Button Style === */
-    .cv-download-btn {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 12px 30px;
-        background-color: transparent;
-        border: 2px solid #aaff00;
-        color: #aaff00;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 25px;
-        transition: all 0.3s ease;
-        font-size: 1em;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .cv-download-btn:hover {
-        background-color: #aaff00;
-        color: #1a1a1a;
-        box-shadow: 0 0 15px rgba(170, 255, 0, 0.5);
-    }
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-    /* Image Side (The Round Frame) */
-    .hero-image-panel {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
-
-    .hero-profile-frame {
-        width: 380px;
-        height: 380px;
-        border-radius: 50%;
-        position: relative;
-        z-index: 5;
-        /* The Neon Border */
-        border: 4px solid #aaff00;
-        /* The Glow Effect */
-        box-shadow: 0 0 40px rgba(170, 255, 0, 0.2), inset 0 0 20px rgba(170, 255, 0, 0.1);
-        overflow: hidden;
-        /* Floating Animation */
-        animation: floating 4s ease-in-out infinite;
-        background-color: #1a1a1a; /* Matches body bg to hide any white squares */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    /* Hover Interaction */
-    .hero-profile-frame:hover {
-        transform: scale(1.03); /* Slight zoom on hover */
-        box-shadow: 0 0 60px rgba(170, 255, 0, 0.5); /* Stronger glow */
-    }
-
-    .hero-profile-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        /* Ensures image fills the circle perfectly */
-    }
-
-    @keyframes floating {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-15px); }
-        100% { transform: translateY(0px); }
-    }
-    
-    .social-icons { display: flex; gap: 15px; margin-top: 25px; align-items: center; }
-    .social-icons img { 
-        width: 100%; height: 100%; filter: invert(0.8) sepia(1) saturate(1000%) hue-rotate(90deg) brightness(1.2); 
-        transition: filter 0.3s ease;
-    }
-    .social-icons a { display: block; width: 35px; height: 35px; transition: transform 0.3s ease, opacity 0.3s ease; }
-    .social-icons a:hover { transform: translateY(-3px) scale(1.05); opacity: 0.8; }
-
-    .scroll-down-btn {
-        position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-        display: flex; justify-content: center; align-items: center;
-        width: 40px; height: 40px; z-index: 10; background: rgba(40, 40, 40, 0.7); border-radius: 50%;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); animation: bounce 2s infinite; transition: all 0.3s;
-    }
-    .scroll-down-btn:hover { opacity: 0.9; background: #222; animation: none; }
-    .scroll-down-btn img { width: 70%; height: 70%; filter: invert(1); }
-    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); } 40% { transform: translateY(-8px) translateX(-50%); } 60% { transform: translateY(-4px) translateX(-50%); } }
-
-    /* ------------------------------------------------------------------ */
-    /* SKILLS */
-    /* ------------------------------------------------------------------ */
-    .skill-link { text-decoration: none; color: inherit; display: block; }
-    .skill-item {
-        background-color: #2a2a2a; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; position: relative; overflow: hidden; 
-    }
-    .skill-item:hover { 
-        transform: translateY(-5px); 
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.4) inset; 
-    }
-    
-    .about-section { background-color: #1a1a1a; padding: 80px 0; scroll-margin-top: 80px; }
-    .about-content { width: 80%; max-width: 1000px; }
-    .about-content h2 { text-align: left; color: #f0f0f0; }
-    .about-text { font-size: 1.4em; line-height: 1.7; color: #ccc; font-weight: 400; min-height: 200px; overflow: hidden; white-space: pre-wrap; }
-    .about-contact-icons { display: flex; gap: 10px; margin-top: 40px; justify-content: flex-end; width: 100%; }
-    
-    .skills-section { padding: 80px 0; scroll-margin-top: 80px; background-color: #111111; }
-    .skills-content h2 { text-align: center; color: #f0f0f0; }
-    .skills-content { text-align: center; }
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: left; }
-    .skill-item h3 { font-size: 1.5em; color: #aaff00; margin-top: 0; margin-bottom: 10px; }
-    .skill-item p { font-size: 1em; color: #b0b0b0; line-height: 1.5; }
-    
-    /* ------------------------------------------------------------------ */
-    /* WEBSITES FLIP CARD (UPDATED) */
-    /* ------------------------------------------------------------------ */
-    .websites-section {
-        background-color: #1a1a1a;
-        min-height: 70vh; 
-        padding-top: 80px; 
-        padding-bottom: 80px;
-        scroll-margin-top: 80px;
-    }
-    .websites-section h2 { text-align: center; font-size: 3.5em; margin-bottom: 50px; width: 100%; color: #f0f0f0; }
-    
-    .projects-grid {
-        display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; width: 100%; margin-top: 20px;
-    }
-
-    .flip-card {
-        background-color: transparent;
-        width: 100%; 
-        max-width: 550px;
-        height: 340px; /* Increased slightly for browser bar */
-        perspective: 1000px;
-    }
-
-    .flip-card-inner {
-        position: relative; width: 100%; height: 100%; text-align: center;
-        transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-        transform-style: preserve-3d;
-        border-radius: 12px;
-        /* No Glow, just shadow */
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        /* Base Border */
-        border: 2px solid transparent; 
-        transition: border-color 0.3s ease, transform 0.8s;
-        background-color: #222;
-    }
-
-    /* Green Stroke on Hover (No Glow) */
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg);
-        border-color: #aaff00; 
-    }
-
-    .flip-card-front, .flip-card-back {
-        position: absolute; width: 100%; height: 100%;
-        -webkit-backface-visibility: hidden; backface-visibility: hidden;
-        border-radius: 10px; /* Slightly less than parent to fit border */
-        overflow: hidden;
-    }
-
-    /* --- MACBOOK TOP BAR --- */
-    .browser-bar {
-        width: 100%;
-        height: 30px;
-        background-color: #333;
-        display: flex;
-        align-items: center;
-        padding-left: 10px;
-        border-bottom: 1px solid #444;
-        box-sizing: border-box;
-    }
-    .browser-dot {
-        width: 10px; height: 10px; border-radius: 50%; margin-right: 6px;
-    }
-    .dot-red { background-color: #ff5f56; }
-    .dot-yellow { background-color: #ffbd2e; }
-    .dot-green { background-color: #27c93f; }
-
-    /* FRONT: Image */
-    .flip-card-front {
-        background-color: #2a2a2a;
-        display: flex; flex-direction: column;
-    }
-    .flip-card-front img {
-        width: 100%;
-        flex: 1; /* Fills remaining height after browser bar */
-        object-fit: cover; /* Ensures image covers area */
-        object-position: top; /* Shows top of website */
-    }
-    
-    /* BACK: Content */
-    .flip-card-back {
-        background-color: #222; color: #f0f0f0; transform: rotateY(180deg);
-        display: flex; flex-direction: column; justify-content: center; align-items: center;
-        padding: 30px; box-sizing: border-box;
-    }
-
-    .flip-card-back h3 { color: #aaff00; margin: 0 0 15px 0; font-size: 2em; }
-    .flip-card-back p { font-size: 1em; line-height: 1.5; color: #ccc; margin-bottom: 25px; max-width: 90%; }
-
-    .explore-btn {
-        padding: 12px 30px; font-size: 1em; font-weight: bold; color: #000; background-color: #aaff00;
-        text-decoration: none; border-radius: 25px; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    .explore-btn:hover { transform: scale(1.05); background-color: #fff; }
-
-    /* ------------------------------------------------------------------ */
-    /* POSTERS / PORTFOLIO SHOWCASE (NEW STYLES) */
-    /* ------------------------------------------------------------------ */
-    .portfolio-section { 
-        padding: 80px 0; 
-        display: block; 
-        background-color: #1a1a1a; 
-        scroll-margin-top: 80px; 
-        text-align: center;
-    }
-    .portfolio-header { 
-        max-width: 1200px; 
-        margin: 0 auto; 
-        padding: 0 20px 60px; 
-    }
-    .portfolio-header h2 { 
-        color: #f0f0f0; 
-        font-size: 3.5em; 
-        margin: 0; 
-        text-align: center;
-    }
-
-    .portfolio-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 60px; /* Generous vertical spacing between cards */
-        width: 100%;
-        max-width: 1100px; /* Max width for content area */
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .comparison-card {
-        background-color: #222; /* Slightly lighter background for the card */
-        border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        display: flex;
-        position: relative;
-        flex-direction: column; /* Default stack on mobile */
-        padding: 30px;
-        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
-    }
-    
-    .card-title {
-        text-align: center;
-        font-size: 1.2em;
-        color: #e0e0e0;
-        margin-bottom: 30px;
-        font-weight: 600;
-        letter-spacing: 1px;
-    }
-
-    .card-content {
-        display: flex;
-        width: 100%;
-        gap: 30px;
-        position: relative;
-        flex-direction: column; /* Default stack on mobile */
-    }
-
-    .image-container {
-        flex: 1;
-        min-width: 0;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transition: transform 0.3s ease;
-    }
-
-    .image-container a {
-        display: block;
-        width: 100%;
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        position: relative;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        /* Set background to ensure 'letterboxing' is dark if image is not square */
-        background-color: #1a1a1a; 
-    }
-    
-    .image-container img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-        transition: transform 0.4s ease-out;
-    }
-    
-    /* Hover Effect for Image (Desktop only) */
-    @media (min-width: 1024px) {
-        .image-container a:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-        }
-    }
-
-    .image-caption {
-        font-size: 0.9em;
-        color: #999;
-        margin-top: 10px;
-        font-style: italic;
-    }
-    
-    .placeholder-card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #1a1a1a;
-        height: 100%;
-        width: 100%;
-        min-height: 250px;
-        border: 2px dashed #444;
-        border-radius: 8px;
-        color: #777;
-        font-size: 1.2em;
-        font-weight: 500;
-        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-
-    /* --- NEW CHAT DISPLAY STYLES for PORTFOLIO CARD 3 (Original Concept) --- */
-    .chat-display {
-        width: 100%;
-        max-width: 450px; /* Limit chat width */
-        overflow-y: auto;
-        padding: 15px;
-        background-color: #111; /* Dark chat background */
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Outer shadow like an image */
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        text-align: left; /* Essential for text alignment */
-    }
-
-    /* Hide scrollbar for chat display */
-    .chat-display::-webkit-scrollbar { width: 0; }
-    .chat-display { -ms-overflow-style: none; scrollbar-width: none; }
-
-    .chat-bubble {
-        max-width: 80%;
-        padding: 10px 15px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        line-height: 1.4;
-        position: relative;
-        word-wrap: break-word;
-        transition: background 0.2s ease;
-    }
-
-    .client-bubble {
-        /* Client (Left, Grey) */
-        align-self: flex-start;
-        background-color: #333;
-        color: #f0f0f0;
-        border-bottom-left-radius: 5px;
-    }
-
-    .my-bubble {
-        /* Me (Right, Green/Accent) */
-        align-self: flex-end;
-        background-color: #aaff00; /* Green highlight color */
-        color: #111;
-        font-weight: 500;
-        border-bottom-right-radius: 5px;
-    }
-    
-    .chat-display .image-caption {
-        margin-top: 0;
-    }
-    /* ------------------------------------------------------------------ */
-
-
-    /* Divider Styles (Desktop) */
-    .divider {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 1px;
-        background-color: rgba(255, 255, 255, 0.1);
-        z-index: 10;
-        display: none; /* Hidden by default, shown on desktop */
-    }
-    
-    .divider-label {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #008080; /* Deep Teal Accent */
-        color: #fff;
-        font-size: 0.8em;
-        font-weight: bold;
-        padding: 6px 10px;
-        border-radius: 20px;
-        white-space: nowrap;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .micro-instruction {
-        font-size: 1em;
-        color: #aaff00; /* Use existing theme accent for instruction */
-        margin-top: 10px;
-        margin-bottom: 50px;
-        text-align: center;
-        font-weight: 500;
-        letter-spacing: 0.5px;
-    }
-
-    /* Lightbox Styles */
-    .lightbox {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        z-index: 99999;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        backdrop-filter: blur(5px);
-    }
-    .lightbox-content {
-        max-width: 90%;
-        max-height: 90%;
-        position: relative;
-    }
-    .lightbox img {
-        display: block;
-        max-width: 100%;
-        max-height: 85vh;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
-    }
-    .lightbox-caption {
-        text-align: center;
-        color: #fff;
-        margin-top: 15px;
-        font-size: 1.1em;
-    }
-    .lightbox-close, .lightbox-nav {
-        position: absolute;
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        font-size: 1.5em;
-        padding: 10px 15px;
-        border-radius: 50%;
-        line-height: 1;
-        z-index: 10;
-        transition: background 0.3s;
-    }
-    .lightbox-close { top: 20px; right: 20px; }
-    .lightbox-close:hover { background: rgba(255, 0, 0, 0.5); }
-    .lightbox-nav { top: 50%; transform: translateY(-50%); opacity: 0.7; }
-    .lightbox-nav:hover { opacity: 1; background: rgba(255, 255, 255, 0.2); }
-    .lightbox-prev { left: 20px; }
-    .lightbox-next { right: 20px; }
-    
-    /* ------------------------------------------------------------------ */
-    /* PRODUCT SHOWCASE (UPDATED FOR OVERLAY CONTROLS) */
-    /* ------------------------------------------------------------------ */
-    .video-container {
-        position: relative;
-        width: 100%;
-        height: 100%; /* Important for desktop fixed height alignment */
-        border-radius: 8px; /* Matches image border-radius */
-        overflow: hidden;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        background-color: #1a1a1a;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .product-video {
-        width: 100%;
-        height: 100%;
-        object-fit: contain; /* Show full video content */
-        display: block;
-    }
-
-    /* === NEW: Round Video Mute/Unmute Overlay Button === */
-    .video-overlay-mute-btn {
-        position: absolute;
-        bottom: 15px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
-        background-color: #aaff00; /* Green theme color */
-        border-radius: 50%;
-        border: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        z-index: 25;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        transition: transform 0.2s ease, background-color 0.2s ease;
-    }
-    
-    .video-overlay-mute-btn:hover {
-        transform: scale(1.1);
-        background-color: #fff;
-    }
-
-    .video-overlay-mute-btn .audio-icon {
-        font-size: 1.4em;
-        color: #000; /* Black icon */
-        line-height: 1;
-        display: block;
-    }
-    
-    /* === Loading Throbber for Video === */
-    .video-loader {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(255, 255, 255, 0.3);
-        border-top: 4px solid #aaff00; /* Uses Theme Color */
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        z-index: 20;
-        display: none; /* Hidden by default, toggled via JS */
-        pointer-events: none;
-    }
-
-    @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-
-    /* ------------------------------------------------------------------ */
-    /* CONTACT FORM (UPDATED PROFESSIONAL THEME) */
-    /* ------------------------------------------------------------------ */
-    .contact-section { padding: 80px 0; scroll-margin-top: 80px; background-color: #111111; }
-    
-    .contact-form { 
-        max-width: 600px; 
-        margin: 0 auto; 
-        padding: 40px; 
-        /* Glassy Effect */
-        background: rgba(35, 35, 35, 0.6); 
-        backdrop-filter: blur(12px); 
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 12px; 
-        /* Subtle shadow, no glow */
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); 
-    }
-    .form-group { margin-bottom: 30px; text-align: left; }
-    .form-group label { display: block; margin-bottom: 10px; font-weight: 600; color: #e0e0e0; font-size: 0.95em; letter-spacing: 0.5px; }
-    
-    .form-group input, .form-group textarea {
-        width: 100%; padding: 15px; border-radius: 6px; box-sizing: border-box; font-size: 1em; 
-        outline: none;
-        color: #f0f0f0; 
-        /* Input Depth Theme */
-        background-color: #1a1a1a;
-        border: 1px solid #333;
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.5); /* Inner shadow for depth */
-        transition: border-color 0.3s ease, background-color 0.3s ease;
-    }
-    
-    .form-group input:focus, .form-group textarea:focus {
-        border-color: #aaff00; /* Green highlight on focus */
-        background-color: #202020;
-    }
-
-    .send-btn {
-        display: inline-block; padding: 15px 0; font-size: 1.1em; font-weight: bold; 
-        color: #111; background-color: #aaff00; border: none; border-radius: 6px; 
-        cursor: pointer; transition: all 0.3s ease; width: 100%; 
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-    .send-btn:hover {
-        background-color: #99e600; 
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    }
-
-    /* ------------------------------------------------------------------ */
-    /* RESPONSIVENESS */
-    /* ------------------------------------------------------------------ */
-    @media (min-width: 1024px) {
-        .card-content {
-            flex-direction: row; /* Two columns on desktop */
-            /* Crucial for vertical centering of both comparison blocks */
-            align-items: center; 
-        }
-        .divider {
-            display: block;
-        }
-        
-        /* 1. Force equal height for the main visual content blocks (chat, image link, and video) */
-        .comparison-card .image-container a, 
-        .comparison-card .chat-display,
-        .comparison-card .video-container { 
-             height: 400px; /* Fixed height for visual consistency and alignment */
-             max-width: 100%; /* Ensure it fills width */
-             box-sizing: border-box;
-        }
-        
-        /* 2. Ensure image scales to show the FULL image inside the fixed height container */
-        .comparison-card .image-container a img,
-        .comparison-card .product-video {
-            height: 100%;
-            object-fit: contain; /* CHANGED to 'contain' to show full image without cropping */
-            /* Vertically align image within the container if it doesn't fill the full height */
-            margin: auto; 
-        }
-        
-        .image-container:first-child .chat-display { 
-             height: 400px; 
-             max-height: 400px; 
-        }
-        /* Ensure the button does not take up extra height space on desktop */
-        .image-container {
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-    }
-    
-    @media (min-width: 768px) and (max-width: 1023px) {
-        /* Tablet: Keep the vertical stack, but allow it to be wide */
-        .card-content {
-            flex-direction: column; 
-            gap: 20px;
-        }
-        .divider {
-            position: relative;
-            height: 1px;
-            width: 80%;
-            margin: 30px auto 0;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .divider-label {
-            top: auto;
-            bottom: auto;
-            transform: translate(-50%, 0);
-            margin-top: -15px;
-        }
-        .chat-display,
-        .video-container {
-             height: 380px; /* Keep height for non-desktop stack to avoid it growing too large */
-        }
-    }
-    
-    @media (max-width: 767px) {
-        .navbar { top: 10px; height: 45px; max-width: 95%; padding: 0 5px; border-radius: 22.5px; justify-content: space-around; }
-        body { padding-top: 65px; }
-        .navbar-link-item { padding: 0 8px; font-size: 0.8em; }
-        .profile-link { width: 30px; height: 30px; }
-
-        /* Mobile Hero */
-        .hero-section { min-height: auto; padding: 80px 20px 40px; }
-        .hero-container { flex-direction: column-reverse; /* Image Top, Text Bottom */ text-align: center; }
-        
-        .hero-image-panel { margin-bottom: 30px; }
-        .hero-profile-frame { width: 250px; height: 250px; }
-        
-        .hero-text-panel { padding-right: 0; text-align: center; }
-        .hero-text-panel h1 { font-size: 2.5em; }
-        .social-icons { justify-content: center; }
-
-        .about-content { width: 95%; }
-        .about-content h2 { text-align: center; }
-        .about-text { font-size: 1.1em; line-height: 1.6; min-height: 150px; }
-        .about-contact-icons { justify-content: center; }
-
-        .skills-grid { grid-template-columns: 1fr; gap: 20px; }
-        .skill-item { padding: 20px; }
-        
-        .websites-section h2 { font-size: 2.5em; }
-        .websites-content-container { padding: 0 10px; }
-        .flip-card { max-width: 100%; height: 280px; }
-        
-        /* Mobile Portfolio */
-        .portfolio-header { padding: 0 10px 40px; }
-        .portfolio-header h2 { font-size: 2.5em; }
-        .comparison-card { padding: 20px; }
-        .card-content { gap: 40px; } /* Increased vertical gap on mobile stack */
-        .divider-label {
-             top: auto;
-            bottom: auto;
-            transform: translate(-50%, 0);
-            margin-top: -15px;
-        }
-        .chat-display,
-        .video-container {
-             height: 300px; /* Adjust height for small screens */
-        }
-
-        .contact-form { padding: 25px; }
-        .send-btn { width: 100%; }
-        
-        /* Adjust scroll button for mobile */
-        .scroll-down-btn { bottom: 20px; left: auto; right: 20px; transform: none; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-8px); } 60% { transform: translateY(-4px); } }
-    }
-</style>
-</head>
-<body>
-
-    <div id="scroll-progress-bar"></div>
-
-    <nav class="navbar">
-        <a href="#hero-section" class="navbar-link-item nav-link" data-target="hero-section">Home</a>
-        <a href="#about-me-section" class="navbar-link-item nav-link" data-target="about-me-section">About</a>
-        <a href="#skills-section" class="navbar-link-item nav-link" data-target="skills-section">Skills</a>
-        <a href="#websites-section" class="navbar-link-item nav-link" data-target="websites-section">Websites</a>
-        <a href="#portfolio-section" class="navbar-link-item nav-link" data-target="portfolio-section">Portfolio</a>
-        <a href="#product-showcase-section" class="navbar-link-item nav-link" data-target="product-showcase-section">Showcase</a>
-        <a href="#contact-section" class="profile-link nav-link" data-target="contact-section" aria-label="Contact Zaid (Profile)">
-            <img src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Profile Picture" decoding="async">
-        </a>
-    </nav>
-    
-    
-    <section class="hero-section" id="hero-section">
-        <div class="hero-container">
-            
-            <div class="hero-text-panel">
-                <h3>Hi! I am</h3>
-                <h1 id="hero-name"></h1> <p>A Graphic And AI Expert. I transform ideas into stunning digital reality with precision and creativity.</p>
-                
-                <a href="https://ik.imagekit.io/0kzbr6cex/Black%20and%20White%20Modern%20Web%20Developer%20Resume%20(2).pdf" 
-                   download="Zaid_Mughal_Resume.pdf" 
-                   class="cv-download-btn">
-                   Download CV
-                </a>
-
-                <div class="social-icons">
-                    <a href="tel:+923394807064" aria-label="Call Zaid"><img src="https://i.postimg.cc/QdfZ4G40/receiver.png" alt="Phone Icon"></a>
-                    <a href="https://www.instagram.com/zaidahmed_14/" target="_blank" aria-label="Zaid Mughal Instagram"><img src="https://i.postimg.cc/x856fYbp/instagram-2.png" alt="Instagram Icon"></a>
-                    <a href="mailto:zaidbilal215@gmail.com" aria-label="Email Zaid"><img src="https://i.postimg.cc/wBDcxHCM/mail.png" alt="Email Icon"></a>
-                </div>
-            </div>
-
-            <div class="hero-image-panel">
-                <div class="hero-profile-frame">
-                    <img id="hero-image" src="https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png" alt="Zaid Mughal Profile Picture" decoding="async">
-                </div>
-            </div>
-
-        </div>
-        
-        <a href="#about-me-section" class="scroll-down-btn nav-link" data-target="about-me-section" aria-label="Scroll Down to About Section">
-            <img src="https://i.postimg.cc/L5rhVXRv/down.png" alt="Down Arrow Icon">
-        </a>
-    </section>
-
-    
-    <section class="about-section" id="about-me-section">
-        <div class="section-container reveal-content">
-            <div class="about-content">
-                <h2>About Me</h2>
-                <p class="about-text" id="typing-text"></p>
-                <div class="about-contact-icons social-icons">
-                    <a href="tel:+923394807064" aria-label="Call Zaid"><img src="https://i.postimg.cc/QdfZ4G40/receiver.png" alt="Phone Icon"></a>
-                    <a href="mailto:zaidbilal215@gmail.com" aria-label="Email Zaid"><img src="https://i.postimg.cc/wBDcxHCM/mail.png" alt="Email Icon"></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    
-    <section class="section-container skills-section" id="skills-section">
-        <div class="skills-content reveal-content">
-            <h2>Skills</h2>
-            <div class="skills-grid" id="skills-grid">
-                
-                <a href="#" class="skill-link" onclick="return false;" aria-label="View Graphic Design Details">
-                    <div class="skill-item">
-                        <h3>Graphic Design</h3>
-                        <p>Proficient in Adobe Photoshop, Adobe Illustrator, and other design software, creating high-quality visual content.</p>
-                    </div>
-                </a>
-                
-                <a href="#" class="skill-link" onclick="return false;" aria-label="View AI Expertise Details">
-                    <div class="skill-item">
-                        <h3>AI Expertise</h3>
-                        <p>Deep knowledge of generative AI models for image creation and content development, focusing on efficiency and creativity.</p>
-                    </div>
-                </a>
-                
-                <a href="#" class="skill-link" onclick="return false;" aria-label="View Web Development Details">
-                    <div class="skill-item">
-                        <h3>Web Development</h3>
-                        <p>Solid foundation in HTML, CSS, and JavaScript, specializing in creating responsive, clean, and modern website structures.</p>
-                    </div>
-                </a>
-                
-                <a href="#" class="skill-link" onclick="return false;" aria-label="View Branding Details">
-                    <div class="skill-item">
-                        <h3>Branding</h3>
-                        <p>Developing strong visual identities, designing logos, and creating cohesive brand guidelines that resonate with the target audience.</p>
-                    </div>
-                </a>
-
-                <a href="#" class="skill-link" onclick="return false;" aria-label="View Digital Marketing Details">
-                    <div class="skill-item">
-                        <h3>Digital Marketing</h3>
-                        <p>Understanding of social media strategy, content optimization, and digital trends to ensure maximum project visibility.</p>
-                    </div>
-                </a>
-                
-                <a href="#" class="skill-link" onclick="return false;" aria-label="View Problem Solving Details">
-                    <div class="skill-item">
-                        <h3>Problem Solving</h3>
-                        <p>A keen analytical mind dedicated to overcoming technical challenges and improving existing digital systems.</p>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    
-    <section class="websites-section" id="websites-section">
-        <div class="section-container" style="flex-direction: column;">
-            
-            <div class="reveal-content" style="width: 100%;">
-                <h2>Website Building</h2>
-                
-                <div class="projects-grid">
-                    
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            
-                            <div class="flip-card-front">
-                                <div class="browser-bar">
-                                    <div class="browser-dot dot-red"></div>
-                                    <div class="browser-dot dot-yellow"></div>
-                                    <div class="browser-dot dot-green"></div>
-                                </div>
-                                <img 
-                                    src="https://i.postimg.cc/ZqMGFBm0/Screenshot-2025-11-02-042230.png" 
-                                    alt="Ahsan Fabrics Homepage"
-                                    loading="lazy"
-                                >
-                            </div>
-
-                            <div class="flip-card-back">
-                                <h3>Ahsan Fabrics</h3>
-                                <p>A premium e-commerce website designed for elegance and easy shopping. Features include smooth navigation and WhatsApp checkout.</p>
-                                <a href="https://zaidmughal215.github.io/Ahsanfabricsofficial/#home" target="_blank" class="explore-btn">
-                                    Explore More
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            
-                            <div class="flip-card-front">
-                                <div class="browser-bar">
-                                    <div class="browser-dot dot-red"></div>
-                                    <div class="browser-dot dot-yellow"></div>
-                                    <div class="browser-dot dot-green"></div>
-                                </div>
-                                <img 
-                                    src="https://i.postimg.cc/kX5DQ3HL/Screenshot-2025-11-09-002353.png" 
-                                    alt="Allget Website Homepage"
-                                    loading="lazy"
-                                >
-                            </div>
-
-                            <div class="flip-card-back">
-                                <h3>Allget Website</h3>
-                                <p>A tech-inspired platform for modded apps and games. The modern green theme reflects innovation and digital energy.</p>
-                                <a href="https://www.pakkashmirproperties.online/#home" target="_blank" class="explore-btn">
-                                    Explore More
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                </div>
-        </div>
-    </section>
-
-    
-    <section class="portfolio-section" id="portfolio-section">
-        <div class="portfolio-header reveal-content">
-            
-            <h2>Portfolio — Before & After</h2>
-            <p class="micro-instruction">Click on any image to zoom in (lightbox view). Use arrow keys to navigate.</p>
-        </div>
-
-        <div class="portfolio-grid reveal-content">
-
-            <div class="comparison-card" data-title="Watch Post Design">
-                <p class="card-title">Watch Post Design</p>
-                <div class="card-content">
-                    
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/X7vYF6BF/wp-130-d7390feb-812a-4766-ac7f-784969f15ff1-1024x1024.webp" 
-                           class="lightbox-trigger" 
-                           data-caption="Poster 1 — Original version">
-                            <img src="https://i.postimg.cc/X7vYF6BF/wp-130-d7390feb-812a-4766-ac7f-784969f15ff1-1024x1024.webp" 
-                                 alt="Poster 1 — Original version" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                                 width="768" height="768" 
-                                 srcset="https://i.postimg.cc/X7vYF6BF/wp-130-d7390feb-812a-4766-ac7f-784969f15ff1-1024x1024.webp 1024w" 
-                            >
-                        </a>
-                        <p class="image-caption">Original</p>
-                    </div>
-
-                    <div class="divider" role="separator" aria-label="before and after comparison">
-                        <span class="divider-label">Before → After</span>
-                    </div>
-
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/GmyrJLLp/1764784192134-019ae554-e931-7c64-bffe-c0a5901c06b6.png" 
-                           class="lightbox-trigger" 
-                           data-caption="Poster 1 — Updated design">
-                            <img src="https://i.postimg.cc/GmyrJLLp/1764784192134-019ae554-e931-7c64-bffe-c0a5901c06b6.png" 
-                                 alt="Poster 1 — Updated design" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                                 width="768" height="768" 
-                                 srcset="https://i.postimg.cc/GmyrJLLp/1764784192134-019ae554-e931-7c64-bffe-c0a5901c06b6.png 1024w" 
-                            >
-                        </a>
-                        <p class="image-caption">Updated Design</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="comparison-card" data-title="Cream Box Advertisement">
-                <p class="card-title">Cream Box Advertisement</p>
-                <div class="card-content">
-                    
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/NGzWN3Pp/1764834955172-image.png" 
-                           class="lightbox-trigger" 
-                           data-caption="Poster 2 — Original version">
-                            <img src="https://i.postimg.cc/NGzWN3Pp/1764834955172-image.png" 
-                                 alt="Poster 2 — Original version" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                                 width="768" height="768" 
-                                 srcset="https://i.postimg.cc/NGzWN3Pp/1764834955172-image.png 1024w" 
-                            >
-                        </a>
-                        <p class="image-caption">Original</p>
-                    </div>
-
-                    <div class="divider" role="separator" aria-label="before and after comparison">
-                        <span class="divider-label">Before → After</span>
-                    </div>
-
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/br7VzjKK/1764835315256-019ae861-194a-7fa4-a663-8f26241fbddd.png" 
-                           class="lightbox-trigger" 
-                           data-caption="Poster 2 — Updated design">
-                            <img src="https://i.postimg.cc/br7VzjKK/1764835315256-019ae861-194a-7fa4-a663-8f26241fbddd.png" 
-                                 alt="Poster 2 — Updated design" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                                 width="768" height="768" 
-                                 srcset="https://i.postimg.cc/br7VzjKK/1764835315256-019ae861-194a-7fa4-a663-8f26241fbddd.png 1024w" 
-                            >
-                        </a>
-                        <p class="image-caption">Updated Design</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="comparison-card" data-title="Client Chat Fast-Food Poster">
-                <p class="card-title">Client Chat Fast-Food Poster</p>
-                <div class="card-content">
-                    
-                    <div class="image-container">
-                        <div class="chat-display">
-                            <div class="chat-bubble client-bubble">Hi.</div>
-                            <div class="chat-bubble my-bubble">Yes, how can I help you?</div>
-                            <div class="chat-bubble client-bubble">I want a poster for a fast-food deal.</div>
-                            <div class="chat-bubble my-bubble">What theme would you like?</div>
-                            <div class="chat-bubble client-bubble">Yellow and purple. The deal should include one pizza and a 1.5-liter Coke.</div>
-                            <div class="chat-bubble my-bubble">Okay, sure.</div>
-                        </div>
-                        <p class="image-caption">Original: Communication Concept Brief</p>
-                    </div>
-
-                    <div class="divider" role="separator" aria-label="before and after comparison">
-                        <span class="divider-label">Before → After</span>
-                    </div>
-
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/x8MhNCyV/433dacd2-537f-4706-af98-9c1e51ffbba9.png" 
-                           class="lightbox-trigger" 
-                           data-caption="Poster 3 — Updated design (Yellow & Purple Deal)">
-                            <img src="https://i.postimg.cc/x8MhNCyV/433dacd2-537f-4706-af98-9c1e51ffbba9.png" 
-                                 alt="Poster 3 — Updated design (Yellow & Purple Deal)" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                                 width="768" height="768" 
-                                 srcset="https://i.postimg.cc/x8MhNCyV/433dacd2-537f-4706-af98-9c1e51ffbba9.png 1024w" 
-                            >
-                        </a>
-                        <p class="image-caption">Updated Design</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="portfolio-section" id="product-showcase-section">
-        <div class="portfolio-header reveal-content">
-            <h2>Product & Logo Animations</h2>
-            <p class="micro-instruction">Scroll to play video. Use the round button to mute/unmute.</p>
-        </div>
-
-        <div class="portfolio-grid reveal-content">
-
-            <div class="comparison-card" data-title="Watch Product Animation">
-                <p class="card-title">Watch Product Animation</p>
-                <div class="card-content">
-                    
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp" 
-                           class="lightbox-trigger" 
-                           data-caption="Watch Animation — Original Image">
-                            <img src="https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp" 
-                                 alt="Watch Animation — Original Image" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                            >
-                        </a>
-                        <p class="image-caption">Original Product Photo</p>
-                    </div>
-
-                    <div class="divider" role="separator" aria-label="before and after comparison">
-                        <span class="divider-label">Before → After</span>
-                    </div>
-
-                    <div class="image-container">
-                        <div class="video-container">
-                            <div class="video-loader"></div>
-                            <video id="video-1" class="product-video" 
-                                   src="https://ik.imagekit.io/0kzbr6cex/kling_20251214_Video_to_Audio__632_2-vmake.mp4" 
-                                   loop muted playsinline preload="metadata" 
-                                   poster="https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp">
-                            </video>
-                            
-                            <!-- Overlay Mute Button -->
-                            <button class="video-overlay-mute-btn" data-target="video-1" aria-label="Unmute Video">
-                                <span class="audio-icon">🔇</span>
-                            </button>
-                        </div>
-                        <p class="image-caption">Final Animated Video</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="comparison-card" data-title="Logo Branding Animation">
-                <p class="card-title">Logo Branding Animation</p>
-                <div class="card-content">
-                    
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg" 
-                           class="lightbox-trigger" 
-                           data-caption="Logo Animation — Original Image">
-                            <img src="https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg" 
-                                 alt="Logo Animation — Original Image" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                            >
-                        </a>
-                        <p class="image-caption">Original Logo/Concept</p>
-                    </div>
-
-                    <div class="divider" role="separator" aria-label="before and after comparison">
-                        <span class="divider-label">Before → After</span>
-                    </div>
-
-                    <div class="image-container">
-                        <div class="video-container">
-                            <div class="video-loader"></div>
-                            <video id="video-2" class="product-video" 
-                                   src="https://ik.imagekit.io/0kzbr6cex/Add%20a%20little%20bit%20of%20body%20text.mp4" 
-                                   loop muted playsinline preload="metadata" 
-                                   poster="https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg">
-                            </video>
-                            
-                            <!-- Overlay Mute Button -->
-                            <button class="video-overlay-mute-btn" data-target="video-2" aria-label="Unmute Video">
-                                <span class="audio-icon">🔇</span>
-                            </button>
-                        </div>
-
-                        <p class="image-caption">Final Animated Video</p>
-                    </div>
-
-                </div>
-            </div>
-            
-            <div class="comparison-card" data-title="Cold Drink Product Animation">
-                <p class="card-title">Cold Drink Product Animation</p>
-                <div class="card-content">
-                    
-                    <div class="image-container">
-                        <a href="https://i.postimg.cc/hPdtD9vP/1aee05c2cc67230804a7d1ecb5ea9768.jpg" 
-                           class="lightbox-trigger" 
-                           data-caption="Cold Drink Animation — Original Image">
-                            <img src="https://i.postimg.cc/hPdtD9vP/1aee05c2cc67230804a7d1ecb5ea9768.jpg" 
-                                 alt="Cold Drink Animation — Original Image" 
-                                 loading="lazy" 
-                                 decoding="async" 
-                            >
-                        </a>
-                        <p class="image-caption">Original Product Photo</p>
-                    </div>
-
-                    <div class="divider" role="separator" aria-label="before and after comparison">
-                        <span class="divider-label">Before → After</span>
-                    </div>
-
-                    <div class="image-container">
-                        <div class="video-container">
-                            <div class="video-loader"></div>
-                            <video id="video-3" class="product-video" 
-                                   src="https://ik.imagekit.io/0kzbr6cex/Untitled%20design.mp4" 
-                                   loop muted playsinline preload="metadata" 
-                                   poster="https://i.postimg.cc/hPdtD9vP/1aee05c2cc67230804a7d1ecb5ea9768.jpg">
-                            </video>
-                            
-                            <!-- Overlay Mute Button -->
-                            <button class="video-overlay-mute-btn" data-target="video-3" aria-label="Unmute Video">
-                                <span class="audio-icon">🔇</span>
-                            </button>
-                        </div>
-
-                        <p class="image-caption">Final Animated Video</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <div id="lightbox" class="lightbox" style="display: none;">
-        <button class="lightbox-close" aria-label="Close Lightbox">&times;</button>
-        <button class="lightbox-nav lightbox-prev" aria-label="Previous Image">&lt;</button>
-        <div class="lightbox-content">
-            <img id="lightbox-img" src="" alt="">
-            <p id="lightbox-caption" class="lightbox-caption"></p>
-        </div>
-        <button class="lightbox-nav lightbox-next" aria-label="Next Image">&gt;</button>
-    </div>
-    
-    
-    <section class="section-container contact-section" id="contact-section">
-        <div class="contact-content reveal-content">
-            
-            <h2>Contact Me</h2>
-            <div class="contact-form">
-                <form id="whatsappForm" onsubmit="sendWhatsApp(event)">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required placeholder="e.g., John Doe">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required placeholder="Tell me about your project or inquiry..."></textarea>
-                    </div>
-
-                    <button type="submit" class="send-btn">Send</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <a href="https://wa.me/923394807064" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
-    </a>
-    
-    
+    <!-- Tailwind Config -->
     <script>
-        // === 1. Typing/Erasing Loop (Continuous Animation) ===
-        const heroNameElement = document.getElementById('hero-name');
-        const nameText = "Zaid Mughal";
-        const nameSpeed = 150; 
-        const eraseSpeed = 100; 
-        let nameIndex = 0;
-        let isTyping = true;
-
-        function nameTypeEraseLoop() {
-            if (isTyping) {
-                // --- PHASE 1: TYPING FORWARD ---
-                if (nameIndex < nameText.length) {
-                    heroNameElement.textContent = nameText.substring(0, nameIndex + 1);
-                    nameIndex++;
-                    setTimeout(nameTypeEraseLoop, nameSpeed);
-                } else {
-                    isTyping = false;
-                    setTimeout(nameTypeEraseLoop, 1000); 
-                }
-            } else {
-                // --- PHASE 2: ERASING BACKWARD ---
-                if (nameIndex > 0) {
-                    heroNameElement.textContent = nameText.substring(0, nameIndex - 1);
-                    nameIndex--;
-                    setTimeout(nameTypeEraseLoop, eraseSpeed);
-                } else {
-                    isTyping = true;
-                    setTimeout(nameTypeEraseLoop, 500); 
-                }
-            }
-        }
-
-
-        // === 2. About Me Typing Animation Script ===
-        const aboutText = "Muhammad <b>Zaid</b> is a talented and hardworking 16-year-old student from Faisalabad who studies at Fauji Foundation. He has shown remarkable academic performance by securing 89% in his last exam, reflecting his dedication and intelligence. <b>Zaid</b> has a deep passion for technology, coding, and digital design, often spending his time creating creative projects such as websites, games, and software. His curiosity drives him to constantly learn new skills and explore innovative ideas. With his determination and love for technology, <b>Zaid</b> aspires to become a successful tech expert and make a positive impact in the digital world.";
-        const aboutSpeed = 30; 
-        let aboutIndex = 0;
-        const typingTextElement = document.getElementById('typing-text');
-
-        function typeWriter() {
-            if (aboutIndex < aboutText.length) {
-                if (aboutText.substring(aboutIndex, aboutIndex + 3) === '<b>') {
-                    typingTextElement.innerHTML += '<b>';
-                    aboutIndex += 3;
-                } else if (aboutText.substring(aboutIndex, aboutIndex + 4) === '</b>') {
-                    typingTextElement.innerHTML += '</b>';
-                    aboutIndex += 4;
-                } else {
-                    let char = aboutText.charAt(aboutIndex);
-                    typingTextElement.innerHTML += char;
-                    aboutIndex++;
-                }
-                setTimeout(typeWriter, aboutSpeed);
-            }
-        }
-
-        // === 5. WhatsApp Redirect Function ===
-        function sendWhatsApp(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const message = document.getElementById('message').value;
-            const whatsappNumber = "923394807064"; 
-
-            const formattedMessage = `Hello Zaid,\n\nI am ${name} and I would like to discuss the following:\n\n---\n${message}\n---`;
-
-            const encodedMessage = encodeURIComponent(formattedMessage);
-
-            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-            window.open(whatsappLink, '_blank');
-        }
-
-
-        // === 6. Cursor Bubble Animation Script (Kept as requested) ===
-        let lastParticleTime = 0;
-        const particleInterval = 50; 
-
-        document.addEventListener('mousemove', function(e) {
-            const now = Date.now();
-            if (now - lastParticleTime < particleInterval) {
-                return; 
-            }
-            lastParticleTime = now;
-
-            const particle = document.createElement('div');
-            particle.className = 'cursor-particle';
-            
-            particle.style.left = e.clientX + 'px';
-            particle.style.top = e.clientY + 'px';
-            
-            document.body.appendChild(particle);
-
-            setTimeout(() => {
-                particle.remove();
-            }, 1000);
-        });
-        
-        // === 7. Scroll Progress Bar (Parallax Removed for new hero) ===
-        const progressBar = document.getElementById('scroll-progress-bar');
-        
-        window.onscroll = function() {
-            // Scroll Progress Bar
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (window.scrollY / totalHeight) * 100;
-            progressBar.style.width = scrollPercent + "%";
-        };
-
-        // === 8. Scroll Reveal (Fade-in-on-scroll) ===
-        const revealElements = document.querySelectorAll('.reveal-content');
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    // Stop observing once it's visible
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, {
-            // Options: when to trigger the intersection event
-            threshold: 0.2, // Trigger when 20% of the element is visible
-            rootMargin: '0px 0px -50px 0px' // Slightly below the viewport bottom
-        });
-
-        revealElements.forEach(element => {
-            observer.observe(element);
-        });
-
-
-        // === 9. Smooth Navigation (Liquid Transition Alternative) ===
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault(); // Stop default jump
-                
-                // Update target from poster-section to portfolio-section
-                const targetId = this.getAttribute('href').replace('#poster-section', '#portfolio-section').substring(1);
-                const targetElement = document.getElementById(targetId);
-
-                if (targetElement) {
-                    // Use smooth scrolling behavior
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // === 10. Minimal Lightbox Script ===
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const closeBtn = document.querySelector('.lightbox-close');
-        const prevBtn = document.querySelector('.lightbox-prev');
-        const nextBtn = document.querySelector('.lightbox-next');
-        const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
-        let currentImages = [];
-        let currentIndex = -1;
-
-        function openLightbox(index) {
-            if (index < 0 || index >= currentImages.length) return;
-            currentIndex = index;
-            const imgLink = currentImages[currentIndex];
-            
-            lightboxImg.src = imgLink.href;
-            lightboxImg.alt = imgLink.dataset.caption;
-            lightboxCaption.textContent = imgLink.dataset.caption;
-            lightbox.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Hide navigation if only one image
-            const isSingleImage = currentImages.length <= 1;
-            prevBtn.style.display = isSingleImage ? 'none' : 'block';
-            nextBtn.style.display = isSingleImage ? 'none' : 'block';
-            
-            // Update nav button state
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex === currentImages.length - 1;
-        }
-
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = '';
-            currentIndex = -1;
-            currentImages = [];
-        }
-
-        function navigateLightbox(direction) {
-            let newIndex = currentIndex + direction;
-            if (newIndex >= 0 && newIndex < currentImages.length) {
-                openLightbox(newIndex);
-            }
-        }
-
-        lightboxTriggers.forEach((trigger, index) => {
-            trigger.addEventListener('click', function(e) {
-                e.preventDefault();
-                // Set the current list of images to navigate
-                // NOTE: We only include elements with the 'lightbox-trigger' class, which is correct.
-                currentImages = Array.from(document.querySelectorAll('.lightbox-trigger'));
-                // Find the index of the clicked image
-                const clickedIndex = currentImages.findIndex(img => img === trigger);
-                openLightbox(clickedIndex);
-            });
-        });
-
-        closeBtn.addEventListener('click', closeLightbox);
-        prevBtn.addEventListener('click', () => navigateLightbox(-1));
-        nextBtn.addEventListener('click', () => navigateLightbox(1));
-
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.style.display === 'flex') {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') navigateLightbox(-1);
-                if (e.key === 'ArrowRight') navigateLightbox(1);
-            }
-        });
-        
-        // Close on outside click
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        // === 11. REFINED Video Player Logic (One at a time, Autoplay on Scroll, Overlay Mute) ===
-        
-        const videos = document.querySelectorAll('video.product-video');
-        const muteButtons = document.querySelectorAll('.video-overlay-mute-btn');
-
-        // Helper: Update Button Icon
-        function updateMuteButtonIcon(btn, isMuted) {
-            const icon = btn.querySelector('.audio-icon');
-            if (isMuted) {
-                icon.textContent = '🔇';
-                btn.setAttribute('aria-label', 'Unmute Video');
-                btn.style.backgroundColor = '#aaff00'; // Theme green
-            } else {
-                icon.textContent = '🔊';
-                btn.setAttribute('aria-label', 'Mute Video');
-                btn.style.backgroundColor = '#fff'; // White to indicate active state
-            }
-        }
-
-        // 1. Setup Mute Buttons
-        muteButtons.forEach(btn => {
-            const videoId = btn.getAttribute('data-target');
-            const video = document.getElementById(videoId);
-            
-            // Initial state
-            updateMuteButtonIcon(btn, video.muted);
-
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent triggering other click events if any
-                video.muted = !video.muted;
-                updateMuteButtonIcon(btn, video.muted);
-            });
-        });
-
-        // 2. Logic to pause ALL other videos
-        function pauseAllOtherVideos(currentVideo) {
-            videos.forEach(v => {
-                if (v !== currentVideo) {
-                    v.pause();
-                    v.currentTime = 0; // Optional: Reset to start
-                }
-            });
-        }
-
-        // 3. Intersection Observer for Auto-Play "One at a Time"
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const video = entry.target;
-                const videoContainer = video.closest('.video-container');
-                const loader = videoContainer.querySelector('.video-loader');
-                const muteBtn = videoContainer.querySelector('.video-overlay-mute-btn');
-
-                if (entry.isIntersecting) {
-                    // Video is in view (threshold met)
-                    
-                    // A. Pause everyone else
-                    pauseAllOtherVideos(video);
-
-                    // B. Attempt to play
-                    const playPromise = video.play();
-                    
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            // Video started playing
-                            loader.style.display = 'none';
-                            
-                            // Try to unmute if not user-muted?
-                            // Strategy: We keep it muted by default to satisfy browser policy,
-                            // unless user has interacted.
-                            // However, request was "play with sound". 
-                            // We try to unmute. If it fails, we catch it.
-                            
-                            // video.muted = false; // Try to unmute
-                        })
-                        .catch(error => {
-                            // Autoplay was likely blocked or failed
-                            console.log('Autoplay blocked or failed. Playing muted.');
-                            video.muted = true;
-                            video.play();
-                        });
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#030014',
+                        cosmic: '#070318',
+                        nebula: '#0f0628',
+                        aurora: '#1a0a3e',
+                        glow: {
+                            violet: '#7C3AED',
+                            indigo: '#4F46E5',
+                            purple: '#A855F7',
+                            blue: '#3B82F6',
+                            cyan: '#06B6D4',
+                            pink: '#EC4899',
+                            white: '#F8FAFC'
+                        },
+                        glass: {
+                            DEFAULT: 'rgba(255,255,255,0.03)',
+                            hover: 'rgba(255,255,255,0.06)',
+                            border: 'rgba(255,255,255,0.06)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    },
+                    animation: {
+                        'float-slow': 'float-slow 20s ease-in-out infinite',
+                        'float-reverse': 'float-slow 25s ease-in-out infinite reverse',
+                        'pulse-glow': 'pulse-glow 10s ease-in-out infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                    },
+                    keyframes: {
+                        'float-slow': {
+                            '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                            '33%': { transform: 'translate(30px, -30px) rotate(5deg)' },
+                            '66%': { transform: 'translate(-20px, 20px) rotate(-5deg)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.6', transform: 'translate(-50%, -50%) scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'translate(-50%, -50%) scale(1.1)' },
+                        }
                     }
-                    
-                    // Update icon based on actual mute state
-                    updateMuteButtonIcon(muteBtn, video.muted);
-
-                } else {
-                    // Video left the view
-                    video.pause();
                 }
-            });
-        }, {
-            threshold: 0.6 // Video must be 60% visible to take over
-        });
-
-        // 4. Attach Observer & Loader Logic
-        videos.forEach(video => {
-            const videoContainer = video.closest('.video-container');
-            const loader = videoContainer.querySelector('.video-loader');
-
-            // Show loader when waiting
-            video.addEventListener('waiting', () => {
-                if(!video.paused) loader.style.display = 'block';
-            });
-            
-            // Hide loader when playing
-            video.addEventListener('playing', () => {
-                loader.style.display = 'none';
-            });
-
-            // Start Observing
-            videoObserver.observe(video);
-        });
-
-
-        // === DOM Content Loaded Startups ===
-        document.addEventListener('DOMContentLoaded', (event) => {
-            nameTypeEraseLoop(); 
-            typeWriter(); 
-            
-            // Manually scroll the chat display to the bottom initially
-            const chatDisplay = document.querySelector('.comparison-card[data-title="Client Chat Fast-Food Poster"] .chat-display');
-            if(chatDisplay) {
-                 chatDisplay.scrollTop = chatDisplay.scrollHeight;
             }
-        });
-
+        }
     </script>
 
+    <style>
+        :root {
+            --bg-void: #030014;
+            --bg-cosmic: #070318;
+            --glow-violet: #7C3AED;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030014; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a0a3e; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7C3AED; 
+        }
+
+        /* Noise Texture */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            mix-blend-mode: overlay;
+        }
+
+        /* Text Gradients */
+        .text-gradient {
+            background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #06B6D4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glass Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        
+        .glass-panel-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(3, 0, 20, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Glow Utilities */
+        .glow-text {
+            text-shadow: 0 0 40px rgba(124,58,237,0.3);
+        }
+        .glow-box-hover:hover {
+            box-shadow: 
+              0 0 0 1px rgba(124,58,237,0.3),
+              0 8px 32px rgba(124,58,237,0.15),
+              0 0 60px rgba(124,58,237,0.1);
+        }
+
+        /* Loader */
+        .loader {
+            border: 3px solid rgba(124, 58, 237, 0.1);
+            border-left-color: #7C3AED;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-glow-violet selection:text-white">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- ICONS (Lucide) ---
+        // Since we are using CDN, we can't import. 
+        // We will create simple wrapper components that use the `lucide` global
+        // However, Lucide's createIcons looks for elements. 
+        // Better approach for React in this environment: SVG components or using a helper.
+        // I'll define the specific icons used as components for cleaner React code.
+
+        const Icon = ({ name, size = 24, className = "" }) => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, [name]);
+            return <i data-lucide={name} width={size} height={size} className={className}></i>;
+        };
+
+        const Icons = {
+            Palette: (props) => <Icon name="palette" {...props} />,
+            Brain: (props) => <Icon name="brain" {...props} />,
+            Code: (props) => <Icon name="code" {...props} />,
+            Sparkles: (props) => <Icon name="sparkles" {...props} />,
+            TrendingUp: (props) => <Icon name="trending-up" {...props} />,
+            Lightbulb: (props) => <Icon name="lightbulb" {...props} />,
+            Play: (props) => <Icon name="play" {...props} />,
+            Pause: (props) => <Icon name="pause" {...props} />,
+            ExternalLink: (props) => <Icon name="external-link" {...props} />,
+            Menu: (props) => <Icon name="menu" {...props} />,
+            X: (props) => <Icon name="x" {...props} />,
+            Mail: (props) => <Icon name="mail" {...props} />,
+            Github: (props) => <Icon name="github" {...props} />,
+            Linkedin: (props) => <Icon name="linkedin" {...props} />,
+            Instagram: (props) => <Icon name="instagram" {...props} />,
+            ArrowRight: (props) => <Icon name="arrow-right" {...props} />,
+            Download: (props) => <Icon name="download" {...props} />,
+            Phone: (props) => <Icon name="phone" {...props} />,
+        };
+
+        // --- DATA ---
+        const PORTFOLIO_DATA = {
+            personal: {
+                name: "Muhammad Zaid",
+                alias: "Zaid Mughal",
+                role: "Graphic And AI Expert",
+                tagline: "I transform ideas into stunning digital reality with precision and creativity.",
+                email: "zaidbilal215@gmail.com",
+                avatar: "https://i.postimg.cc/fyjdrDPZ/Untitled-design-1.png",
+                resume: "https://ik.imagekit.io/0kzbr6cex/Black%20and%20White%20Modern%20Web%20Developer%20Resume%20(2).pdf",
+                instagram: "https://www.instagram.com/zaidahmed_14/",
+                phone: "+923394807064"
+            },
+            skills: [
+                { icon: "Palette", title: "Graphic Design", desc: "Proficient in Adobe Photoshop, Adobe Illustrator, creating high-quality visual content." },
+                { icon: "Brain", title: "AI Expertise", desc: "Deep knowledge of generative AI models for image creation and content development." },
+                { icon: "Code", title: "Web Development", desc: "Solid foundation in HTML, CSS, and JavaScript, specializing in responsive, modern structures." },
+                { icon: "Sparkles", title: "Branding", desc: "Developing strong visual identities, logos, and cohesive brand guidelines." },
+                { icon: "TrendingUp", title: "Digital Marketing", desc: "Social media strategy, content optimization, and digital trends for visibility." },
+                { icon: "Lightbulb", title: "Problem Solving", desc: "Analytical mind dedicated to overcoming technical challenges and improving systems." }
+            ],
+            projects: [
+                {
+                    name: "Ahsan Fabrics",
+                    url: "https://zaidmughal215.github.io/Ahsanfabricsofficial/#home",
+                    image: "https://i.postimg.cc/ZqMGFBm0/Screenshot-2025-11-02-042230.png",
+                    description: "A premium e-commerce website designed for elegance and easy shopping. Features include smooth navigation and WhatsApp checkout.",
+                    tags: ["E-commerce", "HTML/CSS", "Responsive"]
+                },
+                {
+                    name: "Allget Website",
+                    url: "https://www.pakkashmirproperties.online/#home",
+                    image: "https://i.postimg.cc/kX5DQ3HL/Screenshot-2025-11-09-002353.png",
+                    description: "A tech-inspired platform for modded apps and games. The modern green theme reflects innovation and digital energy.",
+                    tags: ["Tech Platform", "Modern UI", "JavaScript"]
+                },
+                {
+                    name: "Subhan Studio",
+                    url: "https://zaidmughal215.github.io/subhanstudio/",
+                    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop",
+                    description: "A modern studio portfolio website showcasing creative works and digital services with a sleek dark theme.",
+                    tags: ["Portfolio", "Dark Theme", "Web Design"]
+                }
+            ],
+            creative: [
+                {
+                    title: "Watch Post Redesign",
+                    before: "https://i.postimg.cc/X7vYF6BF/wp-130-d7390feb-812a-4766-ac7f-784969f15ff1-1024x1024.webp",
+                    after: "https://i.postimg.cc/GmyrJLLp/1764784192134-019ae554-e931-7c64-bffe-c0a5901c06b6.png"
+                },
+                {
+                    title: "Cream Box Advertisement",
+                    before: "https://i.postimg.cc/NGzWN3Pp/1764834955172-image.png",
+                    after: "https://i.postimg.cc/br7VzjKK/1764835315256-019ae861-194a-7fa4-a663-8f26241fbddd.png"
+                }
+            ],
+            videos: [
+                {
+                    title: "Watch Product Animation",
+                    thumbnail: "https://i.postimg.cc/MKbgmTrc/Carliongton-premium-black-analog-mens-s-watch-6020.webp",
+                    video: "https://ik.imagekit.io/0kzbr6cex/kling_20251214_Video_to_Audio__632_2-vmake.mp4"
+                },
+                {
+                    title: "Logo Branding Animation",
+                    thumbnail: "https://i.postimg.cc/wTvD04WK/218070638-105866751775241-4228397030925297540-n.jpg",
+                    video: "https://ik.imagekit.io/0kzbr6cex/Add%20a%20little%20bit%20of%20body%20text.mp4"
+                }
+            ]
+        };
+
+        // --- HOOKS ---
+        const useScrollReveal = (threshold = 0.1) => {
+            const [isVisible, setIsVisible] = useState(false);
+            const ref = useRef(null);
+
+            useEffect(() => {
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        if (entry.isIntersecting) {
+                            setIsVisible(true);
+                            observer.disconnect();
+                        }
+                    },
+                    { threshold }
+                );
+
+                if (ref.current) {
+                    observer.observe(ref.current);
+                }
+
+                return () => {
+                    if (ref.current) observer.unobserve(ref.current);
+                };
+            }, [threshold]);
+
+            return [ref, isVisible];
+        };
+
+        // --- COMPONENTS ---
+
+        const Reveal = ({ children, delay = 0, className = "" }) => {
+            const [ref, isVisible] = useScrollReveal();
+            const delayStyle = { transitionDelay: `${delay}ms` };
+            
+            return (
+                <div 
+                    ref={ref} 
+                    style={delayStyle}
+                    className={`transition-all duration-1000 ease-out transform ${
+                        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+                    } ${className}`}
+                >
+                    {children}
+                </div>
+            );
+        };
+
+        const Background = () => (
+            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+                {/* Base Gradient */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,#1a0a3e_0%,#030014_100%)]" />
+                
+                {/* Orbs */}
+                <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] rounded-full bg-glow-violet/15 blur-[80px] animate-float-slow" />
+                <div className="absolute -bottom-[30%] -left-[15%] w-[800px] h-[800px] rounded-full bg-glow-indigo/10 blur-[100px] animate-float-reverse" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-glow-purple/5 blur-[60px] animate-pulse-glow" />
+                
+                {/* Noise */}
+                <div className="absolute inset-0 bg-noise" />
+                
+                {/* Grid (Optional) */}
+                <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.02)_1px,transparent_1px)] [background-size:40px_40px] opacity-30" />
+            </div>
+        );
+
+        const SectionTitle = ({ title, subtitle, centered = false }) => (
+            <div className={`mb-12 ${centered ? "text-center" : "text-left"}`}>
+                <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4 glow-text">
+                    {title}
+                </h2>
+                <div className={`h-1 w-20 bg-gradient-to-r from-glow-violet to-glow-cyan rounded-full ${centered ? "mx-auto" : ""}`} />
+                {subtitle && <p className="mt-4 text-slate-400 max-w-2xl mx-auto">{subtitle}</p>}
+            </div>
+        );
+
+        const Navbar = () => {
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setIsScrolled(window.scrollY > 20);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = [
+                { name: 'About', href: '#about' },
+                { name: 'Skills', href: '#skills' },
+                { name: 'Projects', href: '#projects' },
+                { name: 'Creative', href: '#creative' },
+                { name: 'Contact', href: '#contact' },
+            ];
+
+            return (
+                <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                    isScrolled ? 'glass-nav h-16' : 'bg-transparent h-20'
+                }`}>
+                    <div className="container mx-auto px-6 h-full flex items-center justify-between">
+                        <a href="#" className="text-2xl font-display font-bold text-gradient">Zaid.</a>
+                        
+                        {/* Desktop Menu */}
+                        <div className="hidden md:flex items-center space-x-8">
+                            {navLinks.map((link) => (
+                                <a 
+                                    key={link.name} 
+                                    href={link.href}
+                                    className="text-sm font-medium text-slate-400 hover:text-white transition-colors relative group"
+                                >
+                                    {link.name}
+                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-glow-violet transition-all duration-300 group-hover:w-full" />
+                                </a>
+                            ))}
+                            <a 
+                                href="#contact" 
+                                className="px-5 py-2 rounded-full border border-glow-violet/30 bg-glow-violet/10 text-white text-sm font-medium hover:bg-glow-violet/20 hover:border-glow-violet/60 transition-all"
+                            >
+                                Let's Talk
+                            </a>
+                        </div>
+
+                        {/* Mobile Toggle */}
+                        <button 
+                            className="md:hidden text-white"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? <Icons.X /> : <Icons.Menu />}
+                        </button>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    {mobileMenuOpen && (
+                        <div className="absolute top-full left-0 w-full bg-cosmic/95 backdrop-blur-xl border-b border-white/5 p-6 md:hidden flex flex-col space-y-4 shadow-2xl">
+                            {navLinks.map((link) => (
+                                <a 
+                                    key={link.name} 
+                                    href={link.href}
+                                    className="text-lg text-slate-300 hover:text-white"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <section className="relative min-h-screen flex items-center pt-20 overflow-hidden" id="home">
+                    <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+                        
+                        {/* Text Content */}
+                        <div className="order-2 md:order-1 space-y-6">
+                            <Reveal delay={100}>
+                                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm">
+                                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                                    <span className="text-xs font-medium text-slate-300">Available for Work</span>
+                                </div>
+                            </Reveal>
+                            
+                            <Reveal delay={200}>
+                                <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight">
+                                    <span className="block text-white">Shaping the</span>
+                                    <span className="text-gradient">Digital Future.</span>
+                                </h1>
+                            </Reveal>
+                            
+                            <Reveal delay={300}>
+                                <p className="text-lg md:text-xl text-slate-400 max-w-lg leading-relaxed">
+                                    I am <span className="text-white font-medium">{PORTFOLIO_DATA.personal.name}</span>. 
+                                    {PORTFOLIO_DATA.personal.tagline}
+                                </p>
+                            </Reveal>
+                            
+                            <Reveal delay={400}>
+                                <div className="flex flex-wrap gap-4 pt-4">
+                                    <a 
+                                        href="#projects" 
+                                        className="px-8 py-4 rounded-xl bg-glow-violet text-white font-semibold shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:shadow-[0_0_40px_rgba(124,58,237,0.6)] hover:-translate-y-1 transition-all duration-300"
+                                    >
+                                        View Projects
+                                    </a>
+                                    <a 
+                                        href={PORTFOLIO_DATA.personal.resume} 
+                                        target="_blank"
+                                        className="px-8 py-4 rounded-xl glass-panel text-white font-semibold hover:bg-white/10 transition-all duration-300 flex items-center gap-2"
+                                    >
+                                        <Icons.Download size={20} />
+                                        Resume
+                                    </a>
+                                </div>
+                            </Reveal>
+                        </div>
+
+                        {/* Image Content */}
+                        <div className="order-1 md:order-2 flex justify-center relative">
+                            <Reveal delay={500} className="relative">
+                                {/* Glow Rings behind image */}
+                                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-glow-violet to-glow-cyan blur-[60px] opacity-40 animate-pulse-glow" />
+                                <div className="relative w-64 h-64 md:w-96 md:h-96 rounded-full p-2 border border-white/10 glass-panel">
+                                    <img 
+                                        src={PORTFOLIO_DATA.personal.avatar} 
+                                        alt="Profile" 
+                                        className="w-full h-full object-cover rounded-full border-4 border-white/5"
+                                    />
+                                    {/* Orbital Element */}
+                                    <div className="absolute top-0 left-0 w-full h-full animate-spin-slow pointer-events-none">
+                                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-glow-cyan shadow-[0_0_20px_#06B6D4]" />
+                                    </div>
+                                </div>
+                            </Reveal>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const About = () => (
+            <section id="about" className="py-20 relative z-10">
+                <div className="container mx-auto px-6">
+                    <Reveal>
+                        <div className="glass-panel rounded-3xl p-8 md:p-12 border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
+                            <div className="flex flex-col md:flex-row gap-12 items-center">
+                                <div className="flex-1 space-y-6">
+                                    <h3 className="text-3xl font-display font-bold text-white">Beyond the Code</h3>
+                                    <p className="text-slate-300 leading-relaxed text-lg">
+                                        Muhammad Zaid is a talented and hardworking 16-year-old student from Faisalabad who studies at Fauji Foundation. He has shown remarkable academic performance by securing 89% in his last exam, reflecting his dedication and intelligence. 
+                                    </p>
+                                    <p className="text-slate-400 leading-relaxed">
+                                        Zaid has a deep passion for technology, coding, and digital design, often spending his time creating creative projects such as websites, games, and software. His curiosity drives him to constantly learn new skills and explore innovative ideas.
+                                    </p>
+                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4">
+                                        <div>
+                                            <h4 className="text-3xl font-bold text-glow-violet">16</h4>
+                                            <p className="text-sm text-slate-500">Years Old</p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-3xl font-bold text-glow-blue">89%</h4>
+                                            <p className="text-sm text-slate-500">Academic Score</p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-3xl font-bold text-glow-pink">15+</h4>
+                                            <p className="text-sm text-slate-500">Projects</p>
+                                        </div>
+                                        <div>
+                                            <h4 className="text-3xl font-bold text-glow-cyan">24/7</h4>
+                                            <p className="text-sm text-slate-500">Creativity</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+        );
+
+        const SkillCard = ({ skill, index }) => {
+            const IconComp = Icons[skill.icon] || Icons.Code;
+            return (
+                <Reveal delay={index * 100} className="h-full">
+                    <div className="group h-full p-8 rounded-2xl glass-panel glass-panel-hover transition-all duration-300 border border-white/5 hover:-translate-y-2">
+                        <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-glow-violet/20 group-hover:text-glow-violet transition-colors">
+                            <IconComp size={24} />
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-glow-violet transition-colors">{skill.title}</h3>
+                        <p className="text-sm text-slate-400 leading-relaxed group-hover:text-slate-300">{skill.desc}</p>
+                    </div>
+                </Reveal>
+            );
+        };
+
+        const Skills = () => (
+            <section id="skills" className="py-24 relative z-10">
+                <div className="container mx-auto px-6">
+                    <Reveal>
+                        <SectionTitle 
+                            title="Technical Arsenal" 
+                            subtitle="A comprehensive toolkit for bringing digital dreams to life."
+                            centered
+                        />
+                    </Reveal>
+                    
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {PORTFOLIO_DATA.skills.map((skill, idx) => (
+                            <SkillCard key={idx} skill={skill} index={idx} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const ProjectCard = ({ project, index }) => (
+            <Reveal delay={index * 150}>
+                <div className="group relative rounded-2xl overflow-hidden glass-panel border border-white/10 hover:border-glow-violet/30 transition-all duration-500">
+                    {/* Image */}
+                    <div className="h-64 overflow-hidden relative">
+                        <div className="absolute inset-0 bg-gradient-to-t from-bg-void to-transparent opacity-60 z-10" />
+                        <img 
+                            src={project.image} 
+                            alt={project.name} 
+                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute top-4 right-4 z-20">
+                            <a 
+                                href={project.url} 
+                                target="_blank"
+                                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-glow-violet hover:scale-110 transition-all"
+                            >
+                                <Icons.ExternalLink size={18} />
+                            </a>
+                        </div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="p-8 relative z-20">
+                        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-glow-violet transition-colors">{project.name}</h3>
+                        <p className="text-slate-400 mb-6 line-clamp-2">{project.description}</p>
+                        <div className="flex flex-wrap gap-2">
+                            {project.tags.map(tag => (
+                                <span key={tag} className="px-3 py-1 text-xs font-medium rounded-full bg-white/5 border border-white/10 text-slate-300">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                    
+                    {/* Hover Glow */}
+                    <div className="absolute inset-0 border-2 border-glow-violet/0 rounded-2xl group-hover:border-glow-violet/20 transition-all duration-500 pointer-events-none" />
+                </div>
+            </Reveal>
+        );
+
+        const Projects = () => (
+            <section id="projects" className="py-24 relative z-10">
+                <div className="container mx-auto px-6">
+                    <SectionTitle 
+                        title="Featured Projects" 
+                        subtitle="Production-ready applications built with precision."
+                    />
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {PORTFOLIO_DATA.projects.map((proj, idx) => (
+                            <ProjectCard key={idx} project={proj} index={idx} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const BeforeAfterSlider = ({ before, after, title }) => {
+            const [sliderPosition, setSliderPosition] = useState(50);
+            const containerRef = useRef(null);
+
+            const getX = (e) => {
+                if (e.touches && e.touches[0]) {
+                    return e.touches[0].clientX;
+                }
+                return e.clientX;
+            };
+
+            const handleMove = (e) => {
+                if (!containerRef.current) return;
+                const clientX = getX(e);
+                if (typeof clientX !== 'number') return;
+                
+                const rect = containerRef.current.getBoundingClientRect();
+                const x = (clientX - rect.left) / rect.width;
+                setSliderPosition(Math.min(100, Math.max(0, x * 100)));
+            };
+
+            return (
+                <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-white">{title}</h4>
+                    <div 
+                        ref={containerRef}
+                        className="relative w-full aspect-square rounded-xl overflow-hidden cursor-ew-resize select-none border border-white/10 group shadow-2xl"
+                        onMouseMove={handleMove}
+                        onTouchMove={handleMove}
+                    >
+                        {/* After Image (Background) */}
+                        <img src={after} alt="After" className="absolute inset-0 w-full h-full object-cover" />
+                        <span className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-bold tracking-wider rounded border border-white/10 text-white font-mono pointer-events-none select-none">AFTER</span>
+
+                        {/* Before Image (Clipped) */}
+                        <div 
+                            className="absolute inset-0 overflow-hidden"
+                            style={{ width: `${sliderPosition}%` }}
+                        >
+                            <img src={before} alt="Before" className="absolute inset-0 w-full max-w-none h-full object-cover" style={{ width: containerRef.current?.offsetWidth || '100%' }} />
+                            <span className="absolute top-4 left-4 bg-glow-violet/80 backdrop-blur-md px-3 py-1 text-xs font-bold tracking-wider rounded border border-white/20 text-white font-mono pointer-events-none select-none">BEFORE</span>
+                        </div>
+
+                        {/* Slider Handle */}
+                        <div 
+                            className="absolute top-0 bottom-0 w-1 bg-glow-violet cursor-ew-resize z-20 flex items-center justify-center shadow-[0_0_30px_rgba(124,58,237,0.8)]"
+                            style={{ left: `${sliderPosition}%` }}
+                        >
+                            <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-lg border border-white/30 flex items-center justify-center shadow-xl transform -translate-x-[0.5px] hover:scale-110 transition-transform">
+                                <div className="w-1.5 h-1.5 rounded-full bg-white mb-0.5"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-white mt-0.5"></div>
+                                <svg className="absolute w-6 h-6 text-white drop-shadow-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M15 18l-6-6 6-6"/>
+                                </svg>
+                                <svg className="absolute w-6 h-6 text-white drop-shadow-md rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M15 18l-6-6 6-6"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const CreativeLab = () => (
+            <section id="creative" className="py-24 relative z-10 bg-black/20">
+                <div className="container mx-auto px-6">
+                    <SectionTitle 
+                        title="Creative Lab" 
+                        subtitle="Transforming concepts into visual reality."
+                        centered
+                    />
+                    
+                    <div className="grid md:grid-cols-2 gap-12 mt-12">
+                        {PORTFOLIO_DATA.creative.map((item, idx) => (
+                            <Reveal key={idx} delay={idx * 200}>
+                                <BeforeAfterSlider 
+                                    before={item.before} 
+                                    after={item.after} 
+                                    title={item.title} 
+                                />
+                            </Reveal>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const VideoCard = ({ video, index }) => {
+            const videoRef = useRef(null);
+            const [isPlaying, setIsPlaying] = useState(false);
+
+            const handleMouseEnter = () => {
+                if (videoRef.current) {
+                    videoRef.current.play().catch(() => {}); 
+                    setIsPlaying(true);
+                }
+            };
+
+            const handleMouseLeave = () => {
+                if (videoRef.current) {
+                    videoRef.current.pause();
+                    videoRef.current.currentTime = 0;
+                    setIsPlaying(false);
+                }
+            };
+
+            return (
+                <Reveal delay={index * 150}>
+                    <div 
+                        className="group relative rounded-2xl overflow-hidden glass-panel border border-white/10 hover:border-glow-violet/30 transition-all cursor-pointer w-full aspect-video"
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <video 
+                            ref={videoRef}
+                            src={video.video}
+                            muted
+                            loop
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
+                        
+                        {/* Overlay when not playing */}
+                        <div className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
+                            <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl group-hover:scale-110 transition-transform">
+                                <Icons.Play fill="white" className="ml-1 text-white" />
+                            </div>
+                        </div>
+                        
+                        {/* Title Overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black via-black/60 to-transparent">
+                            <h4 className="text-lg font-bold text-white">{video.title}</h4>
+                        </div>
+                    </div>
+                </Reveal>
+            );
+        };
+
+        const MotionWork = () => (
+            <section className="py-24 relative z-10">
+                <div className="container mx-auto px-6">
+                    <div className="flex items-end justify-between mb-12">
+                        <div>
+                            <h2 className="text-3xl font-display font-bold text-white mb-2">Motion Art</h2>
+                            <p className="text-slate-400">Bringing static pixels to life.</p>
+                        </div>
+                    </div>
+                    
+                    <div className="flex flex-col gap-16 max-w-4xl mx-auto">
+                        {PORTFOLIO_DATA.videos.map((vid, idx) => (
+                            <VideoCard key={idx} video={vid} index={idx} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Contact = () => (
+            <section id="contact" className="py-32 relative z-10">
+                <div className="container mx-auto px-6 text-center">
+                    <Reveal>
+                        <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-6">
+                            Let's Create Something <br/>
+                            <span className="text-gradient">Extraordinary.</span>
+                        </h2>
+                        <p className="text-slate-400 text-lg mb-12 max-w-xl mx-auto">
+                            Whether you have a game-changing idea or just want to say hello, my inbox is always open for opportunities.
+                        </p>
+                        
+                        <a 
+                            href={`mailto:${PORTFOLIO_DATA.personal.email}`}
+                            className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-2xl md:text-4xl font-bold text-white hover:text-glow-violet hover:bg-white/10 hover:border-glow-violet/30 transition-all group"
+                        >
+                            <Icons.Mail className="w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform" />
+                            {PORTFOLIO_DATA.personal.email}
+                        </a>
+
+                        <div className="flex justify-center gap-6 mt-12">
+                            {[
+                                { icon: "Instagram", url: PORTFOLIO_DATA.personal.instagram },
+                                { icon: "Phone", url: `https://wa.me/${PORTFOLIO_DATA.personal.whatsapp || PORTFOLIO_DATA.personal.phone.replace('+','')}` },
+                                { icon: "Github", url: "#" } // Placeholder
+                            ].map((social, idx) => (
+                                <a 
+                                    key={idx}
+                                    href={social.url}
+                                    target="_blank"
+                                    className="w-14 h-14 rounded-full glass-panel flex items-center justify-center text-slate-300 hover:text-white hover:bg-glow-violet hover:shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all duration-300"
+                                >
+                                    {Icons[social.icon] ? Icons[social.icon]({ size: 24 }) : null}
+                                </a>
+                            ))}
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="py-8 border-t border-white/5 relative z-10 bg-black/40">
+                <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+                    <p>&copy; 2024 Muhammad Zaid. All rights reserved.</p>
+                    <p className="flex items-center gap-1">
+                        Designed with <span className="text-glow-pink">❤</span> & Cosmic Energy
+                    </p>
+                </div>
+            </footer>
+        );
+
+        // --- APP ROOT ---
+        const App = () => {
+            useEffect(() => {
+                lucide.createIcons();
+            }, []);
+
+            return (
+                <div className="min-h-screen relative font-sans text-slate-200">
+                    <Background />
+                    <Navbar />
+                    <Hero />
+                    <About />
+                    <Skills />
+                    <Projects />
+                    <CreativeLab />
+                    <MotionWork />
+                    <Contact />
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>
