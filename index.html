@@ -125,7 +125,6 @@
             opacity: 0;
         }
 
-        /* Cursor trail particles */
         .cursor-trail {
             position: fixed;
             width: 4px;
@@ -187,7 +186,6 @@
             transform: scale(1);
         }
 
-        /* Section divider */
         .section-divider {
             width: 100%;
             height: 1px;
@@ -478,7 +476,6 @@
             width: 100%;
         }
 
-        /* Hamburger */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -501,7 +498,6 @@
         .hamburger.active div:nth-child(2) { opacity: 0; }
         .hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        /* Mobile Nav */
         .mobile-nav {
             position: fixed;
             top: 0;
@@ -669,7 +665,6 @@
             transform: translateY(-3px);
         }
 
-        /* Hero Visual */
         .hero-visual {
             position: relative;
             height: 80vh;
@@ -1650,7 +1645,6 @@
 
         .site-footer .footer-accent { color: var(--accent-orange); }
 
-        /* Scroll progress indicator */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -1663,7 +1657,6 @@
             transition: width 0.1s linear;
         }
 
-        /* Contact Particles */
         #contact-particles {
             position: absolute;
             width: 100%; height: 100%;
@@ -1683,6 +1676,186 @@
             0% { box-shadow: 0 0 0px var(--accent-orange); }
             50% { box-shadow: 0 0 20px var(--accent-orange); }
             100% { box-shadow: 0 0 0px var(--accent-orange); }
+        }
+
+        /* ========== AI ASSISTANT BUTTON ========== */
+        .ai-assistant-btn {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            border: 1px solid rgba(255, 106, 0, 0.35);
+            box-shadow:
+                0 0 0 1px rgba(255, 106, 0, 0.08),
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(255, 106, 0, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 9000;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                        border-color 0.4s ease,
+                        background 0.4s ease;
+            cursor: none !important;
+            overflow: hidden;
+        }
+
+        /* Subtle inner glow ring */
+        .ai-assistant-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, rgba(255, 106, 0, 0.18) 0%, transparent 65%);
+            transition: opacity 0.4s ease;
+            opacity: 1;
+        }
+
+        /* Rotating border accent */
+        .ai-assistant-btn::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(255, 106, 0, 0.6) 60deg,
+                transparent 120deg,
+                transparent 360deg
+            );
+            animation: ai-btn-spin 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .ai-assistant-btn:hover::after {
+            opacity: 1;
+        }
+
+        .ai-assistant-btn:hover {
+            transform: translateY(-4px) scale(1.08);
+            border-color: rgba(255, 106, 0, 0.7);
+            box-shadow:
+                0 0 0 1px rgba(255, 106, 0, 0.2),
+                0 14px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(255, 106, 0, 0.25);
+            background: linear-gradient(135deg, #1e1e1e 0%, #111111 100%);
+        }
+
+        .ai-assistant-btn:active {
+            transform: translateY(-1px) scale(0.97);
+        }
+
+        /* SVG icon inside button */
+        .ai-btn-icon {
+            width: 26px;
+            height: 26px;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                        filter 0.4s ease;
+        }
+
+        .ai-assistant-btn:hover .ai-btn-icon {
+            transform: scale(1.12);
+            filter: drop-shadow(0 0 6px rgba(255, 106, 0, 0.7));
+        }
+
+        /* Tooltip label */
+        .ai-btn-tooltip {
+            position: absolute;
+            right: calc(100% + 14px);
+            top: 50%;
+            transform: translateY(-50%) translateX(6px);
+            background: rgba(12, 12, 12, 0.95);
+            border: 1px solid rgba(255, 106, 0, 0.2);
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 7px 14px;
+            border-radius: 3px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .ai-btn-tooltip::after {
+            content: '';
+            position: absolute;
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            width: 8px;
+            height: 8px;
+            background: rgba(12, 12, 12, 0.95);
+            border-right: 1px solid rgba(255, 106, 0, 0.2);
+            border-top: 1px solid rgba(255, 106, 0, 0.2);
+        }
+
+        .ai-assistant-btn:hover .ai-btn-tooltip {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* Ambient pulse ring behind button */
+        .ai-btn-pulse {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 106, 0, 0.2);
+            pointer-events: none;
+            z-index: 8999;
+            animation: ai-pulse-ring 3s ease-out infinite;
+        }
+
+        @keyframes ai-pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.9);
+                opacity: 0;
+            }
+        }
+
+        @keyframes ai-btn-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Smooth scroll behavior — button stays fixed */
+        @media (max-width: 768px) {
+            .ai-assistant-btn {
+                width: 52px;
+                height: 52px;
+                bottom: 24px;
+                right: 20px;
+                cursor: auto !important;
+            }
+            .ai-btn-pulse {
+                bottom: 24px;
+                right: 20px;
+                width: 52px;
+                height: 52px;
+            }
+            .ai-btn-tooltip {
+                display: none;
+            }
         }
 
         /* ========== RESPONSIVE ========== */
@@ -1718,7 +1891,6 @@
         }
 
         @media (max-width: 768px) {
-            /* Hide custom cursor on touch devices */
             .cursor-dot, .cursor-ring, .cursor-glow { display: none !important; }
             * { cursor: auto !important; }
 
@@ -1762,6 +1934,40 @@
 
     <!-- ========== SCROLL PROGRESS ========== -->
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ========== AI ASSISTANT BUTTON ========== -->
+    <div class="ai-btn-pulse"></div>
+    <a
+        href="https://zaidmughal215.github.io/assistant/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ai-assistant-btn"
+        id="aiAssistantBtn"
+        aria-label="Open AI Assistant"
+    >
+        <span class="ai-btn-tooltip">AI Assistant</span>
+        <!-- AI / Spark icon -->
+        <svg class="ai-btn-icon" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Central spark / neural node -->
+            <circle cx="13" cy="13" r="3.2" fill="#FF6A00" opacity="0.95"/>
+            <!-- Radiating lines — top -->
+            <line x1="13" y1="9" x2="13" y2="4.5" stroke="#FF6A00" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Bottom -->
+            <line x1="13" y1="17" x2="13" y2="21.5" stroke="#FF6A00" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Left -->
+            <line x1="9" y1="13" x2="4.5" y2="13" stroke="#FF6A00" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Right -->
+            <line x1="17" y1="13" x2="21.5" y2="13" stroke="#FF6A00" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Diagonal top-right -->
+            <line x1="15.2" y1="10.8" x2="18.5" y2="7.5" stroke="#FFA94D" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+            <!-- Diagonal bottom-left -->
+            <line x1="10.8" y1="15.2" x2="7.5" y2="18.5" stroke="#FFA94D" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+            <!-- Diagonal top-left -->
+            <line x1="10.8" y1="10.8" x2="7.5" y2="7.5" stroke="#FFA94D" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+            <!-- Diagonal bottom-right -->
+            <line x1="15.2" y1="15.2" x2="18.5" y2="18.5" stroke="#FFA94D" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+        </svg>
+    </a>
 
     <!-- ========== PRELOADER ========== -->
     <div class="preloader" id="preloader">
@@ -2012,8 +2218,7 @@
                 ring.classList.remove('clicking');
             });
 
-            // Hover detection
-            const interactiveSelectors = 'a, button, .btn, .project-card, .monolith, .tool-plate, .social-btn, .submit-btn, .timeline-card, input, textarea, .hamburger, .nav-links a, .mobile-nav a, .view-btn';
+            const interactiveSelectors = 'a, button, .btn, .project-card, .monolith, .tool-plate, .social-btn, .submit-btn, .timeline-card, input, textarea, .hamburger, .nav-links a, .mobile-nav a, .view-btn, .ai-assistant-btn';
 
             document.querySelectorAll(interactiveSelectors).forEach(el => {
                 el.addEventListener('mouseenter', () => {
@@ -2026,7 +2231,6 @@
                 });
             });
 
-            // Hide cursor when leaving window
             document.addEventListener('mouseleave', () => {
                 dot.classList.add('hidden');
                 ring.classList.add('hidden');
@@ -2039,21 +2243,17 @@
                 glow.classList.remove('hidden');
             });
 
-            // Smooth cursor animation loop
             function animateCursor() {
-                // Dot follows closely
                 dotX += (mouseX - dotX) * 0.35;
                 dotY += (mouseY - dotY) * 0.35;
                 dot.style.left = dotX + 'px';
                 dot.style.top = dotY + 'px';
 
-                // Ring follows with lag
                 ringX += (mouseX - ringX) * 0.15;
                 ringY += (mouseY - ringY) * 0.15;
                 ring.style.left = ringX + 'px';
                 ring.style.top = ringY + 'px';
 
-                // Glow follows with more lag
                 glowX += (mouseX - glowX) * 0.08;
                 glowY += (mouseY - glowY) * 0.08;
                 glow.style.left = glowX + 'px';
@@ -2097,7 +2297,6 @@
                 setTimeout(() => {
                     document.getElementById('preloader').classList.add('hidden');
                     document.body.style.overflow = 'auto';
-                    // Trigger hero reveals after preloader
                     setTimeout(triggerHeroReveals, 200);
                 }, 600);
             }
@@ -2197,7 +2396,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
-                    // Don't unobserve to allow re-animation if needed
                 }
             });
         }, {
@@ -2205,7 +2403,6 @@
             rootMargin: '0px 0px -50px 0px'
         });
 
-        // Observe all reveal elements except hero (handled by preloader)
         document.querySelectorAll('.reveal-element:not(.hero .reveal-element), .reveal-left, .reveal-right, .reveal-scale').forEach(el => {
             revealObserver.observe(el);
         });
@@ -2338,10 +2535,10 @@
             });
         });
 
-        // Re-observe dynamically for interactive cursor targets after DOM is ready
+        // ===== AI ASSISTANT BUTTON — cursor hover registration =====
         setTimeout(() => {
             if (!isTouchDevice) {
-                const interactiveSelectors = 'a, button, .btn, .project-card, .monolith, .tool-plate, .social-btn, .submit-btn, .timeline-card, input, textarea, .hamburger, .nav-links a, .mobile-nav a, .view-btn';
+                const interactiveSelectors = 'a, button, .btn, .project-card, .monolith, .tool-plate, .social-btn, .submit-btn, .timeline-card, input, textarea, .hamburger, .nav-links a, .mobile-nav a, .view-btn, .ai-assistant-btn';
                 document.querySelectorAll(interactiveSelectors).forEach(el => {
                     el.addEventListener('mouseenter', () => {
                         dot.classList.add('hovering');
